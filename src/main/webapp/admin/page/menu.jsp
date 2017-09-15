@@ -7,9 +7,7 @@
             <div class="tpl-user-panel-profile-picture" style="margin:0 auto;">
                 <img src="/admin/static/img/ryan0up.png" alt="">
             </div>
-            <span class="user-panel-logged-in-text">
-	                        RYAN0UP
-	                    </span>
+            <span class="user-panel-logged-in-text">RYAN0UP</span>
             <a href="javascript:;" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 账号设置</a>
         </div>
     </div>
@@ -67,7 +65,7 @@
             </a>
             <ul class="sidebar-nav sidebar-nav-sub">
                 <li class="sidebar-nav-link">
-                    <a href="/admin/page/index-setting.jsp">
+                    <a href="/admin/page/site-setting.jsp">
                         <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 网站设置
                     </a>
                 </li>

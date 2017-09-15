@@ -14,24 +14,23 @@ import java.io.IOException;
  */
 @WebFilter(filterName = "SetCharacterEncodingFilter")
 public class SetCharacterEncodingFilter implements Filter {
-    //储存编码格式信息
-    private String encode = null;
-    public void destroy() {}
+    private String encoding = "UTF-8";
+    protected FilterConfig filterConfig;
 
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-        //转换
-        HttpServletRequest request = (HttpServletRequest)req;
-        HttpServletResponse response = (HttpServletResponse)resp;
-        if(this.encode!=null&&!this.encode.equals("")){
-            request.setCharacterEncoding(this.encode);
-        }else {
-            request.setCharacterEncoding("utf-8");
-        }
-        chain.doFilter(request, response);
+    public void init(FilterConfig filterConfig) throws ServletException {
+        this.filterConfig = filterConfig;
+        if(filterConfig.getInitParameter("encoding") != null)
+            encoding = filterConfig.getInitParameter("encoding");
     }
 
-    public void init(FilterConfig config) throws ServletException {
-        //获取在web.xml中的编码格式信息
-        this.encode = config.getInitParameter("encode");
+    public void doFilter(ServletRequest req, ServletResponse resp,
+                         FilterChain filterChain) throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest)req;
+        request.setCharacterEncoding(encoding);
+        filterChain.doFilter(req, resp);
+    }
+
+    public void destroy() {
+        this.encoding = null;
     }
 }

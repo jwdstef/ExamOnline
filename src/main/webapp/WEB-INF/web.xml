@@ -53,6 +53,10 @@
         <servlet-name>ClassServlet</servlet-name>
         <servlet-class>cc.ryanc.servlet.ClassServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SiteServlet</servlet-name>
+        <servlet-class>cc.ryanc.servlet.SiteServlet</servlet-class>
+    </servlet>
     
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
@@ -65,5 +69,9 @@
     <servlet-mapping>
         <servlet-name>ClassServlet</servlet-name>
         <url-pattern>/ClassServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SiteServlet</servlet-name>
+        <url-pattern>/SiteServlet</url-pattern>
     </servlet-mapping>
 </web-app>

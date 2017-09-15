@@ -25,7 +25,8 @@ public class SiteDao {
             String sql = "select * from siteInfo";
             rs = dbUtil.execQuery(sql, null);
             while (rs.next()) {
-                siteInfo = new SiteInfo(rs.getString(1),
+                siteInfo = new SiteInfo(
+                        rs.getString(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
@@ -33,7 +34,8 @@ public class SiteDao {
                         rs.getString(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getString(9));
+                        rs.getString(9)
+                );
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,9 +1,9 @@
 package cc.ryanc.test;
 
+import cc.ryanc.dao.SiteDao;
+import cc.ryanc.entity.SiteInfo;
 import cc.ryanc.util.DBUtil;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,14 +13,8 @@ import java.sql.SQLException;
 public class TestDemo {
     public static void main(String []args){
         DBUtil dbUtil = new DBUtil();
-        String sql = "select * from stuInfo where stuNo=?";
-        ResultSet rs = dbUtil.execQuery(sql,new Object[]{"S0001"});
-        try {
-            while(rs.next()){
-                System.out.println(rs.getInt(1)+"--"+rs.getString(2)+"--"+rs.getString(3));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        SiteDao siteDao = new SiteDao();
+        SiteInfo siteInfo = siteDao.getQuery();
+        System.out.println(siteInfo.getTitle()+"--"+siteInfo.getUrl());
     }
 }

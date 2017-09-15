@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="cc.ryanc.entity.StuInfo" %>
+<%@ page import="cc.ryanc.dao.SiteDao" %>
+<%@ page import="cc.ryanc.entity.SiteInfo" %>
 <%--
   Created by IntelliJ IDEA.
   User: RYAN0UP
@@ -8,14 +10,18 @@
 --%>
 <!DOCTYPE HTML>
 <html>
+	<%
+		SiteDao siteDao = new SiteDao();
+		SiteInfo siteInfo = siteDao.getQuery();
+	%>
 	<head>
-		<title>在线考试系统</title>
+		<title><%=siteInfo.getTitle()%></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<meta http-equiv="pragma" content="no-cache">
 		<meta http-equiv="cache-control" content="no-cache">
 		<meta http-equiv="expires" content="0">    
-		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-		<meta http-equiv="description" content="This is my page">
+		<meta http-equiv="keywords" content="<%=siteInfo.getWords()%>">
+		<meta http-equiv="description" content="<%=siteInfo.getDescr()%>">
 		<link rel="stylesheet" type="text/css" href="static/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="static/css/style.css">
@@ -158,6 +164,9 @@
 				</div>
 			</div>
 		</div>
+		<footer>
+			<span><%=siteInfo.getCopyright()%> <%=siteInfo.getIcp()%></span>
+		</footer>
 	</body>
 	<!-- Jquery -->
 	<script type="text/javascript" src="static/js/jquery.min.js"></script>
