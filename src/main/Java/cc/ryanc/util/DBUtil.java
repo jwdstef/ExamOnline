@@ -3,7 +3,6 @@ package cc.ryanc.util;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
 import javax.sql.DataSource;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,23 +24,8 @@ public class DBUtil {
         try {
             //加载配置文件
             Properties pr = new Properties();
-            pr.put("driverClassName","com.mysql.jdbc.Driver");
-            pr.put("url","jdbc:mysql://localhost:3306/examDB");
-            pr.put("username","root");
-            pr.put("password","123456");
-            pr.put("initialSize","1");
-            pr.put("minIdle","1");
-            pr.put("maxActive","2000");
-            pr.put("maxWait","60000");
-            pr.put("timeBetweenEvictionRunsMillis","60000");
-            pr.put("minEvictableIdleTimeMillis","300000");
-            pr.put("validationQuery","SELECT 'x'");
-            pr.put("testWhileIdle","true");
-            pr.put("testOnBorrow","false");
-            pr.put("testOnReturn","true");
-            pr.put("poolPreparedStatements","false");
-            pr.put("maxPoolPreparedStatementPerConnectionSize","20");
-            pr.put("filters","stat");
+            //获取resources资源路径下的连接池配置文件
+            pr.load(this.getClass().getResourceAsStream("/druid.properties"));
             dataSource = DruidDataSourceFactory.createDataSource(pr);
         } catch (Exception e) {
             e.printStackTrace();
