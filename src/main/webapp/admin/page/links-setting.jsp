@@ -40,13 +40,10 @@
             });
         </script>
     </head>
-    <body data-type="index">
-        <script src="../static/js/theme.js"></script>
+    <body>
         <div class="am-g tpl-g">
             <!-- 动态包含header头部 -->
             <jsp:include page="header.jsp" flush="true"/>
-            <!-- 动态包含风格切换按钮 -->
-            <jsp:include page="theme.jsp" flush="true"/>
             <!-- 动态包含左侧菜单 -->
             <jsp:include page="menu.jsp" flush="true"/>
             <!-- 内容区域 -->

@@ -9,7 +9,6 @@
 <html>
 	<head>
 	   	<title>ExamOnline-班级管理</title>
-	   
 		<meta http-equiv="pragma" content="no-cache">
 		<meta http-equiv="cache-control" content="no-cache">
 		<meta http-equiv="expires" content="0">    
@@ -19,41 +18,15 @@
 	    <meta http-equiv="Cache-Control" content="no-siteapp" />
 	    <link rel="stylesheet" href="/admin/static/css/amazeui.min.css" />
 	    <link rel="stylesheet" href="/admin/static/css/app.css">
-	
-	    <script src="/admin/static/js/jquery.min.js"></script>
-	    <script src="/admin/static/js/amazeui.min.js"></script>
-	    <script src="/admin/static/js/pjax.min.js"></script>
-		    <script type="text/javascript">
-			<!-- 获取进度条对象 -->
-            var progress = $.AMUI.progress.configure({ ease: 'ease', speed: 1000 });
-			<!-- 设置pjax，刷新替换content里面的内容 -->
-            $(document).pjax('a[target!=_blank]', '#content', {fragment: '#content',timeout: 8000});
-
-			<!--发送请求的时候开始进度条-->
-            $(document).on('pjax:send', function() {
-                    progress.start();
-            });
-
-			<!-- 响应完成的时候停止进度条 -->
-            $(document).on('pjax:complete', function() {
-                    progress.done();
-            });
-    	</script>
-	
 	</head>
-  
-	<body data-type="index">
-	    <script src="/admin/static/js/theme.js"></script>
+	<body>
 	    <div class="am-g tpl-g">
 			<!-- 动态包含header头部 -->
 			<jsp:include page="header.jsp" flush="true"/>
-			<!-- 动态包含风格切换按钮 -->
-			<jsp:include page="theme.jsp" flush="true"/>
 			<!-- 动态包含左侧菜单 -->
 			<jsp:include page="menu.jsp" flush="true"/>
 	        <!-- 内容区域 -->
 	        <div class="tpl-content-wrapper" id="content">
-	
 	            <div class="container-fluid am-cf">
 	                <div class="row">
 	                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
@@ -262,8 +235,28 @@
 	          </div>
 	        </div>
 	    </div>
+		<script src="/admin/static/js/jquery.min.js"></script>
+		<script src="/admin/static/js/amazeui.min.js"></script>
+		<script src="/admin/static/js/theme.js"></script>
+		<script src="/admin/static/js/pjax.min.js"></script>
 		<script src="/admin/static/js/amazeui.datatables.min.js"></script>
-	    <script src="/admin/static/js/dataTables.responsive.min.js"></script>
-	    <script src="/admin/static/js/app.js"></script>
+		<script src="/admin/static/js/dataTables.responsive.min.js"></script>
+		<script src="/admin/static/js/app.js"></script>
+		<script type="text/javascript">
+            <!-- 获取进度条对象 -->
+            var progress = $.AMUI.progress.configure({ ease: 'ease', speed: 1000 });
+            <!-- 设置pjax，刷新替换content里面的内容 -->
+            $(document).pjax('a[target!=_blank]', '#content', {fragment: '#content',timeout: 8000});
+
+            <!--发送请求的时候开始进度条-->
+            $(document).on('pjax:send', function() {
+                progress.start();
+            });
+
+            <!-- 响应完成的时候停止进度条 -->
+            $(document).on('pjax:complete', function() {
+                progress.done();
+            });
+		</script>
 	</body>
 </html>

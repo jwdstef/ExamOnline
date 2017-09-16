@@ -4,6 +4,8 @@ import cc.ryanc.dao.SiteDao;
 import cc.ryanc.entity.SiteInfo;
 import cc.ryanc.util.DBUtil;
 
+import java.sql.ResultSet;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,8 +15,19 @@ import cc.ryanc.util.DBUtil;
 public class TestDemo {
     public static void main(String []args){
         DBUtil dbUtil = new DBUtil();
-        SiteDao siteDao = new SiteDao();
-        SiteInfo siteInfo = siteDao.getQuery();
-        System.out.println(siteInfo.getTitle()+"--"+siteInfo.getUrl());
+        ResultSet rs = null;
+        String name = "RYAN0UP";
+        String pwd = "wangdashen6666";
+        String sql = "select * from adminInfo where adminName=? and adminPwd=md5(?)";
+        rs = dbUtil.execQuery(sql,new Object[]{name,pwd});
+        try{
+            if(rs.next()){
+                System.out.println("登录成功");
+            }else{
+                System.out.println("登录失败");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

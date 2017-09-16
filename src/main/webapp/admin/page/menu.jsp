@@ -70,11 +70,6 @@
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="/admin/page/seo-setting.jsp">
-                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> SEO优化
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
                     <a href="/admin/page/links-setting.jsp">
                         <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 友情链接
                     </a>
