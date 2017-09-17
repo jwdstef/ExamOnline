@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: RYAN0UP
@@ -19,7 +20,7 @@
 	    <link rel="stylesheet" href="/admin/static/css/amazeui.min.css" />
 	    <link rel="stylesheet" href="/admin/static/css/app.css">
 	</head>
-	<body>
+	<body class="theme-black">
 	    <div class="am-g tpl-g">
 			<!-- 动态包含header头部 -->
 			<jsp:include page="header.jsp" flush="true"/>
@@ -30,7 +31,7 @@
 	            <div class="container-fluid am-cf">
 	                <div class="row">
 	                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
-	                        <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 出题管理 <small>Subject Manager</small></div>
+	                        <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 题库管理 <small>Subject Manager</small></div>
 	                    </div>
 	                </div>
 	            </div>
@@ -40,7 +41,7 @@
 						<div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
 							<div class="widget am-cf">
 								<div class="widget-head am-cf">
-									<div class="widget-title  am-cf">学生列表</div>
+									<div class="widget-title  am-cf">题库列表</div>
 								</div>
 								<div class="widget-body  am-fr">
 
@@ -56,7 +57,7 @@
 									<div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
 										<div class="am-form-group tpl-table-list-select">
 											<select data-am-selected="{btnSize: 'sm'}">
-												<option value="option1">所有班级</option>
+												<option value="option1">所有科目</option>
 												<option value="option2">T394</option>
 												<option value="option3">T395</option>
 												<option value="option3">T396</option>
@@ -79,18 +80,34 @@
 										<table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
 											<thead>
 											<tr>
-												<th>学号</th>
-												<th>姓名</th>
-												<th>性别</th>
-												<th>年龄</th>
+												<th>编号</th>
+												<th>科目</th>
+												<th>类型</th>
+												<th>题目</th>
 												<th>阶段</th>
-												<th>班级</th>
-												<th>入学时间</th>
 												<th>操作</th>
 											</tr>
 											</thead>
 											<tbody>
-
+												<c:forEach items="${requestScope.examLibraries}" var="el">
+													<tr>
+														<td><c:out value="${el.libId}"></c:out></td>
+														<td><c:out value="${el.subject.subName}"></c:out></td>
+														<td><c:out value="${el.libtype}"></c:out></td>
+														<td><c:out value="${el.libTitle}"></c:out></td>
+														<td><c:out value="${el.gradeInfo.gradeName}"></c:out></td>
+														<td>
+															<div class="tpl-table-black-operation">
+																<a href="javascript:;">
+																	<i class="am-icon-pencil"></i> 编辑
+																</a>
+																<a href="/ExamLibraryServlet?op=remove&libId=${ci.libId}" class="tpl-table-black-operation-del">
+																	<i class="am-icon-trash"></i> 删除
+																</a>
+															</div>
+														</td>
+													</tr>
+												</c:forEach>
 											</tbody>
 										</table>
 									</div>
@@ -116,7 +133,6 @@
 		</div>
 		<script src="/admin/static/js/jquery.min.js"></script>
 		<script src="/admin/static/js/amazeui.min.js"></script>
-		<script src="/admin/static/js/theme.js"></script>
 		<script src="/admin/static/js/pjax.min.js"></script>
 		<script src="/admin/static/js/amazeui.datatables.min.js"></script>
 		<script src="/admin/static/js/dataTables.responsive.min.js"></script>

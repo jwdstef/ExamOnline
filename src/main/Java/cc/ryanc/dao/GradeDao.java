@@ -27,7 +27,10 @@ public class GradeDao {
             String sql = "select * from gradeInfo";
             rs = dbUtil.execQuery(sql, null);
             while (rs.next()) {
-                GradeInfo gradeInfo = new GradeInfo(rs.getInt(1), rs.getString(2));
+                GradeInfo gradeInfo = new GradeInfo(
+                        rs.getInt(1),
+                        rs.getString(2)
+                );
                 list.add(gradeInfo);
             }
         } catch (Exception e) {

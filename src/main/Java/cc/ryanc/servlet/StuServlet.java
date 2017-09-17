@@ -145,8 +145,10 @@ public class StuServlet extends HttpServlet {
         }
         // 调用方法查询所有学生信息
         PageModel<StuInfo> pageModel = stuDao.getSearch(keyWord,pageNo);
+        ArrayList<StuInfo> stuInfos = pageModel.getAll();
         // 将pm存入request范围内
-        request.setAttribute("stu", pageModel);
+        request.setAttribute("pm", pageModel);
+        request.setAttribute("stuInfos", stuInfos);
         request.getRequestDispatcher("/admin/page/student.jsp").forward(request,response);
     }
 }

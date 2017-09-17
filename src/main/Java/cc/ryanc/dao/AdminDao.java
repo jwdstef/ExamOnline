@@ -22,7 +22,10 @@ public class AdminDao {
         try {
             rs = dbUtil.execQuery(sql, new Object[]{adminName,adminPwd});
             if (rs.next()) {
-                adminInfo = new AdminInfo(rs.getString("adminName"), rs.getString("adminPwd"));
+                adminInfo = new AdminInfo(
+                        rs.getString("adminName"),
+                        rs.getString("adminPwd")
+                );
             }
         } catch (SQLException e) {
             e.printStackTrace();

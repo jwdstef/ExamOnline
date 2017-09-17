@@ -55,6 +55,7 @@
 					<div class="w_title">
 						<span>当前考试</span>
 					</div>
+					<span style="font-size: 10px;color: red;">&emsp;距离最近的考试还有45:00</span>
 				</div>
 				<div class="widgets_all" id="widgets_testforward">
 					<div class="w_icons">

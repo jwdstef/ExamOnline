@@ -40,7 +40,7 @@
             });
         </script>
     </head>
-    <body>
+    <body class="theme-black">
         <div class="am-g tpl-g">
             <!-- 动态包含header头部 -->
             <jsp:include page="header.jsp" flush="true"/>

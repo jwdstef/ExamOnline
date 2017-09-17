@@ -22,7 +22,9 @@
   	
 
 	<body>
-		<h1>当前考试</h1>
+		<div class="container-fluid">
+
+		</div>
 	</body>
 	<script type="text/javascript" src="static/js/jquery.min.js"></script>
 	<script>

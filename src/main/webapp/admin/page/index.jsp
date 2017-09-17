@@ -19,7 +19,7 @@
 	    <link rel="stylesheet" href="/admin/static/css/amazeui.min.css" />
 	    <link rel="stylesheet" href="/admin/static/css/app.css">
 	</head>
-	<body data-type="index">
+	<body data-type="index" class="theme-black">
 	    <div class="am-g tpl-g">
 			<!-- 动态包含header头部 -->
 			<jsp:include page="header.jsp" flush="true"/>
@@ -40,7 +40,6 @@
 	    </div>
 		<script src="/admin/static/js/jquery.min.js"></script>
 		<script src="/admin/static/js/amazeui.min.js"></script>
-		<script src="/admin/static/js/theme.js"></script>
 		<script src="/admin/static/js/pjax.min.js"></script>
         <script src="/admin/static/js/amazeui.datatables.min.js"></script>
 		<script src="/admin/static/js/dataTables.responsive.min.js"></script>

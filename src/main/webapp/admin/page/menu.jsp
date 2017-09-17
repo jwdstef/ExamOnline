@@ -45,7 +45,7 @@
             </a>
             <ul class="sidebar-nav sidebar-nav-sub">
                 <li class="sidebar-nav-link">
-                    <a href="/admin/page/subject.jsp">
+                    <a href="/ExamLibraryServlet">
                         <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 出题管理
                     </a>
                 </li>
@@ -84,13 +84,13 @@
             </a>
             <ul class="sidebar-nav sidebar-nav-sub">
                 <li class="sidebar-nav-link">
-                    <a href="table-list.jsp">
-                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 新增管理员
+                    <a href="admin-manage.jsp">
+                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 账号列表
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="table-list-img.jsp">
-                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 权限管理
+                    <a href="admin-add.jsp">
+                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 新增管理
                     </a>
                 </li>
             </ul>

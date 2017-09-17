@@ -8,6 +8,7 @@ create table adminInfo
 (
   adminId int primary key auto_increment,
   adminName varchar(20) not null,
+  adminEmail varchar(50) not null,
   adminPwd varchar(50) not null
 )CHARACTER set ='utf8';
 
@@ -29,7 +30,7 @@ create table classInfo
   classBegin varchar(50) not null,
   gradeId int references gradeInfo(gradeId)
 )CHARACTER set ='utf8';
-
+select * from classInfo a inner join gradeInfo b on a.gradeId=b.gradeId order by classId DESC limit 0,10
 -- 学生表
 create table stuInfo
 (
@@ -53,15 +54,25 @@ create table subject
 -- 题库表
 create table examLibrary
 (
-  examId int primary key auto_increment,
+  libId int primary key auto_increment,
+  libTitle varchar(200) not null,
+  libA varchar(200) not null,
+  libB varchar(200) not null,
+  libC varchar(200) not null,
+  libD varchar(200) not null,
+  libRight char(1) not null,
   subId int references subject(subId),
-  examTitle varchar(200) not null,
-  examA varchar(200) not null,
-  examB varchar(200) not null,
-  examC varchar(200) not null,
-  examD varchar(200) not null,
-  examRight char(1) not null
+  libtype int not null,
+  gradeId int references gradeInfo(gradeId)
 )CHARACTER set ='utf8';
+insert into examLibrary value(libId,'Java测试1','J2EE','J2ME','J2SE','.NET','A',1,1,1);
+
+
+select * from examLibrary a inner join subject b on a.subId = b.subId inner join gradeInfo c on a.gradeId = c.gradeId
+
+
+
+
 
 create table siteInfo
 (
@@ -78,7 +89,7 @@ create table siteInfo
 insert into siteInfo VALUES ('考试在线','http://localhost:8080','考试,在线考试','我是描述','/sitemap.xml','favicon.ico','Copyright◎2017','渝ICP备-111222-1','cnzz.com');
 
 -- 插入测试数据
-insert into adminInfo values(1,'admin',md5('123456'));
+insert into adminInfo values(1,'admin','i@ryanc.cc',md5('123456'));
 
 insert into gradeInfo values('1','S1');
 insert into gradeInfo values('2','S2');
@@ -102,9 +113,7 @@ insert into subject values(subId,'PHP网页设计');
 insert into subject values(subId,'Linux基础');
 insert into subject values(subId,'Photoshop基础');
 
-insert into examLibrary values(examId,1,'Java牛逼吗？','牛逼','还行','屌爆了','辣鸡','C');
-insert into examLibrary values(examId,2,'.NET牛逼吗？','牛逼','还行','屌爆了','辣鸡','C');
-insert into examLibrary values(examId,3,'PHP牛逼吗？','牛逼','还行','屌爆了','辣鸡','C');
-insert into examLibrary values(examId,4,'Linux牛逼吗？','牛逼','还行','屌爆了','辣鸡','C');
-insert into examLibrary values(examId,5,'Photoshop牛逼吗？','牛逼','还行','屌爆了','辣鸡','C');
+SELECT * FROM adminInfo;
+select * from stuInfo;
+select * from gradeInfo;
 
