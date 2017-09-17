@@ -156,7 +156,7 @@ public class StuDao {
     }
 
     /**
-     * 查询学生
+     * 根据关键字查询学生
      * @param keyword 关键字
      * @return 返回集合
      */
@@ -206,5 +206,33 @@ public class StuDao {
             dbUtil.closeSource(rs);
         }
         return pageModel;
+    }
+
+    /**
+     * 更新学生信息
+     * @param stuInfo StuInfo对象
+     * @return  返回true或者false
+     */
+    public boolean getUpdate(StuInfo stuInfo){
+        boolean result = false;
+        try{
+            String sql = "update stuInfo set stuNo=?,stuName=?,stuPwd=?,stuSex=?,stuAge=?,stuPhoto=?,classId=? where stuId=?";
+            int row = dbUtil.execUpdate(sql,new Object[]{
+                    stuInfo.getStuNo(),
+                    stuInfo.getStuName(),
+                    stuInfo.getStuPwd(),
+                    stuInfo.getStuSex(),
+                    stuInfo.getStuAge(),
+                    stuInfo.getStuPhoto(),
+                    stuInfo.getClassInfo().getClassId(),
+                    stuInfo.getStuId()
+            });
+            if (row>0){
+                result = true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
     }
 }

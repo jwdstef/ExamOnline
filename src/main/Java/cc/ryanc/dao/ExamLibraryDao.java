@@ -102,4 +102,37 @@ public class ExamLibraryDao {
         }
         return result;
     }
+
+    /**
+     * 更新题目数据
+     * @param examLibrary ExamLibrary对象
+     * @return 返回true或者false;
+     */
+    public boolean getUpdate(ExamLibrary examLibrary){
+        boolean result = false;
+        try{
+            String sql = "update examLibrary set " +
+                    "libTitle=?,libA=?,libB=?,libC=?,libD=?," +
+                    "libRight=?,subId=?,libtype=?,gradeId=?" +
+                    " where libId=?";
+            int row = dbUtil.execUpdate(sql,new Object[]{
+                    examLibrary.getLibTitle(),
+                    examLibrary.getLibA(),
+                    examLibrary.getLibB(),
+                    examLibrary.getLibC(),
+                    examLibrary.getLibD(),
+                    examLibrary.getLibRight(),
+                    examLibrary.getSubject().getSubId(),
+                    examLibrary.getLibId(),
+                    examLibrary.getGradeInfo().getGradeId(),
+                    examLibrary.getLibId()
+            });
+            if(row>0){
+                result = true;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
 }
