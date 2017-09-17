@@ -62,20 +62,29 @@ public class StuDao {
             ClassInfo classInfo = null;
             GradeInfo gradeInfo = null;
             while (rs.next()) {
-                gradeInfo = new GradeInfo(rs.getInt("gradeId"),
-                        rs.getString("gradeName"));
-                classInfo = new ClassInfo(rs.getInt("classId"),
+                gradeInfo = new GradeInfo(
+                        rs.getInt("gradeId"),
+                        rs.getString("gradeName")
+                );
+                classInfo = new ClassInfo(
+                        rs.getInt("classId"),
                         rs.getString("className"),
+                        rs.getString("master"),
+                        rs.getString("teacher"),
+                        rs.getInt("number"),
                         rs.getString("classBegin"),
-                        gradeInfo);
-                stuInfo = new StuInfo(rs.getInt("stuId"),
+                        gradeInfo
+                );
+                stuInfo = new StuInfo(
+                        rs.getInt("stuId"),
                         rs.getString("stuNo"),
                         rs.getString("stuName"),
                         rs.getString("stuPwd"),
                         rs.getString("stuSex"),
                         rs.getInt("stuAge"),
                         rs.getString("stuPhoto"),
-                        classInfo);
+                        classInfo
+                );
                 list.add(stuInfo);
             }
             pageModel.setPageNo(pageNo);
@@ -163,20 +172,29 @@ public class StuDao {
                     " where stuName like '%?%' limit ?,10";
             rs = dbUtil.execQuery(sql,new Object[]{keyword,pageIndex});
             while(rs.next()){
-                GradeInfo gradeInfo = new GradeInfo(rs.getInt("gradeId"),
-                        rs.getString("gradeName"));
-                ClassInfo classInfo = new ClassInfo(rs.getInt("classId"),
+                GradeInfo gradeInfo = new GradeInfo(
+                        rs.getInt("gradeId"),
+                        rs.getString("gradeName")
+                );
+                ClassInfo classInfo = new ClassInfo(
+                        rs.getInt("classId"),
                         rs.getString("className"),
+                        rs.getString("master"),
+                        rs.getString("teacher"),
+                        rs.getInt("number"),
                         rs.getString("classBegin"),
-                        gradeInfo);
-                StuInfo stuInfo = new StuInfo(rs.getInt("stuId"),
+                        gradeInfo
+                );
+                StuInfo stuInfo = new StuInfo(
+                        rs.getInt("stuId"),
                         rs.getString("stuNo"),
                         rs.getString("stuName"),
                         rs.getString("stuPwd"),
                         rs.getString("stuSex"),
                         rs.getInt("stuAge"),
                         rs.getString("stuPhoto"),
-                        classInfo);
+                        classInfo
+                );
                 stuInfos.add(stuInfo);
             }
             pageModel.setPageNo(pageNo);

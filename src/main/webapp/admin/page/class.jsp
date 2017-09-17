@@ -5,6 +5,7 @@
   Time: 9:04
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -77,107 +78,35 @@
 											<thead>
 												<tr>
 													<th>班级名称</th>
+													<th>阶段</th>
 													<th>班主任</th>
 													<th>教员</th>
-													<th>阶段</th>
 													<th>人数</th>
 													<th>入学时间</th>
 													<th>操作</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr class="gradeX">
-													<td>T394</td>
-													<td>张三</td>
-													<td>李四</td>
-													<td>S3</td>
-													<td>30</td>
-													<td>2016-8-10</td>
-													<td>
-														<div class="tpl-table-black-operation">
-															<a href="javascript:;">
-																<i class="am-icon-pencil"></i> 编辑
-															</a>
-															<a href="javascript:;" class="tpl-table-black-operation-del">
-																<i class="am-icon-trash"></i> 删除
-															</a>
-														</div>
-													</td>
-												</tr>
-												<tr class="even gradeC">
-													<td>T395</td>
-													<td>王五</td>
-													<td>赵六</td>
-													<td>S3</td>
-													<td>29</td>
-													<td>2016-8-10</td>
-													<td>
-														<div class="tpl-table-black-operation">
-															<a href="javascript:;">
-																<i class="am-icon-pencil"></i> 编辑
-															</a>
-															<a href="javascript:;" class="tpl-table-black-operation-del">
-																<i class="am-icon-trash"></i> 删除
-															</a>
-														</div>
-													</td>
-
-												</tr>
-												<tr class="gradeX">
-													<td>T396</td>
-													<td>张三</td>
-													<td>李四</td>
-													<td>S3</td>
-													<td>30</td>
-													<td>2016-8-10</td>
-													<td>
-														<div class="tpl-table-black-operation">
-															<a href="javascript:;">
-																<i class="am-icon-pencil"></i> 编辑
-															</a>
-															<a href="javascript:;" class="tpl-table-black-operation-del">
-																<i class="am-icon-trash"></i> 删除
-															</a>
-														</div>
-													</td>
-												</tr>
-												<tr class="even gradeC">
-													<td>T397</td>
-													<td>王五</td>
-													<td>赵六</td>
-													<td>S3</td>
-													<td>29</td>
-													<td>2016-8-10</td>
-													<td>
-														<div class="tpl-table-black-operation">
-															<a href="javascript:;">
-																<i class="am-icon-pencil"></i> 编辑
-															</a>
-															<a href="javascript:;" class="tpl-table-black-operation-del">
-																<i class="am-icon-trash"></i> 删除
-															</a>
-														</div>
-													</td>
-												</tr>
-												<tr class="gradeX">
-													<td>T398</td>
-													<td>张三</td>
-													<td>李四</td>
-													<td>S3</td>
-													<td>30</td>
-													<td>2016-8-10</td>
-													<td>
-														<div class="tpl-table-black-operation">
-															<a href="javascript:;">
-																<i class="am-icon-pencil"></i> 编辑
-															</a>
-															<a href="javascript:;" class="tpl-table-black-operation-del">
-																<i class="am-icon-trash"></i> 删除
-															</a>
-														</div>
-													</td>
-												</tr>
-												<!-- more data -->
+												<c:forEach items="${requestScope.classInfos}" var="ci">
+													<tr>
+														<td><c:out value="${ci.className}"></c:out></td>
+														<td><c:out value="${ci.gradeInfo.gradeName}"></c:out></td>
+														<td><c:out value="${ci.master}"></c:out></td>
+														<td><c:out value="${ci.teacher}"></c:out></td>
+														<td><c:out value="${ci.number}"></c:out></td>
+														<td><c:out value="${ci.classBegin}"></c:out></td>
+														<td>
+															<div class="tpl-table-black-operation">
+																<a href="javascript:;">
+																	<i class="am-icon-pencil"></i> 编辑
+																</a>
+																<a href="/StuServlet?op=remove&classId=${ci.classId}" class="tpl-table-black-operation-del">
+																	<i class="am-icon-trash"></i> 删除
+																</a>
+															</div>
+														</td>
+													</tr>
+												</c:forEach>
 											</tbody>
 										</table>
 									</div>
@@ -185,13 +114,13 @@
 
 										<div class="am-fr">
 											<ul class="am-pagination tpl-pagination">
-												<li class="am-disabled"><a href="#">«</a></li>
+												<li><a href="/ClassServlet?pageNo=${requestScope.pm.getPagePre()}">«</a></li>
 												<li class="am-active"><a href="#">1</a></li>
 												<li><a href="#">2</a></li>
 												<li><a href="#">3</a></li>
 												<li><a href="#">4</a></li>
 												<li><a href="#">5</a></li>
-												<li><a href="#">»</a></li>
+												<li><a href="/ClassServlet?pageNo=${requestScope.pm.getPagePre()}">»</a></li>
 											</ul>
 										</div>
 									</div>

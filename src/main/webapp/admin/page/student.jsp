@@ -1,8 +1,4 @@
-<%@ page import="cc.ryanc.entity.StuInfo" %>
-<%@ page import="cc.ryanc.util.PageModel" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="cc.ryanc.dao.ClassDao" %>
-<%@ page import="cc.ryanc.entity.ClassInfo" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: RYAN0UP
@@ -24,18 +20,6 @@
 	    <link rel="stylesheet" href="/admin/static/css/amazeui.min.css" />
 	    <link rel="stylesheet" href="/admin/static/css/app.css">
 	</head>
-		<%
-			PageModel<StuInfo> pm = (PageModel<StuInfo>)request.getAttribute("stu");
-			ArrayList<StuInfo> stuInfos = null;
-			if(pm== null){
-				pm = new PageModel<StuInfo>();
-			}
-			stuInfos = pm.getAll();
-		%>
-		<%
-			ClassDao classDao = new ClassDao();
-			ArrayList<ClassInfo> classDaos = classDao.getQuery();
-		%>
 	<body>
 	    <div class="am-g tpl-g">
 			<!-- 动态包含header头部 -->
@@ -107,44 +91,40 @@
 												</tr>
 											</thead>
 											<tbody>
-												<%
-													for(StuInfo stu:stuInfos){
-												%>
-														<tr>
-															<td><%=stu.getStuNo()%></td>
-															<td><%=stu.getStuName()%></td>
-															<td><%=stu.getStuSex()%></td>
-															<td><%=stu.getStuAge()%></td>
-															<td><%=stu.getClassInfo().getGradeInfo().getGradeName()%></td>
-															<td><%=stu.getClassInfo().getClassName()%></td>
-															<td><%=stu.getClassInfo().getClassBegin()%></td>
-															<td>
-																<div class="tpl-table-black-operation">
-																	<a href="javascript:;">
-																		<i class="am-icon-pencil"></i> 编辑
-																	</a>
-																	<a href="/StuServlet?op=remove&stuId=<%=stu.getStuId()%>" class="tpl-table-black-operation-del">
-																		<i class="am-icon-trash"></i> 删除
-																	</a>
-																</div>
-															</td>
-														</tr>
-												<%
-													}
-												%>
+												<c:forEach items="${requestScope.stuInfos}" var="si">
+													<tr>
+														<td><c:out value="${si.stuNo}"></c:out></td>
+														<td><c:out value="${si.stuName}"></c:out></td>
+														<td><c:out value="${si.stuSex}"></c:out></td>
+														<td><c:out value="${si.stuAge}"></c:out></td>
+														<td><c:out value="${si.classInfo.gradeInfo.gradeName}"></c:out></td>
+														<td><c:out value="${si.classInfo.className}"></c:out></td>
+														<td><c:out value="${si.classInfo.classBegin}"></c:out></td>
+														<td>
+															<div class="tpl-table-black-operation">
+																<a href="javascript:;">
+																	<i class="am-icon-pencil"></i> 编辑
+																</a>
+																<a href="/StuServlet?op=remove&classId=${si.stuId}" class="tpl-table-black-operation-del">
+																	<i class="am-icon-trash"></i> 删除
+																</a>
+															</div>
+														</td>
+													</tr>
+												</c:forEach>
 											</tbody>
 										</table>
 									</div>
 									<div class="am-u-lg-12 am-cf">
 										<div class="am-fr">
 											<ul class="am-pagination tpl-pagination">
-												<li><a href="/StuServlet?pageNo=<%=pm.getPagePre()%>">«</a></li>
+												<li><a href="/StuServlet?pageNo=${requestScope.pm.getPagePre()}">«</a></li>
 												<li class="am-active"><a href="#">1</a></li>
 												<li><a href="#">2</a></li>
 												<li><a href="#">3</a></li>
 												<li><a href="#">4</a></li>
 												<li><a href="#">5</a></li>
-												<li><a href="/StuServlet?pageNo=<%=pm.getPageNext()%>">»</a></li>
+												<li><a href="/StuServlet?pageNo=${requestScope.pm.getPagePre()}">»</a></li>
 											</ul>
 										</div>
 									</div>
@@ -165,15 +145,6 @@
 							<div class="am-form-group">
 								<select name="classid" id="classid">
 									<option value="">选择班级</option>
-									<%
-										for(ClassInfo classInfo:classDaos){
-									%>
-											<option value="<%=classInfo.getClassId()%>">
-												<%=classInfo.getClassName()%>
-											</option>
-									<%
-										}
-									%>
 								</select>
 							</div>
 							<div class="am-form-group">

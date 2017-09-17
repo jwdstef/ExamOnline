@@ -16,8 +16,8 @@ public class TestDemo {
     public static void main(String []args){
         DBUtil dbUtil = new DBUtil();
         ResultSet rs = null;
-        String name = "RYAN0UP";
-        String pwd = "wangdashen6666";
+        String name = "admin";
+        String pwd = "123456";
         String sql = "select * from adminInfo where adminName=? and adminPwd=md5(?)";
         rs = dbUtil.execQuery(sql,new Object[]{name,pwd});
         try{

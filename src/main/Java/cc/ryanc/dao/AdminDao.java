@@ -15,12 +15,12 @@ public class AdminDao {
     DBUtil dbUtil = new DBUtil();
     ResultSet rs = null;
 
-    public AdminInfo getLogin(String adminName) {
+    public AdminInfo getLogin(String adminName,String adminPwd) {
         //创建实体类对象储存信息
         AdminInfo adminInfo = null;
-        String sql = "select * from adminInfo where adminName=?";
+        String sql = "select * from adminInfo where adminName=? and adminPwd=md5(?)";
         try {
-            rs = dbUtil.execQuery(sql, new Object[]{adminName});
+            rs = dbUtil.execQuery(sql, new Object[]{adminName,adminPwd});
             if (rs.next()) {
                 adminInfo = new AdminInfo(rs.getString("adminName"), rs.getString("adminPwd"));
             }

@@ -47,18 +47,14 @@ public class AdminServlet extends HttpServlet {
         String adminName = request.getParameter("adminname");
         String adminPwd = request.getParameter("adminpwd");
         System.out.println(adminName);
-        AdminInfo adminInfo = adminDao.getLogin(adminName);
+        System.out.println(adminPwd);
+        AdminInfo adminInfo = adminDao.getLogin(adminName,adminPwd);
         if(adminInfo!=null){
-            if(adminInfo.getAdminPwd().equals(adminPwd)){
-                System.out.println("登陆成功！");
-                request.getSession().setAttribute("adminInfo",adminInfo);
-                response.sendRedirect("admin/page/index.jsp");
-            }else{
-                System.out.println("密码错误！");
-                response.sendRedirect("admin/index.jsp");
-            }
+            System.out.println("登陆成功！");
+            request.getSession().setAttribute("adminInfo",adminInfo);
+            response.sendRedirect("admin/page/index.jsp");
         }else{
-            System.out.println("用户名不存在！");
+            System.out.println("密码错误！");
             response.sendRedirect("admin/index.jsp");
         }
     }

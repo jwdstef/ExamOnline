@@ -27,7 +27,7 @@
             </a>
             <ul class="sidebar-nav sidebar-nav-sub">
                 <li class="sidebar-nav-link">
-                    <a href="/admin/page/class.jsp">
+                    <a href="/ClassServlet">
                         <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 班级管理
                     </a>
                 </li>

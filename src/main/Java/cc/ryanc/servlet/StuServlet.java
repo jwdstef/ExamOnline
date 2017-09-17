@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -84,9 +85,11 @@ public class StuServlet extends HttpServlet {
         }
         // 调用方法查询所有学生信息
         PageModel<StuInfo> pageModel = stuDao.getQuery(pageNo);
+        ArrayList<StuInfo> stuInfos = pageModel.getAll();
         // 将pm存入request范围内
-        request.setAttribute("stu", pageModel);
-        request.getRequestDispatcher("admin/page/student.jsp").forward(request,response);
+        request.setAttribute("pm", pageModel);
+        request.setAttribute("stuInfos",stuInfos);
+        request.getRequestDispatcher("/admin/page/student.jsp").forward(request,response);
     }
 
     /**
@@ -144,6 +147,6 @@ public class StuServlet extends HttpServlet {
         PageModel<StuInfo> pageModel = stuDao.getSearch(keyWord,pageNo);
         // 将pm存入request范围内
         request.setAttribute("stu", pageModel);
-        request.getRequestDispatcher("admin/page/student.jsp").forward(request,response);
+        request.getRequestDispatcher("/admin/page/student.jsp").forward(request,response);
     }
 }
