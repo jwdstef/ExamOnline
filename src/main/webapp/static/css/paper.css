@@ -1,0 +1,32 @@
+html,body{
+    margin:0px;
+    padding:0px;
+}
+div{
+    display: block;
+}
+.content{
+    width:1200px;
+    height:1200px;
+    background-color: red;
+    margin:0 auto;
+}
+.examTitle{
+    text-align: center;
+    background-color: blue;
+}
+.examInfo{
+    background-color: #0a6999;
+}
+.examSubs{
+    float: left;
+    width:900px;
+    height:1200px;
+    background-color: #00e359;
+}
+.examList{
+    float: left;
+    width:300px;
+    height:1200px;
+    background-color: #00a23f;
+}

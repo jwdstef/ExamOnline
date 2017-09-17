@@ -46,7 +46,7 @@
             <ul class="sidebar-nav sidebar-nav-sub">
                 <li class="sidebar-nav-link">
                     <a href="/ExamLibraryServlet">
-                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 出题管理
+                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 题库管理
                     </a>
                 </li>
                 <li class="sidebar-nav-link">

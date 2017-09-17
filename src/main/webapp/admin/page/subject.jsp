@@ -91,17 +91,17 @@
 											<tbody>
 												<c:forEach items="${requestScope.examLibraries}" var="el">
 													<tr>
-														<td><c:out value="${el.libId}"></c:out></td>
-														<td><c:out value="${el.subject.subName}"></c:out></td>
-														<td><c:out value="${el.libtype}"></c:out></td>
-														<td><c:out value="${el.libTitle}"></c:out></td>
-														<td><c:out value="${el.gradeInfo.gradeName}"></c:out></td>
+														<td><c:out value="${el.libId}" /></td>
+														<td><c:out value="${el.subject.subName}" /></td>
+														<td><c:out value="${el.libtype}" /></td>
+														<td><c:out value="${el.libTitle}" /></td>
+														<td><c:out value="${el.gradeInfo.gradeName}" /></td>
 														<td>
 															<div class="tpl-table-black-operation">
-																<a href="javascript:;">
-																	<i class="am-icon-pencil"></i> 编辑
+																<a href="/ExamLibraryServlet?op=detail&libId=<c:out value='${el.libId}'/>">
+																	<i class="am-icon-pencil"></i> 查看详情
 																</a>
-																<a href="/ExamLibraryServlet?op=remove&libId=${ci.libId}" class="tpl-table-black-operation-del">
+																<a href="/ExamLibraryServlet?op=remove&libId=<c:out value='${el.libId}'/>" class="tpl-table-black-operation-del">
 																	<i class="am-icon-trash"></i> 删除
 																</a>
 															</div>

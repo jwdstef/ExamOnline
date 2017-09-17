@@ -15,18 +15,31 @@
 		<meta http-equiv="expires" content="0">    
 		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 		<meta http-equiv="description" content="This is my page">
+		<link rel="stylesheet" type="text/css" href="/static/css/paper.css">
+		<link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
 		<!-- 进度条 -->
-		<link rel="stylesheet" type="text/css" href="static/css/nprogress.css">
+		<link rel="stylesheet" type="text/css" href="/static/css/nprogress.css">
 		<script src='static/js/nprogress.js'></script>
 	</head>
-  	
-
 	<body>
 		<div class="container-fluid">
-
+			<div class="content">
+				<div class="examTitle">
+					<h1>Java41第三月月考</h1>
+				</div>
+				<div class="examInfo">
+					考生：
+				</div>
+				<div class="examPaper">
+					<div class="examSubs">
+						
+					</div>
+					<div class="examList">2</div>
+				</div>
+			</div>
 		</div>
 	</body>
-	<script type="text/javascript" src="static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery.min.js"></script>
 	<script>
 		NProgress.start();
 		setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1000);

@@ -15,18 +15,30 @@
 		<meta http-equiv="expires" content="0">    
 		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 		<meta http-equiv="description" content="This is my page">
+		<link rel="stylesheet" type="text/css" href="/static/css/style.css">
 		<!-- 进度条 -->
-		<link rel="stylesheet" type="text/css" href="static/css/nprogress.css">
+		<link rel="stylesheet" type="text/css" href="/static/css/nprogress.css">
 		<script src='static/js/nprogress.js'></script>
+		<style>
+			#user-main{
+				width: 1000px;
+				height: 600px;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin-left:-500px;
+				margin-top:-300px;
+				background-color: red;
+			}
+		</style>
 	</head>
-  	
-	<%
-		StuInfo stuInfo= (StuInfo)request.getSession().getAttribute("stuInfo");
-	%>
+
 	<body>
-		<h1><%=stuInfo.getStuName()%></h1>
+		<div id="user-main">
+			1
+		</div>
 	</body>
-	<script type="text/javascript" src="static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery.min.js"></script>
 	<script>
 		NProgress.start();
 		setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1000);
