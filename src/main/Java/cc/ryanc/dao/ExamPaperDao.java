@@ -57,4 +57,65 @@ public class ExamPaperDao {
         }
         return examPapers;
     }
+
+    /**
+     * 根据id删除试卷
+     * @param paperId
+     * @return
+     */
+    public boolean getRemove(int paperId){
+        boolean result = false;
+        try{
+            String sql = "delete from examPaper where paperId = ?";
+            int row = dbUtil.execUpdate(sql,new Object[]{paperId});
+            if(row>0){
+                result = true;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * 添加试卷
+     * @param examPaper
+     * @return
+     */
+    public boolean getInsert(ExamPaper examPaper){
+        boolean result = false;
+        try{
+            String sql = "insert into examPaper values(paperId,?,?,?,?)";
+            int row = dbUtil.execUpdate(sql,new Object[]{
+                    examPaper.getPaperName(),
+                    examPaper.getClassInfo().getClassId(),
+                    examPaper.getBeginTime(),
+                    examPaper.getEndTime()
+            });
+            if(row>0){
+                result = true;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * 查询试卷总量
+     * @return
+     */
+    public int getCount(){
+        int row = 0;
+        try {
+            String sql = "select count(*) from examPaper";
+            rs = dbUtil.execQuery(sql, null);
+            if (rs.next()) {
+                row = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return row;
+    }
 }

@@ -9,7 +9,13 @@ import java.util.ArrayList;
 public class ExamPaperLibsDao {
     DBUtil dbUtil = new DBUtil();
     ResultSet rs = null;
-    public ArrayList<ExamPaperLibs> getQuery(){
+
+    /**
+     * 根据试卷编号查询当前试卷的所有考题
+     * @param paperId
+     * @return
+     */
+    public ArrayList<ExamPaperLibs> getQuery(int paperId){
         ArrayList<ExamPaperLibs> examPaperLibss = new ArrayList<ExamPaperLibs>();
         try{
             String sql = "select * from examPaperLibs a " +
@@ -17,8 +23,8 @@ public class ExamPaperLibsDao {
                     "inner join classInfo c on b.classId = c.classId " +
                     "inner join gradeInfo d on c.gradeId = d.gradeId " +
                     "inner join examLibrary e on a.libId = e.libId " +
-                    "inner join subject f on e.subId = f.subId";
-            rs = dbUtil.execQuery(sql,null);
+                    "inner join subject f on e.subId = f.subId where a.paperId=?";
+            rs = dbUtil.execQuery(sql,new Object[]{paperId});
             Subject subject = null;
             GradeInfo gradeInfo = null;
             ClassInfo classInfo = null;
@@ -71,5 +77,25 @@ public class ExamPaperLibsDao {
             e.printStackTrace();
         }
         return examPaperLibss;
+    }
+
+    /**
+     * 向试卷添加题目
+     * @param paperId
+     * @param libId
+     * @return
+     */
+    public boolean getAddLib(int paperId,int libId){
+        boolean result = false;
+        try{
+            String sql = "insert into examPaperLibs values(?,?)";
+            int row = dbUtil.execUpdate(sql,new Object[]{paperId,libId});
+            if(row>0){
+                result = true;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return result;
     }
 }

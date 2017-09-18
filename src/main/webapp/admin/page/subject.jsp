@@ -48,7 +48,7 @@
 										<div class="am-form-group">
 											<div class="am-btn-toolbar">
 												<div class="am-btn-group">
-													<button type="button" class="am-btn am-btn-default am-btn-secondary am-radius" data-am-modal="{target: '#stuadd', closeViaDimmer: 0, width: 400, height: 500}"><span class="am-icon-plus"></span> 新增</button>
+													<button type="button" class="am-btn am-btn-default am-btn-secondary am-radius" data-am-modal="{target: '#libadd', closeViaDimmer: 0, width: 400, height: 650}"><span class="am-icon-plus"></span> 新增</button>
 													<button type="button" class="am-btn am-btn-default am-btn-success am-radius" data-am-modal="{target: '#exceladd', closeViaDimmer: 0, width: 400, height: 500}"><span class="am-icon-plus"></span> Excel导入</button>
 												</div>
 											</div>
@@ -57,10 +57,10 @@
 									<div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
 										<div class="am-form-group tpl-table-list-select">
 											<select data-am-selected="{btnSize: 'sm'}">
-												<option value="option1">所有科目</option>
-												<option value="option2">T394</option>
-												<option value="option3">T395</option>
-												<option value="option3">T396</option>
+												<option value="0">所有科目</option>
+												<option value="1">JavaWeb高级</option>
+												<option value="2">.NET高级</option>
+												<option value="3">PHP网页设计</option>
 											</select>
 										</div>
 									</div>
@@ -124,6 +124,60 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="am-modal am-modal-no-btn" tabindex="-1" id="libadd">
+				<div class="am-modal-dialog">
+					<div class="am-modal-hd">题库添加
+						<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+					</div>
+					<div class="am-modal-bd">
+						<form action="/StuServlet" method="post" class="am-form">
+							<input type="hidden" value="insert" name="op">
+							<div class="am-form-group">
+								<input type="text" class="am-disabled" placeholder="标题" name="libTitle">
+							</div>
+							<div class="am-form-group">
+								<input type="text" class="am-disabled" placeholder="选项A" name="libA">
+							</div>
+							<div class="am-form-group">
+								<input type="text" class="am-disabled" placeholder="选项B" name="libB">
+							</div>
+							<div class="am-form-group">
+								<input type="text" class="am-disabled" placeholder="选项C" name="libC">
+							</div>
+							<div class="am-form-group">
+								<input type="text" class="am-disabled" placeholder="选项D" name="libD">
+							</div>
+							<div class="am-form-group">
+								<input type="text" class="am-disabled" placeholder="正确选项" name="libRight">
+							</div>
+							<div class="am-form-group">
+								<select name="sub" id="sub">
+									<option value="">科目</option>
+									<option value="1">JavaWeb高级</option>
+									<option value="2">.NET高级</option>
+									<option value="3">PHP网页设计</option>
+								</select>
+							</div>
+							<div class="am-form-group">
+								<input type="text" class="am-disabled" placeholder="类型：1" name="type">
+							</div>
+							<div class="am-form-group">
+								<select name="grade" id="grade">
+									<option value="">年级</option>
+									<option value="1">S1</option>
+									<option value="2">S2</option>
+									<option value="3">S3</option>
+								</select>
+							</div>
+							<div class="am-form-group">
+								<input type="submit" id="submit" class="am-btn am-btn-primary am-btn-block" value="添加">
+								<a href="javascript:$('#stuadd').modal('close');" class="am-btn am-btn-default am-btn-block">取消</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
 		<script src="/admin/static/js/jquery.min.js"></script>
 		<script src="/admin/static/js/amazeui.min.js"></script>
@@ -131,7 +185,12 @@
 		<script src="/admin/static/js/amazeui.datatables.min.js"></script>
 		<script src="/admin/static/js/dataTables.responsive.min.js"></script>
 		<script src="/admin/static/js/app.js"></script>
+		<script>
+            $.AMUI.progress.start();
+            setTimeout(function() { $.AMUI.progress.done(); $('.fade').removeClass('out'); }, 1000);
+		</script>
 		<script type="text/javascript">
+			/*
             <!-- 获取进度条对象 -->
             var progress = $.AMUI.progress.configure({ ease: 'ease', speed: 1000 });
             <!-- 设置pjax，刷新替换content里面的内容 -->
@@ -146,6 +205,7 @@
             $(document).on('pjax:complete', function() {
                 progress.done();
             });
+            */
 		</script>
 	</body>
 </html>

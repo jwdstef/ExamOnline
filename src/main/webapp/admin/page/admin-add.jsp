@@ -44,7 +44,12 @@
         <script src="/admin/static/js/amazeui.datatables.min.js"></script>
         <script src="/admin/static/js/dataTables.responsive.min.js"></script>
         <script src="/admin/static/js/app.js"></script>
+        <script>
+            $.AMUI.progress.start();
+            setTimeout(function() { $.AMUI.progress.done(); $('.fade').removeClass('out'); }, 1000);
+        </script>
         <script type="text/javascript">
+            /*
             <!-- 获取进度条对象 -->
             var progress = $.AMUI.progress.configure({ ease: 'ease', speed: 1000 });
             <!-- 设置pjax，刷新替换content里面的内容 -->
@@ -59,6 +64,7 @@
             $(document).on('pjax:complete', function() {
                 progress.done();
             });
+            */
         </script>
     </body>
 </html>

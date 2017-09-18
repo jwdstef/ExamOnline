@@ -1,6 +1,7 @@
 package cc.ryanc.servlet;
 
 import cc.ryanc.dao.ExamPaperDao;
+import cc.ryanc.entity.ClassInfo;
 import cc.ryanc.entity.ExamPaper;
 
 import javax.servlet.ServletException;
@@ -23,6 +24,12 @@ public class ExamPaperServlet extends HttpServlet {
         String op = request.getParameter("op");
         if("".equals(op)||null==op){
             this.query(request, response);
+        }else{
+            if("remove".equals(op)){
+                this.remove(request, response);
+            }else if("build".equals(op)){
+                this.build(request, response);
+            }
         }
     }
 
@@ -39,6 +46,38 @@ public class ExamPaperServlet extends HttpServlet {
         if(examPapers!=null){
             request.setAttribute("examPapers",examPapers);
             request.getRequestDispatcher("/admin/page/paper.jsp").forward(request,response);
+        }
+    }
+
+    /**
+     * 处理删除试卷
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void remove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int paperId = Integer.parseInt(request.getParameter("paperId"));
+        if(examPaperDao.getRemove(paperId)){
+            this.query(request, response);
+        }
+    }
+
+    public void build(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //获取表单数据
+        String title = request.getParameter("title");
+        int classId = Integer.parseInt(request.getParameter("class"));
+        String begintime = request.getParameter("begintime");
+        String endtime = request.getParameter("endtime");
+
+        //创建Classinfo对象封装班级编号
+        ClassInfo classInfo = new ClassInfo();
+        classInfo.setClassId(classId);
+        ExamPaper examPaper = new ExamPaper(
+                title,classInfo,begintime,endtime
+        );
+        if(examPaperDao.getInsert(examPaper)){
+            this.query(request, response);
         }
     }
 }

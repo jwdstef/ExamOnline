@@ -17,6 +17,7 @@ div{
 }
 .examInfo{
     background-color: #0a6999;
+    font-size:20px;
 }
 .examSubs{
     float: left;
@@ -29,4 +30,7 @@ div{
     width:300px;
     height:1200px;
     background-color: #00a23f;
+}
+.examSub_item{
+    font-size: 20px;
 }

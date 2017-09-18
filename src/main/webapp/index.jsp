@@ -34,6 +34,7 @@
 		StuInfo stuInfo = (StuInfo)request.getSession().getAttribute("stuInfo");
 		if(stuInfo==null){
 		    stuInfo = new StuInfo();
+		    stuInfo.setStuName("");
 		}
 	%>
 	<body>

@@ -135,4 +135,94 @@ public class ExamLibraryDao {
         }
         return result;
     }
+
+    /**
+     * 根据编号查询题目信息
+     * @param libId
+     * @return
+     */
+    public ExamLibrary getById(int libId){
+        ExamLibrary examLibrary = null;
+        try{
+            String sql = "select * from examLibrary a " +
+                    "inner join subject b on a.subId = b.subId " +
+                    "inner join gradeInfo c on a.gradeId = c.gradeId " +
+                    "where libId = ?";
+            rs = dbUtil.execQuery(sql,new Object[]{libId});
+            //创建对象在循环体里封装数据
+            Subject subject = null;
+            GradeInfo gradeInfo = null;
+            while(rs.next()){
+                gradeInfo = new GradeInfo(
+                        rs.getInt("gradeId"),
+                        rs.getString("gradeName")
+                );
+                subject = new Subject(
+                        rs.getInt("subId"),
+                        rs.getString("subName")
+                );
+                examLibrary = new ExamLibrary(
+                        rs.getInt("libId"),
+                        rs.getString("libTitle"),
+                        rs.getString("libA"),
+                        rs.getString("libB"),
+                        rs.getString("libC"),
+                        rs.getString("libD"),
+                        rs.getString("libRight"),
+                        subject,
+                        rs.getInt("libtype"),
+                        gradeInfo
+                );
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            dbUtil.closeSource(rs);
+        }
+        return examLibrary;
+    }
+
+    /**
+     * 查询所有题目 不分页
+     * @return
+     */
+    public ArrayList<ExamLibrary> queryAll(){
+        ArrayList<ExamLibrary> examLibraries = new ArrayList<ExamLibrary>();
+        try {
+            String sql = "select * from examLibrary a " +
+                    "inner join subject b on a.subId = b.subId " +
+                    "inner join gradeInfo c on a.gradeId = c.gradeId";
+            rs = dbUtil.execQuery(sql, null);
+            //创建对象在循环体里封装数据
+            ExamLibrary examLibrary = null;
+            Subject subject = null;
+            GradeInfo gradeInfo = null;
+            while (rs.next()) {
+                gradeInfo = new GradeInfo(
+                        rs.getInt("gradeId"),
+                        rs.getString("gradeName")
+                );
+                subject = new Subject(
+                        rs.getInt("subId"),
+                        rs.getString("subName")
+                );
+                examLibrary = new ExamLibrary(
+                        rs.getInt("libId"),
+                        rs.getString("libTitle"),
+                        rs.getString("libA"),
+                        rs.getString("libB"),
+                        rs.getString("libC"),
+                        rs.getString("libD"),
+                        rs.getString("libRight"),
+                        subject,
+                        rs.getInt("libtype"),
+                        gradeInfo
+                );
+                examLibraries.add(examLibrary);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return examLibraries;
+    }
 }

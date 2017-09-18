@@ -1,8 +1,10 @@
 package cc.ryanc.test;
 
 import cc.ryanc.dao.ExamPaperDao;
+import cc.ryanc.dao.ExamPaperLibsDao;
 import cc.ryanc.dao.SiteDao;
 import cc.ryanc.entity.ExamPaper;
+import cc.ryanc.entity.ExamPaperLibs;
 import cc.ryanc.entity.SiteInfo;
 import cc.ryanc.util.DBUtil;
 
@@ -19,10 +21,14 @@ public class TestDemo {
     public static void main(String []args){
         DBUtil dbUtil = new DBUtil();
         ResultSet rs = null;
-        ExamPaperDao examPaperDao = new ExamPaperDao();
-        ArrayList<ExamPaper> examPapers = examPaperDao.getQuery();
-        for(ExamPaper examPaper:examPapers){
-            System.out.println(examPaper.getPaperId()+"--"+examPaper.getPaperName());
+        ExamPaperLibsDao dao = new ExamPaperLibsDao();
+        ArrayList<ExamPaperLibs> list = dao.getQuery(1);
+        try{
+            for(ExamPaperLibs examPaperLibs:list){
+                System.out.println(examPaperLibs.getExamLibrary().getLibId());
+            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
 }

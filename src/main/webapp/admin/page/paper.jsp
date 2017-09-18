@@ -42,7 +42,7 @@
 						<div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
 							<div class="widget am-cf">
 								<div class="widget-head am-cf">
-									<div class="widget-title  am-cf">历史试卷</div>
+									<div class="widget-title  am-cf">现存试卷</div>
 								</div>
 								<div class="widget-body  am-fr">
 									<div class="am-u-sm-12">
@@ -69,10 +69,10 @@
 														<td><c:out value="${ep.endTime}" /></td>
 														<td>
 															<div class="tpl-table-black-operation">
-																<a href="javascript:;">
-																	<i class="am-icon-pencil"></i> 查看试题
+																<a href="/ExamPaperLibsServlet?op=detail&paperId=<c:out value='${ep.paperId}' />">
+																	<i class="am-icon-pencil"></i> 编辑题目
 																</a>
-																<a href="#" class="tpl-table-black-operation-del">
+																<a href="/ExamPaperServlet?op=remove&paperId=<c:out value='${ep.paperId}' />" class="tpl-table-black-operation-del">
 																	<i class="am-icon-trash"></i> 删除
 																</a>
 															</div>
@@ -91,7 +91,48 @@
 								</div>
 								<div class="widget-body  am-fr">
 									<div class="am-u-sm-12 am-u-md-16 am-u-lg-12">
-										<div></div>
+										<div>
+											<form action="/ExamPaperServlet" method="post" class="am-form tpl-form-border-form">
+												<input type="hidden" value="build" name="op">
+												<div class="am-form-group">
+													<label for="title" class="am-u-sm-12 am-form-label am-text-left">试卷名称</label>
+													<div class="am-u-sm-12">
+														<input type="text" class="tpl-form-input am-margin-top-xs" name="title" id="title"
+															   placeholder="请输入试卷名称" value="">
+													</div>
+												</div>
+												<div class="am-form-group tpl-table-list-select" style="text-align: left">
+													<label class="am-u-sm-12 am-form-label am-text-left">设置班级</label>
+													<div class="am-u-sm-12">
+														<select data-am-selected="{btnSize: 'sm'}" name="class">
+															<option value="1">JAVA41</option>
+															<option value="2">.NET37</option>
+															<option value="3">PHP31</option>
+														</select>
+													</div>
+												</div>
+												<div class="am-form-group">
+													<label for="begintime" class="am-u-sm-12 am-form-label am-text-left">开始时间</label>
+													<div class="am-u-sm-12">
+														<input type="text" class="tpl-form-input am-margin-top-xs" name="begintime" id="begintime"
+															   placeholder="格式：2017-9-19 0：00" value="">
+													</div>
+												</div>
+												<div class="am-form-group">
+													<label for="endtime" class="am-u-sm-12 am-form-label am-text-left">结束时间</label>
+													<div class="am-u-sm-12">
+														<input type="text" class="tpl-form-input am-margin-top-xs" name="endtime" id="endtime"
+															   placeholder="格式：2017-9-19 0：00" value="">
+													</div>
+												</div>
+
+												<div class="am-form-group">
+													<div class="am-u-sm-12 am-u-sm-push-12">
+														<button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">保存</button>
+													</div>
+												</div>
+											</form>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -106,7 +147,12 @@
 		<script src="/admin/static/js/amazeui.datatables.min.js"></script>
 		<script src="/admin/static/js/dataTables.responsive.min.js"></script>
 		<script src="/admin/static/js/app.js"></script>
+		<script>
+            $.AMUI.progress.start();
+            setTimeout(function() { $.AMUI.progress.done(); $('.fade').removeClass('out'); }, 1000);
+		</script>
 		<script type="text/javascript">
+			/*
             <!-- 获取进度条对象 -->
             var progress = $.AMUI.progress.configure({ ease: 'ease', speed: 1000 });
             <!-- 设置pjax，刷新替换content里面的内容 -->
@@ -121,6 +167,7 @@
             $(document).on('pjax:complete', function() {
                 progress.done();
             });
+            */
 		</script>
 	</body>
 </html>

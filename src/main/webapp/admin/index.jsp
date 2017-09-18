@@ -26,10 +26,10 @@
                     <form action="/AdminServlet" method="post" class="am-form">
                         <input type="hidden" value="login" name="op">
                         <div class="am-form-group">
-                            <input type="text" class="login-input" name="adminname" placeholder="请输入账号">
+                            <input type="text" class="login-input" name="adminname" placeholder="请输入账号" id="adminname">
                         </div>
                         <div class="am-form-group">
-                            <input type="password" class="login-input" name="adminpwd" placeholder="请输入密码">
+                            <input type="password" class="login-input" name="adminpwd" placeholder="请输入密码" id="adminpwd">
                         </div>
                         <div class="am-form-group">
                             <input id="remember-me" type="checkbox">

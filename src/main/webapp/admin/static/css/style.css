@@ -49,11 +49,12 @@ div{
     position: relative;
     color: #B3B3B3;
     font-size: 14px;
-    top: -2px;
 }
 #forget-pwd{
     position: relative;
     color: #B3B3B3;
     font-size: 14px;
-    top: -2px;
+}
+#adminname,#adminpwd{
+    background: 0;
 }

@@ -48,60 +48,60 @@
 										<div class="am-form-group">
 											<label for="title" class="am-u-sm-12 am-form-label am-text-left">题目</label>
 											<div class="am-u-sm-12">
-												<input type="text" class="tpl-form-input am-margin-top-xs" name="title" id="title">
+												<input type="text" class="tpl-form-input am-margin-top-xs" name="title" id="title" value="${requestScope.examLibrary.libTitle}">
 											</div>
 										</div>
 										<div class="am-form-group">
 											<label for="content" class="am-u-sm-12 am-form-label  am-text-left">题干</label>
 											<div class="am-u-sm-12 am-margin-top-xs">
-												<textarea class="" rows="10" id="content" name="content"></textarea>
+												<textarea class="" rows="10" id="content" name="content">${requestScope.examLibrary.libTitle}</textarea>
 											</div>
 										</div>
 										<div class="am-form-group">
 											<label for="libA" class="am-u-sm-12 am-form-label am-text-left">选项A</label>
 											<div class="am-u-sm-12">
-												<input type="text" class="tpl-form-input am-margin-top-xs" name="libA" id="libA">
+												<input type="text" class="tpl-form-input am-margin-top-xs" name="libA" id="libA" value="${requestScope.examLibrary.libA}">
 											</div>
 										</div>
 										<div class="am-form-group">
 											<label for="libB" class="am-u-sm-12 am-form-label am-text-left">选项B</label>
 											<div class="am-u-sm-12">
-												<input type="text" class="tpl-form-input am-margin-top-xs" name="libB" id="libB">
+												<input type="text" class="tpl-form-input am-margin-top-xs" name="libB" id="libB" value="${requestScope.examLibrary.libB}">
 											</div>
 										</div>
 										<div class="am-form-group">
 											<label for="libC" class="am-u-sm-12 am-form-label am-text-left">选项C</label>
 											<div class="am-u-sm-12">
-												<input type="text" class="tpl-form-input am-margin-top-xs" name="libC" id="libC">
+												<input type="text" class="tpl-form-input am-margin-top-xs" name="libC" id="libC" value="${requestScope.examLibrary.libC}">
 											</div>
 										</div>
 										<div class="am-form-group">
 											<label for="libD" class="am-u-sm-12 am-form-label am-text-left">选项D</label>
 											<div class="am-u-sm-12">
-												<input type="text" class="tpl-form-input am-margin-top-xs" name="libD" id="libD">
+												<input type="text" class="tpl-form-input am-margin-top-xs" name="libD" id="libD" value="${requestScope.examLibrary.libD}">
 											</div>
 										</div>
 										<div class="am-form-group">
 											<label for="libRight" class="am-u-sm-12 am-form-label am-text-left">正确选项(多选用,隔开)</label>
 											<div class="am-u-sm-12">
-												<input type="text" class="tpl-form-input am-margin-top-xs" name="libRight" id="libRight">
+												<input type="text" class="tpl-form-input am-margin-top-xs" name="libRight" id="libRight" value="${requestScope.examLibrary.libRight}">
 											</div>
 										</div>
-										<div class="am-form-group">
+										<div class="am-form-group tpl-table-list-select" style="text-align: left">
 											<label class="am-u-sm-12 am-form-label am-text-left">所属科目</label>
-											<select data-am-selected="{btnSize: 'lx'}">
-												<option value="option2">Java</option>
-												<option value="option3">.NET</option>
-												<option value="option3">PHP</option>
+											<select data-am-selected="{btnSize: 'sm'}">
+												<option value="1">JavaWeb高级</option>
+												<option value="2">.NET高级</option>
+												<option value="3">PHP网页设计</option>
 											</select>
 										</div>
 
-										<div class="am-form-group">
+										<div class="am-form-group tpl-table-list-select" style="text-align: left">
 											<label class="am-u-sm-12 am-form-label am-text-left">所属年级</label>
-											<select data-am-selected="{btnSize: 'lx'}">
-												<option value="option2">S1</option>
-												<option value="option3">S2</option>
-												<option value="option3">S3</option>
+											<select data-am-selected="{btnSize: 'sm'}">
+												<option value="1">S1</option>
+												<option value="2">S2</option>
+												<option value="3">S3</option>
 											</select>
 										</div>
 
@@ -124,7 +124,12 @@
 		<script src="/admin/static/js/amazeui.datatables.min.js"></script>
 		<script src="/admin/static/js/dataTables.responsive.min.js"></script>
 		<script src="/admin/static/js/app.js"></script>
+		<script>
+            $.AMUI.progress.start();
+            setTimeout(function() { $.AMUI.progress.done(); $('.fade').removeClass('out'); }, 1000);
+		</script>
 		<script type="text/javascript">
+			/*
             <!-- 获取进度条对象 -->
             var progress = $.AMUI.progress.configure({ ease: 'ease', speed: 1000 });
             <!-- 设置pjax，刷新替换content里面的内容 -->
@@ -139,6 +144,7 @@
             $(document).on('pjax:complete', function() {
                 progress.done();
             });
+            */
 		</script>
 	</body>
 </html>

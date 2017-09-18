@@ -39,7 +39,7 @@ $(function () {
     });
 
     $('#widgets_testnow').click(function(){
-        window.location.href="now.jsp";
+        window.location.href="/ExamPaperLibsServlet?op=test&paperId=1";
     });
 
     $('#widgets_testuser').click(function(){

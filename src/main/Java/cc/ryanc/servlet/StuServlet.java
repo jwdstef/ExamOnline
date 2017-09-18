@@ -3,13 +3,18 @@ package cc.ryanc.servlet;
 import cc.ryanc.dao.StuDao;
 import cc.ryanc.entity.StuInfo;
 import cc.ryanc.util.PageModel;
+import com.jspsmart.upload.File;
+import com.jspsmart.upload.SmartUpload;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.JspFactory;
+import javax.servlet.jsp.PageContext;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /**
@@ -38,6 +43,8 @@ public class StuServlet extends HttpServlet {
                 this.remove(request, response);
             }else if("search".equals(op)){
                 this.search(request, response);
+            }else if("upload".equals(op)){
+                this.upload(request, response);
             }
         }
     }
@@ -150,5 +157,45 @@ public class StuServlet extends HttpServlet {
         request.setAttribute("pm", pageModel);
         request.setAttribute("stuInfos", stuInfos);
         request.getRequestDispatcher("/admin/page/student.jsp").forward(request,response);
+    }
+
+    /**
+     * 上传Excel文件，将Excel的数据添加到数据库
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=GB2312");
+        PrintWriter out = response.getWriter();
+        // 创建SmartLoad对象
+        SmartUpload su = new SmartUpload();
+        // 得到PageContext对象
+        PageContext pageContext = JspFactory
+                .getDefaultFactory()
+                .getPageContext(this, request, response, null, true, 8192, true);
+        // 上传初始化
+        su.initialize(pageContext);
+        // 上传文件
+        try {
+            su.upload();
+            // 将上传文件全部保存到指定目录
+            int num = su.save("/Users/ryan0up/Desktop");
+            if (num > 0) {
+                response.sendRedirect("index.jsp");
+            } else {
+                response.sendRedirect("index.jsp");
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < su.getFiles().getCount(); i++) {
+            File file = su.getFiles().getFile(i);
+            if (file.isMissing())
+                continue;
+        }
     }
 }

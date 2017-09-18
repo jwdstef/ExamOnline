@@ -50,7 +50,7 @@
 											<div class="am-btn-toolbar">
 												<div class="am-btn-group">
 													<button type="button" class="am-btn am-btn-default am-btn-secondary am-radius" data-am-modal="{target: '#stuadd', closeViaDimmer: 0, width: 400, height: 500}"><span class="am-icon-plus"></span> 新增</button>
-													<button type="button" class="am-btn am-btn-default am-btn-success am-radius" data-am-modal="{target: '#exceladd', closeViaDimmer: 0, width: 400, height: 500}"><span class="am-icon-plus"></span> Excel导入</button>
+													<button type="button" class="am-btn am-btn-default am-btn-success am-radius" data-am-modal="{target: '#exceladd', closeViaDimmer: 0, width: 250, height: 200}"><span class="am-icon-plus"></span> Excel导入</button>
 												</div>
 											</div>
 										</div>
@@ -94,13 +94,13 @@
 											<tbody>
 												<c:forEach items="${requestScope.stuInfos}" var="si">
 													<tr>
-														<td><c:out value="${si.stuNo}"></c:out></td>
-														<td><c:out value="${si.stuName}"></c:out></td>
-														<td><c:out value="${si.stuSex}"></c:out></td>
-														<td><c:out value="${si.stuAge}"></c:out></td>
-														<td><c:out value="${si.classInfo.gradeInfo.gradeName}"></c:out></td>
-														<td><c:out value="${si.classInfo.className}"></c:out></td>
-														<td><c:out value="${si.classInfo.classBegin}"></c:out></td>
+														<td><c:out value="${si.stuNo}" /></td>
+														<td><c:out value="${si.stuName}" /></td>
+														<td><c:out value="${si.stuSex}" /></td>
+														<td><c:out value="${si.stuAge}" /></td>
+														<td><c:out value="${si.classInfo.gradeInfo.gradeName}" /></td>
+														<td><c:out value="${si.classInfo.className}" /></td>
+														<td><c:out value="${si.classInfo.classBegin}" /></td>
 														<td>
 															<div class="tpl-table-black-operation">
 																<a href="javascript:;">
@@ -173,6 +173,29 @@
 				</div>
 			</div>
 
+			<!-- 上传Excel文件，解析数据到数据库完成添加学生 -->
+			<div class="am-modal am-modal-no-btn" tabindex="-1" id="exceladd">
+				<div class="am-modal-dialog">
+					<div class="am-modal-hd">选择导入的Excel文件
+						<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+					</div>
+					<div class="am-modal-bd">
+						<form action="/StuServlet" method="post" class="am-form" enctype="multipart/form-data">
+							<input type="hidden" value="upload" name="op">
+							<div class="am-form-group am-form-file">
+								<button type="button" class="am-btn am-btn-default am-btn-sm">
+									<i class="am-icon-cloud-upload"></i> 选择要上传的文件</button>
+								<input type="file" multiple>
+							</div>
+							<div class="am-form-group">
+								<input type="submit" class="am-btn am-btn-primary am-btn-block" value="添加">
+								<a href="javascript:$('#exceladd').modal('close');" class="am-btn am-btn-default am-btn-block">取消</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
 			<!-- 提示模态框 -->
 			<div class="am-modal am-modal-alert" tabindex="-1" id="msg">
 				<div class="am-modal-dialog">
@@ -192,7 +215,12 @@
 		<script src="/admin/static/js/amazeui.datatables.min.js"></script>
 		<script src="/admin/static/js/dataTables.responsive.min.js"></script>
 		<script src="/admin/static/js/app.js"></script>
+		<script>
+            $.AMUI.progress.start();
+            setTimeout(function() { $.AMUI.progress.done(); $('.fade').removeClass('out'); }, 1000);
+		</script>
 		<script type="text/javascript">
+			/*
             <!-- 获取进度条对象 -->
             var progress = $.AMUI.progress.configure({ ease: 'ease', speed: 1000 });
             <!-- 设置pjax，刷新替换content里面的内容 -->
@@ -207,6 +235,7 @@
             $(document).on('pjax:complete', function() {
                 progress.done();
             });
+            */
 		</script>
 		<script>
 			$('#stuadd').submit(function(){

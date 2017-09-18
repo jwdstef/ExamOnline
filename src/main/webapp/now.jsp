@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="cc.ryanc.dao.ExamPaperLibsDao" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="cc.ryanc.entity.ExamPaperLibs" %><%--
@@ -24,10 +25,6 @@
 		<link rel="stylesheet" type="text/css" href="/static/css/nprogress.css">
 		<script src='static/js/nprogress.js'></script>
 	</head>
-	<%
-		ExamPaperLibsDao examPaperLibsDao = new ExamPaperLibsDao();
-		ArrayList<ExamPaperLibs> examPaperLibss = examPaperLibsDao.getQuery();
-	%>
 	<body>
 		<div class="container-fluid">
 			<div class="content">
@@ -39,23 +36,24 @@
 				</div>
 				<div class="examPaper">
 					<div class="examSubs">
-						<%
-							for(ExamPaperLibs examPaperLibs:examPaperLibss){
-						%>
-								<div>
-									<div>
-										<%=examPaperLibs.getExamLibrary().getLibTitle()%>
+						<c:forEach items="requestScope.examPaperLibss" var="epl">
+								<div class="examSub_item">
+									<div class="sub_title"><c:out value="${epl.examLibrary.libTitle}" /></div>
+									<div class="sub_A">
+										<input type="radio" name="choose"><c:out value="${epl.examLibrary.libA}" />
 									</div>
-									<div>
-										<input type="radio"><%=examPaperLibs.getExamLibrary().getLibA()%>
-										<input type="radio"><%=examPaperLibs.getExamLibrary().getLibB()%>
-										<input type="radio"><%=examPaperLibs.getExamLibrary().getLibB()%>
-										<input type="radio"><%=examPaperLibs.getExamLibrary().getLibC()%>
+									<div class="sub_B">
+										<input type="radio" name="choose"><c:out value="${epl.examLibrary.libB}" />
+									</div>
+									<div class="sub_C">
+										<input type="radio" name="choose"><c:out value="${epl.examLibrary.libC}" />
+									</div>
+									<div class="sub_D">
+										<input type="radio" name="choose"><c:out value="${epl.examLibrary.libD}" />
 									</div>
 								</div>
-						<%
-							}
-						%>
+								<br><br>
+						</c:forEach>
 					</div>
 					<div class="examList">2</div>
 				</div>

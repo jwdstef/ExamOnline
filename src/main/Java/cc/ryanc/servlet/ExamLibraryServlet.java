@@ -33,6 +33,8 @@ public class ExamLibraryServlet extends HttpServlet {
         }else{
             if("remove".equals(op)){
                 this.remove(request, response);
+            }else if("detail".equals(op)){
+                this.queryById(request, response);
             }
         }
     }
@@ -72,6 +74,23 @@ public class ExamLibraryServlet extends HttpServlet {
         int libId = Integer.parseInt(request.getParameter("libId"));
         if(examLibraryDao.getRemove(libId)){
             this.query(request, response);
+        }
+    }
+
+    /**
+     * 处理根据id查询详情页面
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void queryById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //获取要删除的id
+        int libId = Integer.parseInt(request.getParameter("libId"));
+        ExamLibrary examLibrary = examLibraryDao.getById(libId);
+        if(examLibrary!=null){
+            request.setAttribute("examLibrary",examLibrary);
+            request.getRequestDispatcher("/admin/page/subject-detail.jsp").forward(request,response);
         }
     }
 }
