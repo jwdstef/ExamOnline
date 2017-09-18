@@ -23,9 +23,9 @@
 	<body class="theme-black">
 	    <div class="am-g tpl-g">
 			<!-- 动态包含header头部 -->
-			<jsp:include page="header.jsp" flush="true"/>
+			<jsp:include page="module/header.jsp" flush="true"/>
 			<!-- 动态包含左侧菜单 -->
-			<jsp:include page="menu.jsp" flush="true"/>
+			<jsp:include page="module/menu.jsp" flush="true"/>
 	        <!-- 内容区域 -->
 	        <div class="tpl-content-wrapper" id="content">
 	            <div class="container-fluid am-cf">
@@ -49,7 +49,8 @@
 										<div class="am-form-group">
 											<div class="am-btn-toolbar">
 												<div class="am-btn-group">
-													<button type="button" class="am-btn am-btn-default am-btn-primary am-radius" data-am-modal="{target: '#stuadd', closeViaDimmer: 0, width: 400, height: 500}"><span class="am-icon-plus"></span> 新增</button>
+													<button type="button" class="am-btn am-btn-default am-btn-secondary am-radius" data-am-modal="{target: '#stuadd', closeViaDimmer: 0, width: 400, height: 500}"><span class="am-icon-plus"></span> 新增</button>
+													<button type="button" class="am-btn am-btn-default am-btn-success am-radius" data-am-modal="{target: '#exceladd', closeViaDimmer: 0, width: 400, height: 500}"><span class="am-icon-plus"></span> Excel导入</button>
 												</div>
 											</div>
 										</div>
@@ -105,7 +106,7 @@
 																<a href="javascript:;">
 																	<i class="am-icon-pencil"></i> 编辑
 																</a>
-																<a href="/StuServlet?op=remove&classId=${si.stuId}" class="tpl-table-black-operation-del">
+																<a href="/StuServlet?op=remove&stuId=<c:out value='${si.stuId}'/>" class="tpl-table-black-operation-del">
 																	<i class="am-icon-trash"></i> 删除
 																</a>
 															</div>
@@ -124,7 +125,7 @@
 												<li><a href="#">3</a></li>
 												<li><a href="#">4</a></li>
 												<li><a href="#">5</a></li>
-												<li><a href="/StuServlet?pageNo=${requestScope.pm.getPagePre()}">»</a></li>
+												<li><a href="/StuServlet?pageNo=${requestScope.pm.getPageNext()}">»</a></li>
 											</ul>
 										</div>
 									</div>

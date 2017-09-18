@@ -67,11 +67,22 @@ create table examLibrary
 )CHARACTER set ='utf8';
 insert into examLibrary value(libId,'Java测试1','J2EE','J2ME','J2SE','.NET','A',1,1,1);
 
+-- 试卷表
+create table examPaper
+(
+  paperId int primary key auto_increment,
+  paperName varchar(50) not null,
+  classId int not null,
+  beginTime varchar(100) not null,
+  endTime varchar(100) not null
+)CHARACTER set ='utf8';
 
-select * from examLibrary a inner join subject b on a.subId = b.subId inner join gradeInfo c on a.gradeId = c.gradeId
-
-
-
+-- 试卷题目表
+create table examPaperLibs
+(
+  paperId int references examPaper(paperId),
+  libId int references examLibrary(libId)
+)CHARACTER set ='utf8';
 
 
 create table siteInfo
@@ -112,6 +123,31 @@ insert into subject values(subId,'.NET高级');
 insert into subject values(subId,'PHP网页设计');
 insert into subject values(subId,'Linux基础');
 insert into subject values(subId,'Photoshop基础');
+
+insert into examLibrary values(libId,'Java测试1','J2EE','J2ME','J2SE','.NET','A',1,1,1);
+insert into examLibrary values(libId,'Java测试2','J2EE','J2ME','J2SE','.NET','B',1,1,1);
+insert into examLibrary values(libId,'Java测试3','J2EE','J2ME','J2SE','.NET','C',1,1,1);
+insert into examLibrary values(libId,'Java测试4','J2EE','J2ME','J2SE','.NET','D',1,1,1);
+insert into examLibrary values(libId,'Java测试5','J2EE','J2ME','J2SE','.NET','A',1,1,1);
+insert into examLibrary values(libId,'Java测试6','J2EE','J2ME','J2SE','.NET','B',1,1,1);
+
+insert into examPaper values(paperId,'JAVA41第二次月考',1,'2017-9-18','2017-9-19');
+insert into examPaper values(paperId,'JAVA41第三次月考',1,'2017-9-18','2017-9-19');
+insert into examPaper values(paperId,'JAVA41第四次月考',1,'2017-9-18','2017-9-19');
+insert into examPaper values(paperId,'JAVA41第六次月考',1,'2017-9-18','2017-9-19');
+
+insert into examPaperLibs values(1,1);
+insert into examPaperLibs values(1,2);
+insert into examPaperLibs values(1,3);
+insert into examPaperLibs values(1,4);
+insert into examPaperLibs values(1,5);
+insert into examPaperLibs values(1,6);
+insert into examPaperLibs values(2,1);
+insert into examPaperLibs values(2,2);
+insert into examPaperLibs values(2,3);
+insert into examPaperLibs values(2,4);
+insert into examPaperLibs values(2,5);
+insert into examPaperLibs values(2,6);
 
 SELECT * FROM adminInfo;
 select * from stuInfo;

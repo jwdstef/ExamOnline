@@ -23,9 +23,9 @@
 	<body class="theme-black">
 	    <div class="am-g tpl-g">
 			<!-- 动态包含header头部 -->
-			<jsp:include page="header.jsp" flush="true"/>
+			<jsp:include page="module/header.jsp" flush="true"/>
 			<!-- 动态包含左侧菜单 -->
-			<jsp:include page="menu.jsp" flush="true"/>
+			<jsp:include page="module/menu.jsp" flush="true"/>
 	        <!-- 内容区域 -->
 	        <div class="tpl-content-wrapper" id="content">
 	            <div class="container-fluid am-cf">
@@ -44,12 +44,12 @@
 									<div class="widget-title  am-cf">题库列表</div>
 								</div>
 								<div class="widget-body  am-fr">
-
 									<div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
 										<div class="am-form-group">
 											<div class="am-btn-toolbar">
 												<div class="am-btn-group">
-													<button type="button" class="am-btn am-btn-default am-btn-primary am-radius" data-am-modal="{target: '#stuadd', closeViaDimmer: 0, width: 400, height: 500}"><span class="am-icon-plus"></span> 新增</button>
+													<button type="button" class="am-btn am-btn-default am-btn-secondary am-radius" data-am-modal="{target: '#stuadd', closeViaDimmer: 0, width: 400, height: 500}"><span class="am-icon-plus"></span> 新增</button>
+													<button type="button" class="am-btn am-btn-default am-btn-success am-radius" data-am-modal="{target: '#exceladd', closeViaDimmer: 0, width: 400, height: 500}"><span class="am-icon-plus"></span> Excel导入</button>
 												</div>
 											</div>
 										</div>

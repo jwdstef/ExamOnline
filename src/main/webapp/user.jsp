@@ -21,14 +21,15 @@
 		<script src='static/js/nprogress.js'></script>
 		<style>
 			#user-main{
-				width: 1000px;
-				height: 600px;
+				width: 800px;
+				height: 400px;
 				position: absolute;
 				left: 50%;
 				top: 50%;
-				margin-left:-500px;
-				margin-top:-300px;
-				background-color: red;
+				margin-left:-400px;
+				margin-top:-200px;
+				background-color: #3C7780;
+				border-radius: 5px;
 			}
 		</style>
 	</head>

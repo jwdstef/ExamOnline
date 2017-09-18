@@ -2,7 +2,6 @@ package cc.ryanc.servlet;
 
 import cc.ryanc.dao.ClassDao;
 import cc.ryanc.entity.ClassInfo;
-import cc.ryanc.entity.StuInfo;
 import cc.ryanc.util.PageModel;
 
 import javax.servlet.ServletException;
@@ -30,6 +29,10 @@ public class ClassServlet extends HttpServlet {
         String op = request.getParameter("op");
         if("".equals(op)||null==op){
             this.query(request, response);
+        }else{
+            if("remove".equals(op)){
+                this.remove(request, response);
+            }
         }
     }
 

@@ -23,9 +23,9 @@
 	<body class="theme-black">
 	    <div class="am-g tpl-g">
 			<!-- 动态包含header头部 -->
-			<jsp:include page="header.jsp" flush="true"/>
+			<jsp:include page="module/header.jsp" flush="true"/>
 			<!-- 动态包含左侧菜单 -->
-			<jsp:include page="menu.jsp" flush="true"/>
+			<jsp:include page="module/menu.jsp" flush="true"/>
 	        <!-- 内容区域 -->
 	        <div class="tpl-content-wrapper" id="content">
 	            <div class="container-fluid am-cf">
@@ -89,18 +89,18 @@
 											<tbody>
 												<c:forEach items="${requestScope.classInfos}" var="ci">
 													<tr>
-														<td><c:out value="${ci.className}"></c:out></td>
-														<td><c:out value="${ci.gradeInfo.gradeName}"></c:out></td>
-														<td><c:out value="${ci.master}"></c:out></td>
-														<td><c:out value="${ci.teacher}"></c:out></td>
-														<td><c:out value="${ci.number}"></c:out></td>
-														<td><c:out value="${ci.classBegin}"></c:out></td>
+														<td><c:out value="${ci.className}" /></td>
+														<td><c:out value="${ci.gradeInfo.gradeName}" /></td>
+														<td><c:out value="${ci.master}" /></td>
+														<td><c:out value="${ci.teacher}" /></td>
+														<td><c:out value="${ci.number}" /></td>
+														<td><c:out value="${ci.classBegin}" /></td>
 														<td>
 															<div class="tpl-table-black-operation">
 																<a href="javascript:;">
 																	<i class="am-icon-pencil"></i> 编辑
 																</a>
-																<a href="/StuServlet?op=remove&classId=${ci.classId}" class="tpl-table-black-operation-del">
+																<a href="/ClassServlet?op=remove&classId=<c:out value='${ci.classId}' />" class="tpl-table-black-operation-del">
 																	<i class="am-icon-trash"></i> 删除
 																</a>
 															</div>

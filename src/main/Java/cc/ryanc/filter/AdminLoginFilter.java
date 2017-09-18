@@ -17,11 +17,8 @@ import java.io.IOException;
  */
 @WebFilter(filterName = "AdminLoginFilter")
 public class AdminLoginFilter implements Filter {
-    @Override
     public void destroy() {
     }
-
-    @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         //转换为Servlet
         HttpServletRequest request = (HttpServletRequest)req;
@@ -37,9 +34,6 @@ public class AdminLoginFilter implements Filter {
             chain.doFilter(req,resp);
         }
     }
-
-    @Override
     public void init(FilterConfig config) throws ServletException {
-
     }
 }
