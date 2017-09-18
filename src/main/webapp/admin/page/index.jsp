@@ -14,6 +14,7 @@
 		<meta http-equiv="expires" content="0">
 	   	<meta name="keywords" content="后台管理,ExamOnline后台">
 	   	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon shortcut" type="image/ico" href="/admin/static/img/favicon.png">
 	   	<meta name="renderer" content="webkit">
 	    <meta http-equiv="Cache-Control" content="no-siteapp" />
 	    <link rel="stylesheet" href="/admin/static/css/amazeui.min.css" />

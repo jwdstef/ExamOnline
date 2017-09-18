@@ -114,13 +114,10 @@
 
 										<div class="am-fr">
 											<ul class="am-pagination tpl-pagination">
-												<li><a href="/ClassServlet?pageNo=${requestScope.pm.getPagePre()}">«</a></li>
-												<li class="am-active"><a href="#">1</a></li>
-												<li><a href="#">2</a></li>
-												<li><a href="#">3</a></li>
-												<li><a href="#">4</a></li>
-												<li><a href="#">5</a></li>
-												<li><a href="/ClassServlet?pageNo=${requestScope.pm.getPagePre()}">»</a></li>
+												<li><a href="/ClassServlet?pageNo=${requestScope.pm.getIndex()}">首页</a></li>
+												<li><a href="/ClassServlet?pageNo=${requestScope.pm.getPagePre()}">上页</a></li>
+												<li><a href="/ClassServlet?pageNo=${requestScope.pm.getPageNext()}">下页</a></li>
+												<li><a href="/ClassServlet?pageNo=${requestScope.pm.getPageTotal()}">尾页</a></li>
 											</ul>
 										</div>
 									</div>

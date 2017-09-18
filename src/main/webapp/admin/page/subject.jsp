@@ -75,7 +75,6 @@
 											</div>
 										</form>
 									</div>
-
 									<div class="am-u-sm-12">
 										<table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
 											<thead>
@@ -115,11 +114,6 @@
 										<div class="am-fr">
 											<ul class="am-pagination tpl-pagination">
 												<li><a href="">«</a></li>
-												<li class="am-active"><a href="#">1</a></li>
-												<li><a href="#">2</a></li>
-												<li><a href="#">3</a></li>
-												<li><a href="#">4</a></li>
-												<li><a href="#">5</a></li>
 												<li><a href="">»</a></li>
 											</ul>
 										</div>

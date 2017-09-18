@@ -22,6 +22,7 @@
 		<meta http-equiv="expires" content="0">    
 		<meta http-equiv="keywords" content="<%=siteInfo.getWords()%>">
 		<meta http-equiv="description" content="<%=siteInfo.getDescr()%>">
+		<link rel="icon shortcut" type="image/ico" href="/static/img/favicon.png">
 		<link rel="stylesheet" type="text/css" href="static/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="static/css/style.css">

@@ -15,6 +15,7 @@
 		<meta http-equiv="expires" content="0">    
 		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 		<meta http-equiv="description" content="This is my page">
+		<link rel="icon shortcut" type="image/ico" href="/static/img/favicon.png">
 		<link rel="stylesheet" type="text/css" href="/static/css/style.css">
 		<!-- 进度条 -->
 		<link rel="stylesheet" type="text/css" href="/static/css/nprogress.css">
