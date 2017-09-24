@@ -31,7 +31,7 @@
 	            <div class="container-fluid am-cf">
 	                <div class="row">
 	                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
-	                        <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 题库管理 <small>Subject Manager</small></div>
+	                        <div class="page-header-heading"><span class="am-icon-book page-header-heading-icon"></span> 题库管理 <small>Subject Manager</small></div>
 	                    </div>
 	                </div>
 	            </div>
@@ -113,8 +113,10 @@
 									<div class="am-u-lg-12 am-cf">
 										<div class="am-fr">
 											<ul class="am-pagination tpl-pagination">
-												<li><a href="">«</a></li>
-												<li><a href="">»</a></li>
+												<li><a href="">首页</a></li>
+												<li><a href="">上页</a></li>
+												<li><a href="">下页</a></li>
+												<li><a href="">尾页</a></li>
 											</ul>
 										</div>
 									</div>
@@ -131,7 +133,7 @@
 						<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
 					</div>
 					<div class="am-modal-bd">
-						<form action="/StuServlet" method="post" class="am-form">
+						<form action="/ExamLibraryServlet" method="post" class="am-form">
 							<input type="hidden" value="insert" name="op">
 							<div class="am-form-group">
 								<input type="text" class="am-disabled" placeholder="标题" name="libTitle">
@@ -172,7 +174,7 @@
 							</div>
 							<div class="am-form-group">
 								<input type="submit" id="submit" class="am-btn am-btn-primary am-btn-block" value="添加">
-								<a href="javascript:$('#stuadd').modal('close');" class="am-btn am-btn-default am-btn-block">取消</a>
+								<a href="javascript:$('#libadd').modal('close');" class="am-btn am-btn-default am-btn-block">取消</a>
 							</div>
 						</form>
 					</div>

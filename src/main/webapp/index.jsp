@@ -57,7 +57,7 @@
 					<div class="w_title">
 						<span>当前考试</span>
 					</div>
-					<span style="font-size: 10px;color: red;">&emsp;距离最近的考试还有45:00</span>
+					<span style="font-size: 10px;color: red;" id="timeOut"></span>
 				</div>
 				<div class="widgets_all" id="widgets_testforward">
 					<div class="w_icons">
@@ -104,34 +104,27 @@
 			<!-- 登录模态框 -->
 			<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginLabel">
 				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
+					<div class="modal-content" id="login-content">
+						<div class="modal-header" id="login-title">
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<i class="fa fa-times fa-lg" aria-hidden="true"></i>
 							</button>
-							<h1 class="modal-title" id="myModalLabel">学生登录</h1>
+							<h2 class="modal-title" id="myModalLabel">学生登录</h2>
 						</div>
-						<div class="modal-body">
+						<div class="modal-body" id="login-account">
 							<form role="form" action="StuServlet" method="post">
 								<input type="hidden" value="login" name="op">
 								<div class="input-group input-group-lg">
-						            <span class="input-group-addon">
-						            	<i class="fa fa-user fa-lg" aria-hidden="true"></i>
-						            </span>
 						            <input type="text" class="form-control" placeholder="学号" name="stuNo" id="no">
 						        </div><br>
 								<div class="input-group input-group-lg">
-						            <span class="input-group-addon">
-						            	<i class="fa fa-unlock-alt fa-lg" aria-hidden="true"></i>
-						            </span>
 						            <input type="password" class="form-control" placeholder="密码" name="stuPwd" id="pwd">
 						        </div>
-
-								<div class="modal-footer">
-									<input type="submit" id="btn_login" class="btn btn-primary btn-lg btn-block" value="登录">
-									<button type="button" class="btn btn-default btn-lg btn-block" data-dismiss="modal">取消</button>
-								</div>
 							</form>
+						</div>
+						<div class="modal-footer" id="login-footer">
+							<input type="submit" id="btn_login" class="btn btn-primary btn-lg btn-block" value="登录">
+							<button type="button" class="btn btn-default btn-lg btn-block" data-dismiss="modal">取消</button>
 						</div>
 					</div>
 				</div>
@@ -179,5 +172,23 @@
 	<script>
 		NProgress.start();
 		setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1000);
+	</script>
+	<script language="javascript" type="text/javascript">
+        var interval = 1000;
+        function ShowCountDown(year,month,day,divname)
+        {
+            var now = new Date();
+            var endDate = new Date(year, month-1, day);
+            var leftTime=endDate.getTime()-now.getTime();
+            var leftsecond = parseInt(leftTime/1000);
+            //var day1=parseInt(leftsecond/(24*60*60*6));
+            var day1=Math.floor(leftsecond/(60*60*24));
+            var hour=Math.floor((leftsecond-day1*24*60*60)/3600);
+            var minute=Math.floor((leftsecond-day1*24*60*60-hour*3600)/60);
+            var second=Math.floor(leftsecond-day1*24*60*60-hour*3600-minute*60);
+            var cc = document.getElementById(divname);
+            cc.innerHTML = "&emsp;距离最近的考试还有"+day1+"天"+hour+":"+minute+":"+second;
+        }
+        window.setInterval(function(){ShowCountDown(2017,9,25,'timeOut');}, interval);
 	</script>
 </html>

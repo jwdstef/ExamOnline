@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     border:0;
-    font-family: "微软雅黑"
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
 }
 body{
 	overflow-x: hidden;
@@ -133,7 +133,36 @@ footer{
 	color:#b5b5b5;
 	font-size: 12px;
 }
-
+#login-title{
+	border-bottom: none;
+}
+#login-title h2{
+	margin-top:15px;
+	margin-bottom: 5px;
+	text-align: center;
+	color: #323a45;
+}
+#login-content{
+	position: relative;
+	z-index: 1001;
+	width: 550px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 5px 30px 30px;
+	border-radius: 10px;
+	background-color: #fff;
+	cursor: pointer;
+}
+#login-account input{
+	height: 48px;
+	width:455px;
+	font-size: 18px;
+	border-radius: 5px;
+	border: 1px solid rgba(50,58,69,.2);
+}
+#login-footer{
+	border-top:none;
+}
 /* 移动端 */
 @media screen and (max-width:790px){  
 	.widgets{

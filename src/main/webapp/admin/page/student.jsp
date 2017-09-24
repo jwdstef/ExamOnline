@@ -31,7 +31,7 @@
 	            <div class="container-fluid am-cf">
 	                <div class="row">
 	                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
-	                        <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 学生管理 <small>Student Manager</small></div>
+	                        <div class="page-header-heading"><span class="am-icon-users page-header-heading-icon"></span> 学生管理 <small>Student Manager</small></div>
 	                    </div>
 	                </div>
 	            </div>
@@ -142,7 +142,10 @@
 							<input type="hidden" value="insert" name="op">
 							<div class="am-form-group">
 								<select name="classid" id="classid">
-									<option value="">选择班级</option>
+									<option value="0">选择班级</option>
+									<option value="1">JAVA41</option>
+									<option value="2">.NET37</option>
+									<option value="3">PHP42</option>
 								</select>
 							</div>
 							<div class="am-form-group">

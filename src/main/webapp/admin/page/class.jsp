@@ -31,7 +31,7 @@
 	            <div class="container-fluid am-cf">
 	                <div class="row">
 	                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
-	                        <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 班级管理 <small>Class Manager</small></div>
+	                        <div class="page-header-heading"><span class="am-icon-bell page-header-heading-icon"></span> 班级管理 <small>Class Manager</small></div>
 	                    </div>
 	                </div>
 	            </div>
@@ -154,7 +154,7 @@
 	                </div>
 	                <div class="am-form-group">
 	                    <button type="button" class="am-btn am-btn-primary am-btn-block">添加</button>
-	                    <button type="button" class="am-btn am-btn-default am-btn-block">取消</button>
+	                    <a href="javascript:$('#classadd').modal('close');" type="button" class="am-btn am-btn-default am-btn-block">取消</a>
 	                </div>
 	              </form>
 	            </div>

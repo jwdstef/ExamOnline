@@ -51,7 +51,7 @@
                 <div class="container-fluid am-cf">
                     <div class="row">
                         <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
-                            <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 友情链接 <small>Links Manager</small></div>
+                            <div class="page-header-heading"><span class="am-icon-link page-header-heading-icon"></span> 友情链接 <small>Links Manager</small></div>
                         </div>
                     </div>
                 </div>

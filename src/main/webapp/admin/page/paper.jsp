@@ -32,7 +32,7 @@
 	            <div class="container-fluid am-cf">
 	                <div class="row">
 	                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
-	                        <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 组卷 <small>Build Subject</small></div>
+	                        <div class="page-header-heading"><span class="am-icon-table page-header-heading-icon"></span> 组卷 <small>Build Subject</small></div>
 	                    </div>
 	                </div>
 	            </div>
@@ -71,6 +71,9 @@
 															<div class="tpl-table-black-operation">
 																<a href="/ExamPaperLibsServlet?op=detail&paperId=<c:out value='${ep.paperId}' />">
 																	<i class="am-icon-pencil"></i> 编辑题目
+																</a>
+																<a href="/ExamPaperLibsServlet?op=detail&paperId=<c:out value='${ep.paperId}' />" style="border-color: skyblue;color: skyblue">
+																	<i class="am-icon-circle"></i> 查看成绩
 																</a>
 																<a href="/ExamPaperServlet?op=remove&paperId=<c:out value='${ep.paperId}' />" class="tpl-table-black-operation-del">
 																	<i class="am-icon-trash"></i> 删除
