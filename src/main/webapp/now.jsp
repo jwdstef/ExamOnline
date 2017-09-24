@@ -1,7 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="cc.ryanc.dao.ExamPaperLibsDao" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="cc.ryanc.entity.ExamPaperLibs" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: RYAN0UP
   Date: 2017/9/13
@@ -19,48 +17,60 @@
 		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 		<meta http-equiv="description" content="This is my page">
 		<link rel="icon shortcut" type="image/ico" href="/static/img/favicon.png">
+		<link rel="stylesheet" type="text/css" href="/static/css/mdui.min.css">
 		<link rel="stylesheet" type="text/css" href="/static/css/paper.css">
-		<link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
 		<!-- 进度条 -->
 		<link rel="stylesheet" type="text/css" href="/static/css/nprogress.css">
-		<script src='static/js/nprogress.js'></script>
 	</head>
 	<body>
-		<div class="container-fluid">
-			<div class="content">
-				<div class="examTitle">
-					<h1>Java41第三月月考</h1>
-				</div>
-				<div class="examInfo">
-					考生：
-				</div>
-				<div class="examPaper">
-					<div class="examSubs">
-						<c:forEach items="requestScope.examPaperLibss" var="epl">
-								<div class="examSub_item">
-									<div class="sub_title"><c:out value="${epl.examLibrary.libTitle}" /></div>
-									<div class="sub_A">
-										<input type="radio" name="choose"><c:out value="${epl.examLibrary.libA}" />
-									</div>
-									<div class="sub_B">
-										<input type="radio" name="choose"><c:out value="${epl.examLibrary.libB}" />
-									</div>
-									<div class="sub_C">
-										<input type="radio" name="choose"><c:out value="${epl.examLibrary.libC}" />
-									</div>
-									<div class="sub_D">
-										<input type="radio" name="choose"><c:out value="${epl.examLibrary.libD}" />
-									</div>
-								</div>
-								<br><br>
-						</c:forEach>
-					</div>
-					<div class="examList">2</div>
-				</div>
-			</div>
+	<div id="examMain">
+		<div id="examTitle">
+			<h1>JAVA41第一次月考</h1>&emsp;
+			<span id="stuName">姓名：汪瑞原</span>&emsp;
+			<span id="examClass">班级：JAVA41</span>&emsp;
+			<span id="examScore">总分：100</span>&emsp;
+			<span id="examTime">剩余时间：45:00</span>&emsp;
 		</div>
+		<div id="examContent">
+			<%int i=1;%>
+			<c:forEach items="${requestScope.examPaperLibss}" var="epl">
+				<div id="libitems">
+					<div id="libTitle">
+						<span><%=i%><c:out value="${epl.examLibrary.libTitle}" /></span>
+					</div>
+					<div id="libABCD">
+						<form>
+							<label class="mdui-radio">
+								<input type="radio" name="group1"/>
+								<i class="mdui-radio-icon"></i>
+								<c:out value="${epl.examLibrary.libA}" />
+							</label><br>
+							<label class="mdui-radio">
+								<input type="radio" name="group1"/>
+								<i class="mdui-radio-icon"></i>
+								<c:out value="${epl.examLibrary.libB}" />
+							</label><br>
+							<label class="mdui-radio">
+								<input type="radio" name="group1"/>
+								<i class="mdui-radio-icon"></i>
+								<c:out value="${epl.examLibrary.libC}" />
+							</label><br>
+							<label class="mdui-radio">
+								<input type="radio" name="group1"/>
+								<i class="mdui-radio-icon"></i>
+								<c:out value="${epl.examLibrary.libD}" />
+							</label><br>
+						</form>
+					</div>
+				</div>
+				<%i++;%>
+			</c:forEach>
+		</div>
+	</div>
 	</body>
 	<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+	<script src='/static/js/nprogress.js'></script>
+	<script type="text/javascript" src="/static/js/mdui.min.js"></script>
 	<script>
 		NProgress.start();
 		setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1000);

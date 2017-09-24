@@ -15,12 +15,11 @@
 		<meta http-equiv="expires" content="0">    
 		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 		<meta http-equiv="description" content="This is my page">
-		<link rel="icon shortcut" type="image/ico" href="/static/img/favicon.png">
-		<link rel="stylesheet" type="text/css" href="/static/css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+		<link rel="icon shortcut" type="image/ico" href="static/img/favicon.png">
+		<link rel="stylesheet" type="text/css" href="static/css/style.css">
+		<link rel="stylesheet" type="text/css" href="static/css/animate.min.css">
 		<!-- 进度条 -->
-		<link rel="stylesheet" type="text/css" href="/static/css/nprogress.css">
+		<link rel="stylesheet" type="text/css" href="static/css/nprogress.css">
 		<script src='static/js/nprogress.js'></script>
 		<style>
 			#user-main{
@@ -73,7 +72,7 @@
 	</head>
 
 	<body>
-		<div id="user-main" style="display: none">
+		<div id="user-main">
 			<div id="user-top">
 				<div id="user-pic">
 					<img src="static/img/ryan0up.png">
@@ -82,22 +81,23 @@
 			</div>
 			<div id="user-content">
 				<div id="user-info">
-					<span>姓名：RYAN0UP</span><br>
-					<span>学号：S00001</span><br>
-					<span>性别：男</span><br>
-					<span>年龄：19</span><br>
-					<span>年级：S3</span><br>
-					<span>班级：JAVA41</span>
+					<span id="user-name">姓名：RYAN0UP</span><br>
+					<span id="user-no">学号：S00001</span><br>
+					<span id="user-sex">性别：男</span><br>
+					<span id="user-age">年龄：19</span><br>
+					<span id="user-grade">年级：S3</span><br>
+					<span id="user-class">班级：JAVA41</span>
 				</div>
 			</div>
 		</div>
 	</body>
-	<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="static/js/jquery.min.js"></script>
 	<script>
 		NProgress.start();
 		setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1000);
-		$(function () {
-			$('#user-main').show("slow");
-        })
+        $('#user-name').addClass(' animated fadeInDown');
+        setTimeout(function(){
+            $('#user-no').addClass(' animated fadeInDown');
+		},500);
 	</script>
 </html>

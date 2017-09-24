@@ -34,7 +34,7 @@ public class ExamPaperLibsServlet extends HttpServlet {
         }else if("add".equals(op)){
             this.add(request, response);
         }else if("test".equals(op)){
-            this.pagequery(request, response);
+            this.test(request, response);
         }
     }
 
@@ -81,15 +81,12 @@ public class ExamPaperLibsServlet extends HttpServlet {
      * @throws ServletException
      * @throws IOException
      */
-    public void pagequery(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void test(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //获取试卷编号
         int paperId = Integer.parseInt(request.getParameter("paperId"));
         ArrayList<ExamPaperLibs> examPaperLibss = examPaperLibsDao.getQuery(paperId);
-        ExamLibraryDao examLibraryDao = new ExamLibraryDao();
-        ArrayList<ExamLibrary> examLibraries = examLibraryDao.queryAll();
         if(examPaperLibss!=null){
             request.setAttribute("examPaperLibss",examPaperLibss);
-            request.setAttribute("examLibraries",examLibraries);
             request.setAttribute("paperId",paperId);
             request.getRequestDispatcher("/now.jsp").forward(request,response);
         }

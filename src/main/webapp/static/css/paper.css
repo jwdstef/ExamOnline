@@ -5,32 +5,31 @@ html,body{
 div{
     display: block;
 }
-.content{
-    width:1200px;
-    height:1200px;
-    background-color: red;
-    margin:0 auto;
+span{
+	color: #fff;
 }
-.examTitle{
-    text-align: center;
-    background-color: blue;
+
+#examMain{
+	margin: 0 auto;
+	width: 1000px;
+	height: 1300px;
+	background-color: red;
 }
-.examInfo{
-    background-color: #0a6999;
-    font-size:20px;
+
+#examTitle{
+	width: 1000px;
+	height: 100px;
+	background-color: blue;
 }
-.examSubs{
-    float: left;
-    width:900px;
-    height:1200px;
-    background-color: #00e359;
+#examTitle h1{
+	color: #fff;
+	text-align: center;
+	padding-top: 20px;
 }
-.examList{
-    float: left;
-    width:300px;
-    height:1200px;
-    background-color: #00a23f;
+#libitems{
+	width: 1000px;
+	height: 170px;
+	background-color: green;
+	padding-top: 10px;
 }
-.examSub_item{
-    font-size: 20px;
-}
+
