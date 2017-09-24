@@ -131,7 +131,7 @@
 						<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
 					</div>
 					<div class="am-modal-bd">
-						<form action="/StuServlet" method="post" class="am-form">
+						<form action="/ExamLibraryServlet" method="post" class="am-form">
 							<input type="hidden" value="insert" name="op">
 							<div class="am-form-group">
 								<input type="text" class="am-disabled" placeholder="标题" name="libTitle">

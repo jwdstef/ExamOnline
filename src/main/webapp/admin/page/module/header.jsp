@@ -27,13 +27,12 @@
                 <li class="am-text-sm tpl-header-navbar-welcome">
                     <a href="javascript:;">欢迎你, <span>RYAN0UP</span> </a>
                 </li>
-                <!-- 新提示 -->
+                <!--
                 <li class="am-dropdown" data-am-dropdown>
                     <a href="javascript:;" class="am-dropdown-toggle" data-am-dropdown-toggle>
                         <i class="am-icon-bell"></i>
                         <span class="am-badge am-badge-warning am-round item-feed-badge">3</span>
                     </a>
-                    <!-- 弹出列表 -->
                     <ul class="am-dropdown-content tpl-dropdown-content">
                         <li class="tpl-dropdown-menu-notifications">
                             <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
@@ -77,7 +76,7 @@
                         </li>
                     </ul>
                 </li>
-
+                -->
                 <!-- 退出 -->
                 <li class="am-text-sm">
                     <a href="/AdminServlet?op=getOut">
