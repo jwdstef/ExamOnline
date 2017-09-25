@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: RYAN0UP
@@ -24,11 +25,11 @@
 	<body>
 		<div class="mdui-appbar">
 			<div class="mdui-toolbar mdui-color-theme">
-				<a href="javascript:;" class="mdui-typo-headline">历史试卷</a>
+				<a href="/ScoreServlet" class="mdui-typo-headline">历史试卷</a>
 				<div class="mdui-toolbar-spacer"></div>
 				<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>
-				<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">refresh</i></a>
-				<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">more_vert</i></a>
+				<a href="/ScoreServlet" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">refresh</i></a>
+				<a href="index.jsp" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">home</i></a>
 			</div>
 		</div>
 		<div class="mdui-table-fluid">
@@ -36,30 +37,32 @@
 				<thead>
 				<tr>
 					<th>#</th>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Username</th>
+					<th>试卷名</th>
+					<th>年级</th>
+					<th>班级</th>
+					<th>科目</th>
+					<th>教员</th>
+					<th>开始时间</th>
+					<th>结束时间</th>
+					<th>用时</th>
+					<th>得分</th>
 				</tr>
 				</thead>
 				<tbody>
-				<tr>
-					<td>1</td>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>Jacob</td>
-					<td>Thornton</td>
-					<td>@fat</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>Larry the Bird</td>
-					<td></td>
-					<td>@twitter</td>
-				</tr>
+					<c:forEach items="${requestScope.scores}" var="s">
+						<tr>
+							<td><c:out value="${s.scoreId}" /></td>
+							<td><c:out value="${s.examPaper.paperName}" /></td>
+							<td><c:out value="${s.stuInfo.classInfo.gradeInfo.gradeName}" /></td>
+							<td><c:out value="${s.stuInfo.classInfo.className}" /></td>
+							<td><c:out value="JAVA" /></td>
+							<td><c:out value="${s.stuInfo.classInfo.teacher}" /></td>
+							<td><c:out value="${s.examPaper.beginTime}" /></td>
+							<td><c:out value="${s.examPaper.endTime}" /></td>
+							<td><c:out value="60" /></td>
+							<td><c:out value="${s.score}" /></td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>

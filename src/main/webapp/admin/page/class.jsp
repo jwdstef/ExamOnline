@@ -49,7 +49,11 @@
 										<div class="am-form-group">
 											<div class="am-btn-toolbar">
 												<div class="am-btn-group">
-													<button type="button" class="am-btn am-btn-default am-btn-primary am-radius" data-am-modal="{target: '#classadd', closeViaDimmer: 0, width: 400, height: 500}"><span class="am-icon-plus"></span> 新增</button>
+													<button type="button"
+															class="am-btn am-btn-default am-btn-primary am-radius"
+															data-am-modal="{target: '#classadd', closeViaDimmer: 0, width: 400, height: 480}">
+														<span class="am-icon-plus"></span> 新增
+													</button>
 												</div>
 											</div>
 										</div>
@@ -97,7 +101,7 @@
 														<td><c:out value="${ci.classBegin}" /></td>
 														<td>
 															<div class="tpl-table-black-operation">
-																<a href="javascript:;">
+																<a href="/ClassServlet?op=toEdit&classId=<c:out value='${ci.classId}' />">
 																	<i class="am-icon-pencil"></i> 编辑
 																</a>
 																<a href="/ClassServlet?op=remove&classId=<c:out value='${ci.classId}' />" class="tpl-table-black-operation-del">
@@ -133,27 +137,36 @@
 	              <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
 	            </div>
 	            <div class="am-modal-bd">
-	              <form action="#" method="get" class="am-form">
+					<form action="/ClassServlet" method="post" class="am-form">
+						<input type="hidden" value="insert" name="op">
 	                <div class="am-form-group">
-	                    <input type="text" id="class-name" placeholder="班级名称">
+						<input type="text" placeholder="班级名称" id="className" name="className"/>
 	                </div>
 	                <div class="am-form-group">
-	                    <input type="text" id="class-master" placeholder="班主任">
+						<input type="text" placeholder="班主任" id="master" name="master">
 	                </div>
 	                <div class="am-form-group">
-	                    <input type="text" id="class-teacher" placeholder="教员">
+						<input type="text" placeholder="教员" id="teacher" name="teacher">
 	                </div>
+					<div class="am-form-group">
+						<select name="gradeId" id="gradeId">
+							<option value="0">选择年级</option>
+							<option value="1">S1</option>
+							<option value="2">S2</option>
+							<option value="3">S3</option>
+						</select>
+					</div>
 	                <div class="am-form-group">
-	                    <input type="text" id="class-level" placeholder="阶段">
+						<input type="text" placeholder="人数" id="number" name="number">
 	                </div>
+					<div class="am-form-group">
+						<p>
+							<input type="text" class="am-form-field" placeholder="选择日期" data-am-datepicker readonly
+								   required id="begin" name="begin"/>
+						</p>
+					</div>
 	                <div class="am-form-group">
-	                    <input type="text" id="class-nums" placeholder="人数">
-	                </div>
-	                <div class="am-form-group">
-	                    <input type="text" id="class-nums" placeholder="入学时间">
-	                </div>
-	                <div class="am-form-group">
-	                    <button type="button" class="am-btn am-btn-primary am-btn-block">添加</button>
+	                    <button type="submit" class="am-btn am-btn-primary am-btn-block">添加</button>
 	                    <a href="javascript:$('#classadd').modal('close');" type="button" class="am-btn am-btn-default am-btn-block">取消</a>
 	                </div>
 	              </form>

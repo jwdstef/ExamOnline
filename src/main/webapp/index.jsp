@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="cc.ryanc.entity.StuInfo" %>
 <%@ page import="cc.ryanc.dao.SiteDao" %>
@@ -44,7 +45,7 @@
 				<a data-toggle="modal" data-target="#login" style="cursor: pointer;">
 					<i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>
 				</a>
-				<span><%=stuInfo.getStuName()%></span>
+				<span style="font-size: 22px"><%=stuInfo.getStuName()%></span>
 			</div>
 		</header>
 		<!--主框架-->
@@ -57,7 +58,13 @@
 					<div class="w_title">
 						<span>当前考试</span>
 					</div>
-					<span style="font-size: 10px;color: red;" id="timeOut"></span>
+					<%
+						if(request.getSession().getAttribute("userInfo")!=null){
+					%>
+						<span style="font-size: 10px;color: red;" id="timeOut"></span>
+					<%
+						}
+					%>
 				</div>
 				<div class="widgets_all" id="widgets_testforward">
 					<div class="w_icons">
@@ -112,7 +119,7 @@
 							<h2 class="modal-title" id="myModalLabel">学生登录</h2>
 						</div>
 						<div class="modal-body" id="login-account">
-							<form role="form" action="StuServlet" method="post">
+							<form role="form" action="/StuServlet" method="post" id="myform">
 								<input type="hidden" value="login" name="op">
 								<div class="input-group input-group-lg">
 						            <input type="text" class="form-control" placeholder="学号" name="stuNo" id="no">
@@ -123,7 +130,7 @@
 							</form>
 						</div>
 						<div class="modal-footer" id="login-footer">
-							<input type="submit" id="btn_login" class="btn btn-primary btn-lg btn-block" value="登录">
+							<input type="submit" id="btn_login" class="btn btn-primary btn-lg btn-block" value="登录" onclick = "checkUser();">
 							<button type="button" class="btn btn-default btn-lg btn-block" data-dismiss="modal">取消</button>
 						</div>
 					</div>
@@ -159,6 +166,23 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="modal fade bs-example-modal-lg" id="building" tabindex="-1" role="dialog" aria-labelledby="ruleLabel">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h2 class="modal-title" id="myModalLabel">正在建设中....</h2>
+						</div>
+						<div class="modal-body">
+							<p>熬夜....</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" data-dismiss="modal">我知道了</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<footer>
 			<span><%=siteInfo.getCopyright()%> <%=siteInfo.getIcp()%></span>
@@ -173,22 +197,54 @@
 		NProgress.start();
 		setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1000);
 	</script>
+	<script>
+		<%
+			if(request.getSession().getAttribute("msg")!=null){
+		%>
+				alert("<%=request.getSession().getAttribute("msg")%>")
+		<%
+				request.getSession().removeAttribute("msg");
+			}
+		%>
+	</script>
 	<script language="javascript" type="text/javascript">
-        var interval = 1000;
-        function ShowCountDown(year,month,day,divname)
-        {
-            var now = new Date();
-            var endDate = new Date(year, month-1, day);
-            var leftTime=endDate.getTime()-now.getTime();
-            var leftsecond = parseInt(leftTime/1000);
-            //var day1=parseInt(leftsecond/(24*60*60*6));
-            var day1=Math.floor(leftsecond/(60*60*24));
-            var hour=Math.floor((leftsecond-day1*24*60*60)/3600);
-            var minute=Math.floor((leftsecond-day1*24*60*60-hour*3600)/60);
-            var second=Math.floor(leftsecond-day1*24*60*60-hour*3600-minute*60);
-            var cc = document.getElementById(divname);
-            cc.innerHTML = "&emsp;距离最近的考试还有"+day1+"天"+hour+":"+minute+":"+second;
+        var intDiff = parseInt(3600);
+        function timer(intDiff){
+            window.setInterval(function(){
+                var day=0,
+                    hour=0,
+                    minute=0,
+                    second=0;//时间默认值
+                if(intDiff > 0){
+                    day = Math.floor(intDiff / (60 * 60 * 24));
+                    hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+                    minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+                    second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+                }
+                if (minute <= 9) minute = '0' + minute;
+                if (second <= 9) second = '0' + second;
+                $('#timeOut').html("&emsp;距离最近的考试还有"+day+"天"+hour+":"+minute+":"+second);
+                intDiff--;
+            }, 1000);
         }
-        window.setInterval(function(){ShowCountDown(2017,9,25,'timeOut');}, interval);
+        $(function(){
+            timer(intDiff);
+        });
+	</script>
+	<script>
+        function checkUser(){
+            var result = document.getElementById("no").value;
+            var password = document.getElementById("pwd").value;
+
+            if(result == ""){
+                alert("用户名不能为空");
+                return false;
+            }
+            if(password == ""){
+                alert("密码不能为空");
+                return false;
+            }
+            document.getElementById("myform").submit();
+        }
 	</script>
 </html>

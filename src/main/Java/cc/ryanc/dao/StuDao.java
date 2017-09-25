@@ -6,6 +6,7 @@ import cc.ryanc.entity.StuInfo;
 import cc.ryanc.util.DBUtil;
 import cc.ryanc.util.PageModel;
 
+import java.rmi.server.ExportException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -25,13 +26,25 @@ public class StuDao {
      * @param stuNo
      * @return
      */
-    public StuInfo getLogin(String stuNo) {
+    public StuInfo getLogin(String stuNo,String stuPwd) {
         StuInfo stuInfo = null;
-        String sql = "select * from stuInfo where stuNo=?";
-        rs = dbUtil.execQuery(sql, new Object[]{"S0001"});
+        String sql = "select * from stuInfo a INNER JOIN classInfo b on a.classId = b.classId where stuNo=? and stuPwd=md5(?)";
+        rs = dbUtil.execQuery(sql, new Object[]{stuNo,stuPwd});
         try {
+            ClassInfo classInfo = null;
             if (rs.next()) {
-                stuInfo = new StuInfo();
+                classInfo = new ClassInfo();
+                classInfo.setClassName(rs.getString("className"));
+                stuInfo = new StuInfo(
+                        rs.getInt("stuId"),
+                        rs.getString("stuNo"),
+                        rs.getString("stuName"),
+                        rs.getString("stuPwd"),
+                        rs.getString("stuSex"),
+                        rs.getInt("stuAge"),
+                        rs.getString("stuPhoto"),
+                        classInfo
+                );
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -122,11 +135,11 @@ public class StuDao {
      *
      * @return 返回true或false
      */
-    public boolean getInsert(String stuNo, String stuName, String stuSex, int stuAge, int classId) {
+    public boolean getInsert(String stuNo, String stuName,String stuPwd,String stuSex, int stuAge, int classId) {
         boolean result = false;
         try {
-            String sql = "insert into stuInfo(stuNo, stuName, stuPwd, stuSex, stuAge, stuPhoto, classId) values(?,?,default,?,?,default,?)";
-            int row = dbUtil.execUpdate(sql, new Object[]{stuNo, stuName, stuSex, stuAge, classId});
+            String sql = "insert into stuInfo(stuNo, stuName, stuPwd, stuSex, stuAge, stuPhoto, classId) values(?,?,?,?,?,default,?)";
+            int row = dbUtil.execUpdate(sql, new Object[]{stuNo, stuName, stuPwd,stuSex, stuAge, classId});
             if (row > 0) {
                 result = true;
             }
@@ -166,13 +179,12 @@ public class StuDao {
         PageModel<StuInfo> pageModel = new PageModel<StuInfo>();
         //创建集合对象存储查询到的学生对象
         ArrayList<StuInfo> stuInfos = new ArrayList<StuInfo>();
-        int pageIndex = (pageNo - 1) * 10;
         try {
             String sql = "select * from stuInfo a " +
                     "inner join classInfo b on a.classId = b.classId " +
                     "inner join gradeInfo c on b.gradeId = c.gradeId " +
-                    " where stuName like '%?%' limit ?,10";
-            rs = dbUtil.execQuery(sql, new Object[]{keyword, pageIndex});
+                    " where stuName like '%?%'";
+            rs = dbUtil.execQuery(sql, new Object[]{keyword});
             while (rs.next()) {
                 GradeInfo gradeInfo = new GradeInfo(
                         rs.getInt("gradeId"),
@@ -219,14 +231,13 @@ public class StuDao {
     public boolean getUpdate(StuInfo stuInfo) {
         boolean result = false;
         try {
-            String sql = "update stuInfo set stuNo=?,stuName=?,stuPwd=?,stuSex=?,stuAge=?,stuPhoto=?,classId=? where stuId=?";
+            String sql = "update stuInfo set stuNo=?,stuName=?,stuPwd=?,stuSex=?,stuAge=?,classId=? where stuId=?";
             int row = dbUtil.execUpdate(sql, new Object[]{
                     stuInfo.getStuNo(),
                     stuInfo.getStuName(),
                     stuInfo.getStuPwd(),
                     stuInfo.getStuSex(),
                     stuInfo.getStuAge(),
-                    stuInfo.getStuPhoto(),
                     stuInfo.getClassInfo().getClassId(),
                     stuInfo.getStuId()
             });
@@ -234,6 +245,59 @@ public class StuDao {
                 result = true;
             }
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * 根据编号查询学生信息
+     * @param stuId
+     * @return
+     */
+    public StuInfo getById(int stuId){
+        StuInfo stuInfo = null;
+        try{
+            String sql = "select * from stuInfo where stuId = ?";
+            rs = dbUtil.execQuery(sql,new Object[]{stuId});
+            while(rs.next()){
+                stuInfo = new StuInfo(
+                        rs.getInt("stuId"),
+                        rs.getString("stuNo"),
+                        rs.getString("stuName"),
+                        rs.getString("stuPwd"),
+                        rs.getString("stuSex"),
+                        rs.getInt("stuAge")
+                );
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            dbUtil.closeSource(rs);
+        }
+        return stuInfo;
+    }
+
+    /**
+     * 用户的修改
+     * @param stuInfo 传入StuInfo对象
+     * @return 返回true或false
+     */
+    public boolean getStuUpdate(StuInfo stuInfo){
+        boolean result = false;
+        try{
+            String sql = "update stuInfo set stuName=?,stuSex=?,stuAge=?,stuPwd=md5(?) where stuNo=?";
+            int row = dbUtil.execUpdate(sql,new Object[]{
+                    stuInfo.getStuName(),
+                    stuInfo.getStuSex(),
+                    stuInfo.getStuAge(),
+                    stuInfo.getStuPwd(),
+                    stuInfo.getStuNo()
+            });
+            if(row>0){
+                result = true;
+            }
+        }catch (Exception e){
             e.printStackTrace();
         }
         return result;

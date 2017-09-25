@@ -69,6 +69,10 @@
         <servlet-name>ExamPaperLibsServlet</servlet-name>
         <servlet-class>cc.ryanc.servlet.ExamPaperLibsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ScoreServlet</servlet-name>
+        <servlet-class>cc.ryanc.servlet.ScoreServlet</servlet-class>
+    </servlet>
     
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
@@ -97,5 +101,9 @@
     <servlet-mapping>
         <servlet-name>ExamPaperLibsServlet</servlet-name>
         <url-pattern>/ExamPaperLibsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ScoreServlet</servlet-name>
+        <url-pattern>/ScoreServlet</url-pattern>
     </servlet-mapping>
 </web-app>

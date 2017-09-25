@@ -72,7 +72,7 @@
 																<a href="/ExamPaperLibsServlet?op=detail&paperId=<c:out value='${ep.paperId}' />">
 																	<i class="am-icon-pencil"></i> 编辑题目
 																</a>
-																<a href="/ExamPaperLibsServlet?op=detail&paperId=<c:out value='${ep.paperId}' />" style="border-color: skyblue;color: skyblue">
+																<a href="/ScoreServlet?op=adminscore" style="border-color: skyblue;color: skyblue">
 																	<i class="am-icon-circle"></i> 查看成绩
 																</a>
 																<a href="/ExamPaperServlet?op=remove&paperId=<c:out value='${ep.paperId}' />" class="tpl-table-black-operation-del">
@@ -117,15 +117,15 @@
 												<div class="am-form-group">
 													<label for="begintime" class="am-u-sm-12 am-form-label am-text-left">开始时间</label>
 													<div class="am-u-sm-12">
-														<input type="text" class="tpl-form-input am-margin-top-xs" name="begintime" id="begintime"
-															   placeholder="格式：2017-9-19 0：00" value="">
+														<input type="text" class="am-form-field" placeholder="选择日期" data-am-datepicker
+															   required id="begintime" name="begintime" value="${requestScope.classInfo.classBegin}"/>
 													</div>
 												</div>
 												<div class="am-form-group">
 													<label for="endtime" class="am-u-sm-12 am-form-label am-text-left">结束时间</label>
 													<div class="am-u-sm-12">
-														<input type="text" class="tpl-form-input am-margin-top-xs" name="endtime" id="endtime"
-															   placeholder="格式：2017-9-19 0：00" value="">
+														<input type="text" class="am-form-field" placeholder="选择日期" data-am-datepicker
+															   required id="endtime" name="endtime" value="${requestScope.classInfo.classBegin}"/>
 													</div>
 												</div>
 

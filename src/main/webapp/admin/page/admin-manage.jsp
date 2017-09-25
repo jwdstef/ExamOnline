@@ -34,7 +34,7 @@
                 <div class="container-fluid am-cf">
                     <div class="row">
                         <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
-                            <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 管理员账号 <small>Administrator</small></div>
+                            <div class="page-header-heading"><span class="am-icon-user page-header-heading-icon"></span> 管理员账号 <small>Administrator</small></div>
                         </div>
                     </div>
                 </div>

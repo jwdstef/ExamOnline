@@ -44,17 +44,18 @@
 									<div class="widget-title  am-cf">题目详情</div>
 								</div>
 								<div class="widget-body  am-fr">
-									<form action="/SiteServlet" method="post" class="am-form tpl-form-border-form">
+									<form action="/ExamLibraryServlet" method="post" class="am-form tpl-form-border-form">
+										<input type="hidden" value="update" name="op">
 										<div class="am-form-group">
-											<label for="title" class="am-u-sm-12 am-form-label am-text-left">题目</label>
+											<label for="id" class="am-u-sm-12 am-form-label am-text-left">编号</label>
 											<div class="am-u-sm-12">
-												<input type="text" class="tpl-form-input am-margin-top-xs" name="title" id="title" value="${requestScope.examLibrary.libTitle}">
+												<input type="text" class="tpl-form-input am-margin-top-xs" name="id" id="id" value="${requestScope.examLibrary.libId}" disabled>
 											</div>
 										</div>
 										<div class="am-form-group">
-											<label for="content" class="am-u-sm-12 am-form-label  am-text-left">题干</label>
+											<label for="title" class="am-u-sm-12 am-form-label  am-text-left">题目</label>
 											<div class="am-u-sm-12 am-margin-top-xs">
-												<textarea class="" rows="10" id="content" name="content">${requestScope.examLibrary.libTitle}</textarea>
+												<textarea class="" rows="10" id="title" name="title">${requestScope.examLibrary.libTitle}</textarea>
 											</div>
 										</div>
 										<div class="am-form-group">
@@ -90,7 +91,7 @@
 										<div class="am-form-group tpl-table-list-select" style="text-align: left">
 											<label class="am-u-sm-12 am-form-label am-text-left">所属科目</label>
 											<div class="am-u-sm-12">
-												<select data-am-selected="{btnSize: 'sm'}">
+												<select data-am-selected="{btnSize: 'sm'}" name="subId">
 													<option value="1">JavaWeb高级</option>
 													<option value="2">.NET高级</option>
 													<option value="3">PHP网页设计</option>
@@ -101,7 +102,7 @@
 										<div class="am-form-group tpl-table-list-select" style="text-align: left">
 											<label class="am-u-sm-12 am-form-label am-text-left">所属年级</label>
 											<div class="am-u-sm-12">
-												<select data-am-selected="{btnSize: 'sm'}">
+												<select data-am-selected="{btnSize: 'sm'}" name = "gradeId">
 													<option value="1">S1</option>
 													<option value="2">S2</option>
 													<option value="3">S3</option>

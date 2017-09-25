@@ -49,18 +49,35 @@
                                 <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
                                     <thead>
                                     <tr>
-                                        <th>编号</th>
-                                        <th>姓名</th>
+                                        <th>#</th>
+                                        <th>试卷名</th>
+                                        <th>考生</th>
                                         <th>年级</th>
                                         <th>班级</th>
-                                        <th>试卷</th>
-                                        <th>日期</th>
+                                        <th>科目</th>
+                                        <th>教员</th>
+                                        <th>开始时间</th>
+                                        <th>结束时间</th>
+                                        <th>用时</th>
                                         <th>得分</th>
-                                        <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-
+                                        <c:forEach items="${requestScope.scores}" var="s">
+                                            <tr>
+                                                <td><c:out value="${s.scoreId}" /></td>
+                                                <td><c:out value="${s.examPaper.paperName}" /></td>
+                                                <td><c:out value="${s.stuInfo.stuName}" /></td>
+                                                <td><c:out value="${s.stuInfo.classInfo.gradeInfo.gradeName}" /></td>
+                                                <td><c:out value="${s.stuInfo.classInfo.className}" /></td>
+                                                <td><c:out value="JAVA" /></td>
+                                                <td><c:out value="${s.stuInfo.classInfo.teacher}" /></td>
+                                                <td><c:out value="${s.examPaper.beginTime}" /></td>
+                                                <td><c:out value="${s.examPaper.endTime}" /></td>
+                                                <td><c:out value="60" /></td>
+                                                <td><c:out value="${s.score}" /></td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>

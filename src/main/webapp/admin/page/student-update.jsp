@@ -10,7 +10,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>ExamOnline-修改信息</title>
+        <title>ExamOnline-修改学生信息</title>
         <meta http-equiv="pragma" content="no-cache">
         <meta http-equiv="cache-control" content="no-cache">
         <meta http-equiv="expires" content="0">
@@ -34,7 +34,7 @@
                 <div class="container-fluid am-cf">
                     <div class="row">
                         <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
-                            <div class="page-header-heading"><span class="am-icon-user page-header-heading-icon"></span> 管理员账号 <small>Administrator</small></div>
+                            <div class="page-header-heading"><span class="am-icon-users page-header-heading-icon"></span> 学生管理 <small>Student Manager</small></div>
                         </div>
                     </div>
                 </div>
@@ -46,36 +46,53 @@
                                     <div class="widget-title  am-cf">修改信息</div>
                                 </div>
                                 <div class="widget-body  am-fr">
-                                    <form action="/AdminServlet" method="post" class="am-form tpl-form-border-form" id="adminupdate">
+                                    <form action="/StuServlet" method="post" class="am-form tpl-form-border-form">
                                         <input type="hidden" value="update" name="op">
                                         <div class="am-form-group">
-                                            <label for="adminId" class="am-u-sm-12 am-form-label am-text-left">编号</label>
+                                            <label for="stuId" class="am-u-sm-12 am-form-label am-text-left">编号</label>
                                             <div class="am-u-sm-12">
-                                                <input type="text" class="tpl-form-input am-margin-top-xs" name="adminId" id="adminId" value="${requestScope.adminInfo.adminId}" disabled>
+                                                <input type="text" class="tpl-form-input am-margin-top-xs" name="stuId" id="stuId" value="${requestScope.stuInfo.stuId}" disabled>
                                             </div>
                                         </div>
                                         <div class="am-form-group">
-                                            <label for="adminName" class="am-u-sm-12 am-form-label  am-text-left">用户名</label>
+                                            <label for="stuNo" class="am-u-sm-12 am-form-label  am-text-left">学号</label>
                                             <div class="am-u-sm-12 am-margin-top-xs">
-                                                <input type="text" class="tpl-form-input am-margin-top-xs" name="adminName" id="adminName" value="${requestScope.adminInfo.adminName}">
+                                                <input type="text" class="tpl-form-input am-margin-top-xs" name="stuNo" id="stuNo" value="${requestScope.stuInfo.stuNo}">
                                             </div>
                                         </div>
                                         <div class="am-form-group">
-                                            <label for="adminEmail" class="am-u-sm-12 am-form-label am-text-left">邮箱</label>
+                                            <label for="stuName" class="am-u-sm-12 am-form-label am-text-left">姓名</label>
                                             <div class="am-u-sm-12">
-                                                <input type="text" class="tpl-form-input am-margin-top-xs" name="adminEmail" id="adminEmail" value="${requestScope.adminInfo.adminEmail}">
+                                                <input type="text" class="tpl-form-input am-margin-top-xs" name="stuName" id="stuName" value="${requestScope.stuInfo.stuName}">
                                             </div>
                                         </div>
                                         <div class="am-form-group">
-                                            <label for="adminPwd" class="am-u-sm-12 am-form-label am-text-left">新密码</label>
+                                            <label for="stuPwd" class="am-u-sm-12 am-form-label am-text-left">密码</label>
                                             <div class="am-u-sm-12">
-                                                <input type="password" class="tpl-form-input am-margin-top-xs" name="adminPwd" id="adminPwd">
+                                                <input type="password" class="tpl-form-input am-margin-top-xs" name="stuPwd" id="stuPwd" value="${requestScope.stuInfo.stuPwd}">
                                             </div>
                                         </div>
                                         <div class="am-form-group">
-                                            <label for="adminRePwd" class="am-u-sm-12 am-form-label am-text-left">确认密码</label>
+                                            <label for="stuSex" class="am-u-sm-12 am-form-label am-text-left">性别</label>
                                             <div class="am-u-sm-12">
-                                                <input type="password" class="tpl-form-input am-margin-top-xs" name="adminRePwd" id="adminRePwd">
+                                                <input type="text" class="tpl-form-input am-margin-top-xs" name="stuSex" id="stuSex" value="${requestScope.stuInfo.stuSex}">
+                                            </div>
+                                        </div>
+                                        <div class="am-form-group">
+                                            <label for="stuAge" class="am-u-sm-12 am-form-label am-text-left">年龄</label>
+                                            <div class="am-u-sm-12">
+                                                <input type="text" class="tpl-form-input am-margin-top-xs" name="stuAge" id="stuAge" value="${requestScope.stuInfo.stuAge}">
+                                            </div>
+                                        </div>
+                                        <div class="am-form-group tpl-table-list-select" style="text-align: left">
+                                            <label class="am-u-sm-12 am-form-label am-text-left">年级</label>
+                                            <div class="am-u-sm-12">
+                                                <select data-am-selected="{btnSize: 'sm'}" name="classId">
+                                                    <option value="0">选择班级</option>
+                                                    <option value="1">JAVA41</option>
+                                                    <option value="2">.NET37</option>
+                                                    <option value="3">PHP42</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="am-form-group">
@@ -130,15 +147,6 @@
                 progress.done();
             });
             */
-
-            $('#adminupdate').submit(function(){
-                var adminPwd = $('#adminPwd').val();
-                var adminRePwd = $('#adminRePwd').val();
-                if(adminPwd!==adminRePwd){
-                    $('#msg').modal();
-                    return false;
-                }
-            })
         </script>
     </body>
 </html>

@@ -65,6 +65,8 @@ public class ExamLibraryDao {
             pageModel.setCount(getCount());
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            dbUtil.closeSource(rs);
         }
         return pageModel;
     }
@@ -79,6 +81,8 @@ public class ExamLibraryDao {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            dbUtil.closeSource(rs);
         }
         return row;
     }
@@ -125,7 +129,7 @@ public class ExamLibraryDao {
                     examLibrary.getLibD(),
                     examLibrary.getLibRight(),
                     examLibrary.getSubject().getSubId(),
-                    examLibrary.getLibId(),
+                    examLibrary.getLibtype(),
                     examLibrary.getGradeInfo().getGradeId(),
                     examLibrary.getLibId()
             });
@@ -226,7 +230,38 @@ public class ExamLibraryDao {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            dbUtil.closeSource(rs);
         }
         return examLibraries;
+    }
+
+    /**
+     * 添加题目数据
+     * @param examLibrary 传入ExamLibrar对象
+     * @return 返回true或false
+     */
+    public boolean getInsert(ExamLibrary examLibrary){
+        boolean result = false;
+        try{
+            String sql = "insert into examLibrary values(libId,?,?,?,?,?,?,?,?,?)";
+            int row = dbUtil.execUpdate(sql,new Object[]{
+                    examLibrary.getLibTitle(),
+                    examLibrary.getLibA(),
+                    examLibrary.getLibB(),
+                    examLibrary.getLibC(),
+                    examLibrary.getLibD(),
+                    examLibrary.getLibRight(),
+                    examLibrary.getSubject().getSubId(),
+                    examLibrary.getLibtype(),
+                    examLibrary.getGradeInfo().getGradeId()
+            });
+            if(row>0){
+                result = true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
     }
 }

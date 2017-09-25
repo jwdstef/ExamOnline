@@ -40,6 +40,15 @@ public class StuInfo {
         this.classInfo = classInfo;
     }
 
+    public StuInfo(int stuId, String stuNo, String stuName, String stuPwd, String stuSex, int stuAge) {
+        this.stuId = stuId;
+        this.stuNo = stuNo;
+        this.stuName = stuName;
+        this.stuPwd = stuPwd;
+        this.stuSex = stuSex;
+        this.stuAge = stuAge;
+    }
+
     public int getStuId() {
         return stuId;
     }

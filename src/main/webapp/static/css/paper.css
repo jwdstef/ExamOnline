@@ -6,30 +6,33 @@ div{
     display: block;
 }
 span{
-	color: #fff;
+	color: #000000;
 }
 
 #examMain{
 	margin: 0 auto;
 	width: 1000px;
-	height: 1300px;
-	background-color: red;
 }
 
 #examTitle{
 	width: 1000px;
 	height: 100px;
-	background-color: blue;
 }
 #examTitle h1{
-	color: #fff;
+	color: #000000;
 	text-align: center;
 	padding-top: 20px;
 }
 #libitems{
 	width: 1000px;
 	height: 170px;
-	background-color: green;
 	padding-top: 10px;
+	font-size: 18px;
+}
+#libitems{
+	padding-left: 20px;
+}
+#libABCD{
+	padding-left: 20px;
 }
 

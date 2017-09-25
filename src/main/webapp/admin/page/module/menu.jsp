@@ -6,7 +6,7 @@
     <div class="tpl-sidebar-user-panel">
         <div class="tpl-user-panel-slide-toggleable" style="text-align:center;">
             <div class="tpl-user-panel-profile-picture" style="margin:0 auto;">
-                <img src="/admin/static/img/ryan0up.png" alt="">
+                <img src="/admin/static/img/default.png" alt="">
             </div>
             <span class="user-panel-logged-in-text">
                 <c:out value="${sessionScope.adminInfo.adminName}" />
@@ -82,7 +82,7 @@
 
         <li class="sidebar-nav-link">
             <a href="/AdminServlet" class="sidebar-nav-sub-title">
-                <i class="am-icon-cog sidebar-nav-link-logo"></i> 管理员
+                <i class="am-icon-user sidebar-nav-link-logo"></i> 管理员
             </a>
         </li>
     </ul>

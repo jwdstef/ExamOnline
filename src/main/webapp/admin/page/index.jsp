@@ -59,9 +59,9 @@
 									<div class="am-fl">
 										<div class="widget-fluctuation-period-text">
 											<%=libCount%>
-											<a href="/ExamLibraryServlet" class="widget-fluctuation-tpl-btn">
+											<a href="/ExamPaperServlet" class="widget-fluctuation-tpl-btn">
 												<i class="am-icon-calendar"></i>
-												查看题库
+												出套题呗
 											</a>
 										</div>
 									</div>
@@ -166,15 +166,15 @@
             var myChart1 = echarts.init(document.getElementById('what1'));
 
             // 指定图表的配置项和数据
-            var option = {
+            option = {
                 title: {
-                    text: '折线图堆叠'
+                    text: '月考统计'
                 },
                 tooltip: {
                     trigger: 'axis'
                 },
                 legend: {
-                    data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
+                    data:['JAVA','.NET','PHP']
                 },
                 grid: {
                     left: '3%',
@@ -190,41 +190,27 @@
                 xAxis: {
                     type: 'category',
                     boundaryGap: false,
-                    data: ['周一','周二','周三','周四','周五','周六','周日']
+                    data: ['第一次','第二次','第三次','第四次','第五次','第六次']
                 },
                 yAxis: {
-                    type: 'value'
+                    min: 80,
+                    type: 'value',
                 },
                 series: [
                     {
-                        name:'邮件营销',
+                        name:'JAVA',
                         type:'line',
-                        stack: '总量',
-                        data:[120, 132, 101, 134, 90, 230, 210]
+                        data:[88, 89, 88.5, 92.5, 97.1, 94.1]
                     },
                     {
-                        name:'联盟广告',
+                        name:'.NET',
                         type:'line',
-                        stack: '总量',
-                        data:[220, 182, 191, 234, 290, 330, 310]
+                        data:[86, 87, 91, 85.5, 87.9, 95.5]
                     },
                     {
-                        name:'视频广告',
+                        name:'PHP',
                         type:'line',
-                        stack: '总量',
-                        data:[150, 232, 201, 154, 190, 330, 410]
-                    },
-                    {
-                        name:'直接访问',
-                        type:'line',
-                        stack: '总量',
-                        data:[320, 332, 301, 334, 390, 330, 320]
-                    },
-                    {
-                        name:'搜索引擎',
-                        type:'line',
-                        stack: '总量',
-                        data:[820, 932, 901, 934, 1290, 1330, 1320]
+                        data:[87, 94.8, 86.9, 92.5, 93.6, 91.7]
                     }
                 ]
             };
@@ -233,7 +219,7 @@
                 backgroundColor: '#2c343c',
 
                 title: {
-                    text: 'Customized Pie',
+                    text: '课程火热度',
                     left: 'center',
                     top: 20,
                     textStyle: {
@@ -256,16 +242,14 @@
                 },
                 series : [
                     {
-                        name:'访问来源',
+                        name:'选择人数',
                         type:'pie',
                         radius : '55%',
                         center: ['50%', '50%'],
                         data:[
-                            {value:335, name:'直接访问'},
-                            {value:310, name:'邮件营销'},
-                            {value:274, name:'联盟广告'},
-                            {value:235, name:'视频广告'},
-                            {value:400, name:'搜索引擎'}
+                            {value:335, name:'JAVA'},
+                            {value:310, name:'.NET'},
+                            {value:274, name:'PHP'}
                         ].sort(function (a, b) { return a.value - b.value; }),
                         roseType: 'radius',
                         label: {
@@ -287,7 +271,7 @@
                         },
                         itemStyle: {
                             normal: {
-                                color: '#c23531',
+                                color: '#6666CC',
                                 shadowBlur: 200,
                                 shadowColor: 'rgba(0, 0, 0, 0.5)'
                             }

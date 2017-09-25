@@ -113,10 +113,10 @@
 									<div class="am-u-lg-12 am-cf">
 										<div class="am-fr">
 											<ul class="am-pagination tpl-pagination">
-												<li><a href="">首页</a></li>
-												<li><a href="">上页</a></li>
-												<li><a href="">下页</a></li>
-												<li><a href="">尾页</a></li>
+												<li><a href="/ExamLibraryServlet?pageNo=${requestScope.pm.getIndex()}">首页</a></li>
+												<li><a href="/ExamLibraryServlet?pageNo=${requestScope.pm.getPagePre()}">上页</a></li>
+												<li><a href="/ExamLibraryServlet?pageNo=${requestScope.pm.getPageNext()}">下页</a></li>
+												<li><a href="/ExamLibraryServlet?pageNo=${requestScope.pm.getPageTotal()}">尾页</a></li>
 											</ul>
 										</div>
 									</div>

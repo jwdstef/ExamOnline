@@ -33,9 +33,16 @@ $(function () {
         $('#modal_rule').modal();
     });
 
+    $('#widgets_testsearch').click(function(){
+        $('#building').modal();
+    });
+
+    $('#widgets_testforward').click(function(){
+        $('#building').modal();
+    });
     //pjax加载页面 有问题，暂时不用
     $('#widgets_testhistory').click(function(){
-        window.location.href="history.jsp";
+        window.location.href="/ScoreServlet";
     });
 
     $('#widgets_testnow').click(function(){
@@ -43,7 +50,7 @@ $(function () {
     });
 
     $('#widgets_testuser').click(function(){
-        window.location.href="user.jsp";
+        window.location.href="/StuServlet?op=user";
     });
 
 

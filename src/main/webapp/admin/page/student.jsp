@@ -49,7 +49,7 @@
 										<div class="am-form-group">
 											<div class="am-btn-toolbar">
 												<div class="am-btn-group">
-													<button type="button" class="am-btn am-btn-default am-btn-secondary am-radius" data-am-modal="{target: '#stuadd', closeViaDimmer: 0, width: 400, height: 500}"><span class="am-icon-plus"></span> 新增</button>
+													<button type="button" class="am-btn am-btn-default am-btn-secondary am-radius" data-am-modal="{target: '#stuadd', closeViaDimmer: 0, width: 400, height: 470}"><span class="am-icon-plus"></span> 新增</button>
 													<button type="button" class="am-btn am-btn-default am-btn-success am-radius" data-am-modal="{target: '#exceladd', closeViaDimmer: 0, width: 250, height: 200}"><span class="am-icon-plus"></span> Excel导入</button>
 												</div>
 											</div>
@@ -103,7 +103,7 @@
 														<td><c:out value="${si.classInfo.classBegin}" /></td>
 														<td>
 															<div class="tpl-table-black-operation">
-																<a href="javascript:;">
+																<a href="/StuServlet?op=toEdit&stuId=<c:out value='${si.stuId}'/>">
 																	<i class="am-icon-pencil"></i> 编辑
 																</a>
 																<a href="/StuServlet?op=remove&stuId=<c:out value='${si.stuId}'/>" class="tpl-table-black-operation-del">
@@ -151,13 +151,13 @@
 								</select>
 							</div>
 							<div class="am-form-group">
-								<input type="text" class="am-disabled" placeholder="年级">
-							</div>
-							<div class="am-form-group">
 								<input type="text" placeholder="学号" name="stuno" id="stuno">
 							</div>
 							<div class="am-form-group">
 								<input type="text" placeholder="姓名" name="stuname" id="stuname">
+							</div>
+							<div class="am-form-group">
+								<input type="password" placeholder="密码" name="stupwd" id="stupwd" value="123456">
 							</div>
 							<div class="am-form-group">
 								<select name="stusex" id="stusex">

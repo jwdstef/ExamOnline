@@ -1,6 +1,7 @@
 package cc.ryanc.servlet;
 
 import cc.ryanc.dao.StuDao;
+import cc.ryanc.entity.ClassInfo;
 import cc.ryanc.entity.StuInfo;
 import cc.ryanc.util.PageModel;
 import com.jspsmart.upload.File;
@@ -46,6 +47,14 @@ public class StuServlet extends HttpServlet {
                 this.search(request, response);
             } else if ("upload".equals(op)) {
                 this.upload(request, response);
+            } else if("toEdit".equals(op)){
+                this.toEdit(request, response);
+            } else if("update".equals(op)){
+                this.update(request, response);
+            } else if("userupdate".equals(op)){
+                this.userupdate(request, response);
+            } else if("user".equals(op)){
+                this.user(request, response);
             }
         }
     }
@@ -63,18 +72,11 @@ public class StuServlet extends HttpServlet {
         String stuNo = request.getParameter("stuNo");
         String stuPwd = request.getParameter("stuPwd");
         //调用dao层方法查询判断是否有该学生
-        StuInfo stuInfo = stuDao.getLogin(stuNo);
+        StuInfo stuInfo = stuDao.getLogin(stuNo,stuPwd);
         if (stuInfo != null) {
-            if (stuInfo.getStuPwd().equals(stuPwd)) {
-                request.getSession().setAttribute("stuInfo", stuInfo);
-                System.out.println("登陆成功");
-            } else {
-                System.out.println("密码错误！");
-            }
-        } else {
-            System.out.println("没有该学生");
+            request.getSession().setAttribute("stuInfo",stuInfo);
+            response.sendRedirect("index.jsp");
         }
-        response.sendRedirect("index.jsp");
     }
 
     /**
@@ -90,9 +92,8 @@ public class StuServlet extends HttpServlet {
         int pageNo = 1;
         // 得到当前页码
         String pageNos = request.getParameter("pageNo");
-        if (pageNos != null) {
+        if (pageNos != null)
             pageNo = Integer.parseInt(pageNos);
-        }
         // 调用方法查询所有学生信息
         PageModel<StuInfo> pageModel = stuDao.getQuery(pageNo);
         ArrayList<StuInfo> stuInfos = pageModel.getAll();
@@ -114,12 +115,12 @@ public class StuServlet extends HttpServlet {
         //获取表单数据
         String stuNo = request.getParameter("stuno");
         String stuName = request.getParameter("stuname");
+        String stuPwd = request.getParameter("stupwd");
         String stuSex = request.getParameter("stusex");
         int stuAge = Integer.parseInt(request.getParameter("stuage"));
         int classId = Integer.parseInt(request.getParameter("classid"));
-        if (stuDao.getInsert(stuNo, stuName, stuSex, stuAge, classId)) {
+        if (stuDao.getInsert(stuNo, stuName,stuPwd, stuSex, stuAge, classId))
             this.query(request, response);
-        }
     }
 
     /**
@@ -204,5 +205,93 @@ public class StuServlet extends HttpServlet {
             if (file.isMissing())
                 continue;
         }
+    }
+
+    /**
+     * 处理根据学生编号查询学生信息的请求
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void toEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //获取要删除的学生id
+        int stuId = Integer.parseInt(request.getParameter("stuId"));
+        StuInfo stuInfo = stuDao.getById(stuId);
+        if(stuInfo!=null){
+            request.setAttribute("stuInfo",stuInfo);
+            request.getRequestDispatcher("/admin/page/student-update.jsp").forward(request,response);
+        }
+    }
+
+    /**
+     * 处理修改学生信息的请求
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //获取表单数据
+        int stuId = Integer.parseInt(request.getParameter("stuId"));
+        String stuNo = request.getParameter("stuNo");
+        String stuName = request.getParameter("stuName");
+        String stuPwd = request.getParameter("stuPwd");
+        String stuSex = request.getParameter("stuSex");
+        int stuAge = Integer.parseInt(request.getParameter("stuAge"));
+        int classId = Integer.parseInt(request.getParameter("classId"));
+        ClassInfo classInfo = new ClassInfo();
+        classInfo.setClassId(classId);
+        StuInfo stuInfo = new StuInfo();
+        stuInfo.setStuId(stuId);
+        stuInfo.setStuNo(stuNo);
+        stuInfo.setStuName(stuName);
+        stuInfo.setStuPwd(stuPwd);
+        stuInfo.setStuSex(stuSex);
+        stuInfo.setStuAge(stuAge);
+        stuInfo.setClassInfo(classInfo);
+        if(stuDao.getUpdate(stuInfo))
+            this.query(request, response);
+    }
+
+    /**
+     * 处理用户修改的请求
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void userupdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //获取表单数据
+        String stuNo = request.getParameter("stuno");
+        String stuName = request.getParameter("stuname");
+        String stuPwd = request.getParameter("stupwd");
+        String stuSex = request.getParameter("stusex");
+        int stuAge = Integer.parseInt(request.getParameter("stuage"));
+        //创建对象封装数据
+        StuInfo stuInfo = new StuInfo();
+        stuInfo.setStuNo(stuNo);
+        stuInfo.setStuName(stuName);
+        stuInfo.setStuPwd(stuPwd);
+        stuInfo.setStuSex(stuSex);
+        stuInfo.setStuAge(stuAge);
+        if(stuDao.getStuUpdate(stuInfo))
+            response.sendRedirect("/user.jsp");
+    }
+
+    /**
+     * 处理跳转到个人中心的请求
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void user(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if(request.getSession().getAttribute("stuInfo")==null){
+            response.sendRedirect("/index.jsp");
+            request.getSession().setAttribute("msg","你还没登录呢！");
+            return;
+        }
+        response.sendRedirect("/user.jsp");
     }
 }

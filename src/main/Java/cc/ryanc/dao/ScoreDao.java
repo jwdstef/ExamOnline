@@ -11,8 +11,11 @@ public class ScoreDao {
     DBUtil dbUtil = new DBUtil();
     ResultSet rs = null;
 
-    public PageModel<Score> queryAll(int pageNo) {
-        PageModel<Score> pageModel = new PageModel<Score>();
+    /**
+     * 查询所有成绩信息
+     * @return 返回ArrayList集合
+     */
+    public ArrayList<Score> queryAll() {
         ArrayList<Score> scores = new ArrayList<Score>();
         try {
             String sql = "select * from score a inner join stuInfo b on a.stuId = b.stuId inner join classInfo c on b.classId = c.classId inner join examPaper d on a.paperId = d.paperId";
@@ -61,13 +64,29 @@ public class ScoreDao {
                 );
                 scores.add(score);
             }
-            pageModel.setAll(scores);
-            pageModel.setPageNo(pageNo);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             dbUtil.closeSource(rs);
         }
-        return pageModel;
+        return scores;
+    }
+
+    /**
+     * 添加成绩信息
+     * @return 返回true或false
+     */
+    public boolean getInsert(){
+        boolean result = false;
+        try{
+            String sql = "insert into score values(1,1,1,6);";
+            int row = dbUtil.execUpdate(sql,null);
+            if(row>0){
+                result = true;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return result;
     }
 }

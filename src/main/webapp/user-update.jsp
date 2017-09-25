@@ -50,30 +50,41 @@
 
 	<body>
 		<div id="user-main" class="mdui-shadow-5 mdui-hoverable">
-			<div class="mdui-card mdui-ripple" style="opacity: 0.8">
+			<div class="mdui-card" style="opacity: 0.8">
 				<!-- 卡片头部，包含头像、标题、副标题 -->
 				<div class="mdui-card-media">
 					<img src="static/img/back.jpg" style="width: 800px; height: 400px"/>
 					<div class="mdui-card-media-covered mdui-card-media-covered-top">
-						<div class="mdui-card-primary">
-							<div class="mdui-card-primary-title">
-								姓名：<c:out value="${sessionScope.stuInfo.stuName}" />
-							</div>
-							<div class="mdui-card-primary-subtitle">
-								性别：<c:out value="${sessionScope.stuInfo.stuSex}" />
-							</div>
-							<div class="mdui-card-primary-subtitle">
-								年龄：<c:out value="${sessionScope.stuInfo.stuAge}" />
-							</div>
-							<div class="mdui-card-primary-subtitle">
-								班级：<c:out value="${sessionScope.stuInfo.classInfo.className}" />
-							</div>
+						<div class="stuform" style="width: 500px; margin:0 auto">
+							<form action="/StuServlet" method="post" style="color: white" id="myform">
+								<input type="hidden" value="userupdate" name="op" >
+								<div class="mdui-textfield mdui-textfield-floating-label">
+									<label class="mdui-textfield-label">学号</label>
+									<input name = "stuno" class="mdui-textfield-input" type="text" value="<c:out value="${sessionScope.stuInfo.stuNo}" />" disabled/>
+								</div>
+								<div class="mdui-textfield mdui-textfield-floating-label">
+									<label class="mdui-textfield-label">姓名</label>
+									<input name="stuname" class="mdui-textfield-input" type="text" value="<c:out value="${sessionScope.stuInfo.stuName}" />"/>
+								</div>
+								<div class="mdui-textfield mdui-textfield-floating-label">
+									<label class="mdui-textfield-label">性别</label>
+									<input name="stusex" class="mdui-textfield-input" type="text" value="<c:out value="${sessionScope.stuInfo.stuSex}" />"/>
+								</div>
+								<div class="mdui-textfield mdui-textfield-floating-label">
+									<label class="mdui-textfield-label">年龄</label>
+									<input name="stuage" class="mdui-textfield-input" type="text" value="<c:out value="${sessionScope.stuInfo.stuAge}" />"/>
+								</div>
+								<div class="mdui-textfield mdui-textfield-floating-label">
+									<label class="mdui-textfield-label">新密码</label>
+									<input name="stupwd" class="mdui-textfield-input" type="password"/>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
 				<div class="mdui-card-actions">
-					<a href="user-update.jsp" class="mdui-btn mdui-ripple">修改资料</a>
-					<a href="index.jsp" class="mdui-btn mdui-ripple">返回</a>
+					<button class="mdui-btn mdui-ripple" onclick="checkUser();">提交</button>
+					<a href="user.jsp" class="mdui-btn mdui-ripple">返回</a>
 				</div>
 			</div>
 		</div>
@@ -83,5 +94,10 @@
 	<script>
 		NProgress.start();
 		setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1000);
+	</script>
+	<script>
+        function checkUser(){
+            document.getElementById("myform").submit();
+        }
 	</script>
 </html>
