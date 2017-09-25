@@ -1,11 +1,7 @@
 package cc.ryanc.test;
 
-import cc.ryanc.dao.ExamPaperDao;
 import cc.ryanc.dao.ExamPaperLibsDao;
-import cc.ryanc.dao.SiteDao;
-import cc.ryanc.entity.ExamPaper;
 import cc.ryanc.entity.ExamPaperLibs;
-import cc.ryanc.entity.SiteInfo;
 import cc.ryanc.util.DBUtil;
 
 import java.sql.ResultSet;
@@ -18,16 +14,16 @@ import java.util.ArrayList;
  * Date: 2017/9/12
  */
 public class TestDemo {
-    public static void main(String []args){
+    public static void main(String[] args) {
         DBUtil dbUtil = new DBUtil();
         ResultSet rs = null;
         ExamPaperLibsDao dao = new ExamPaperLibsDao();
         ArrayList<ExamPaperLibs> list = dao.getQuery(1);
-        try{
-            for(ExamPaperLibs examPaperLibs:list){
+        try {
+            for (ExamPaperLibs examPaperLibs : list) {
                 System.out.println(examPaperLibs.getExamLibrary().getLibId());
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

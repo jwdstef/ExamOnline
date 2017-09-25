@@ -20,6 +20,7 @@ import java.util.ArrayList;
 @WebServlet(name = "ClassServlet")
 public class ClassServlet extends HttpServlet {
     ClassDao classDao = new ClassDao();
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doGet(request, response);
     }
@@ -27,10 +28,10 @@ public class ClassServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //获取操作选项
         String op = request.getParameter("op");
-        if("".equals(op)||null==op){
+        if ("".equals(op) || null == op) {
             this.query(request, response);
-        }else{
-            if("remove".equals(op)){
+        } else {
+            if ("remove".equals(op)) {
                 this.remove(request, response);
             }
         }
@@ -38,6 +39,7 @@ public class ClassServlet extends HttpServlet {
 
     /**
      * 处理查询班级
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -54,13 +56,14 @@ public class ClassServlet extends HttpServlet {
         // 调用方法查询所有班级信息
         PageModel<ClassInfo> pageModel = classDao.getQuery(pageNo);
         ArrayList<ClassInfo> classInfos = pageModel.getAll();
-        request.setAttribute("pm",pageModel);
-        request.setAttribute("classInfos",classInfos);
-        request.getRequestDispatcher("/admin/page/class.jsp").forward(request,response);
+        request.setAttribute("pm", pageModel);
+        request.setAttribute("classInfos", classInfos);
+        request.getRequestDispatcher("/admin/page/class.jsp").forward(request, response);
     }
 
     /**
      * 删除班级信息
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -69,7 +72,7 @@ public class ClassServlet extends HttpServlet {
     public void remove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //得到班级编号
         int classId = Integer.parseInt(request.getParameter("classId"));
-        if(classDao.getRemove(classId)){
+        if (classDao.getRemove(classId)) {
             this.query(request, response);
         }
     }

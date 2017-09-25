@@ -1,13 +1,14 @@
 package cc.ryanc.entity;
 
 public class ExamPaper {
-    private int paperId ;
-    private String paperName ;
+    private int paperId;
+    private String paperName;
     private ClassInfo classInfo;
-    private String beginTime ;
+    private String beginTime;
     private String endTime;
 
-    public ExamPaper() { }
+    public ExamPaper() {
+    }
 
     public ExamPaper(String paperName, ClassInfo classInfo, String beginTime, String endTime) {
         this.paperName = paperName;

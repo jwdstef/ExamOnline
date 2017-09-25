@@ -19,21 +19,23 @@ import java.io.IOException;
 public class AdminLoginFilter implements Filter {
     public void destroy() {
     }
+
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         //转换为Servlet
-        HttpServletRequest request = (HttpServletRequest)req;
-        HttpServletResponse response = (HttpServletResponse)resp;
+        HttpServletRequest request = (HttpServletRequest) req;
+        HttpServletResponse response = (HttpServletResponse) resp;
         HttpSession session = request.getSession();
 
         //获取Session中的管理员对象
-        AdminInfo adminInfo = (AdminInfo)session.getAttribute("adminInfo");
+        AdminInfo adminInfo = (AdminInfo) session.getAttribute("adminInfo");
         //判断是否有adminInfo的Session信息
-        if(adminInfo==null){
+        if (adminInfo == null) {
             response.sendRedirect("/admin/index.jsp");
-        }else{
-            chain.doFilter(req,resp);
+        } else {
+            chain.doFilter(req, resp);
         }
     }
+
     public void init(FilterConfig config) throws ServletException {
     }
 }

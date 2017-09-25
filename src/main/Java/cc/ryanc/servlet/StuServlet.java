@@ -25,6 +25,7 @@ import java.util.ArrayList;
 @WebServlet(name = "StuServlet")
 public class StuServlet extends HttpServlet {
     private StuDao stuDao = new StuDao();
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doGet(request, response);
     }
@@ -32,18 +33,18 @@ public class StuServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //获取操作选项
         String op = request.getParameter("op");
-        if("".equals(op) || null==op){
+        if ("".equals(op) || null == op) {
             this.query(request, response);
-        }else{
-            if("login".equals(op)){
-                this.login(request,response);
-            }else if("insert".equals(op)){
+        } else {
+            if ("login".equals(op)) {
+                this.login(request, response);
+            } else if ("insert".equals(op)) {
                 this.insert(request, response);
-            }else if("remove".equals(op)){
+            } else if ("remove".equals(op)) {
                 this.remove(request, response);
-            }else if("search".equals(op)){
+            } else if ("search".equals(op)) {
                 this.search(request, response);
-            }else if("upload".equals(op)){
+            } else if ("upload".equals(op)) {
                 this.upload(request, response);
             }
         }
@@ -51,6 +52,7 @@ public class StuServlet extends HttpServlet {
 
     /**
      * 登陆
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -62,14 +64,14 @@ public class StuServlet extends HttpServlet {
         String stuPwd = request.getParameter("stuPwd");
         //调用dao层方法查询判断是否有该学生
         StuInfo stuInfo = stuDao.getLogin(stuNo);
-        if(stuInfo != null){
-            if(stuInfo.getStuPwd().equals(stuPwd)){
-                request.getSession().setAttribute("stuInfo",stuInfo);
+        if (stuInfo != null) {
+            if (stuInfo.getStuPwd().equals(stuPwd)) {
+                request.getSession().setAttribute("stuInfo", stuInfo);
                 System.out.println("登陆成功");
-            }else{
+            } else {
                 System.out.println("密码错误！");
             }
-        }else{
+        } else {
             System.out.println("没有该学生");
         }
         response.sendRedirect("index.jsp");
@@ -77,6 +79,7 @@ public class StuServlet extends HttpServlet {
 
     /**
      * 跳转到查询
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -95,12 +98,13 @@ public class StuServlet extends HttpServlet {
         ArrayList<StuInfo> stuInfos = pageModel.getAll();
         // 将pm存入request范围内
         request.setAttribute("pm", pageModel);
-        request.setAttribute("stuInfos",stuInfos);
-        request.getRequestDispatcher("/admin/page/student.jsp").forward(request,response);
+        request.setAttribute("stuInfos", stuInfos);
+        request.getRequestDispatcher("/admin/page/student.jsp").forward(request, response);
     }
 
     /**
      * 添加新学生
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -113,13 +117,14 @@ public class StuServlet extends HttpServlet {
         String stuSex = request.getParameter("stusex");
         int stuAge = Integer.parseInt(request.getParameter("stuage"));
         int classId = Integer.parseInt(request.getParameter("classid"));
-        if(stuDao.getInsert(stuNo,stuName,stuSex,stuAge,classId)){
+        if (stuDao.getInsert(stuNo, stuName, stuSex, stuAge, classId)) {
             this.query(request, response);
         }
     }
 
     /**
      * 处理移除学生
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -128,13 +133,14 @@ public class StuServlet extends HttpServlet {
     public void remove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //获取要删除的学生id
         int stuId = Integer.parseInt(request.getParameter("stuId"));
-        if(stuDao.getRemove(stuId)){
-            this.query(request,response);
+        if (stuDao.getRemove(stuId)) {
+            this.query(request, response);
         }
     }
 
     /**
      * 根据关键字查询学生数据
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -151,16 +157,17 @@ public class StuServlet extends HttpServlet {
             pageNo = Integer.parseInt(pageNos);
         }
         // 调用方法查询所有学生信息
-        PageModel<StuInfo> pageModel = stuDao.getSearch(keyWord,pageNo);
+        PageModel<StuInfo> pageModel = stuDao.getSearch(keyWord, pageNo);
         ArrayList<StuInfo> stuInfos = pageModel.getAll();
         // 将pm存入request范围内
         request.setAttribute("pm", pageModel);
         request.setAttribute("stuInfos", stuInfos);
-        request.getRequestDispatcher("/admin/page/student.jsp").forward(request,response);
+        request.getRequestDispatcher("/admin/page/student.jsp").forward(request, response);
     }
 
     /**
      * 上传Excel文件，将Excel的数据添加到数据库
+     *
      * @param request
      * @param response
      * @throws ServletException

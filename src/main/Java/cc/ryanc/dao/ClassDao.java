@@ -31,7 +31,7 @@ public class ClassDao {
             int pageIndex = (pageNo - 1) * 10;
             String sql = "select * from classInfo a inner join gradeInfo b on a.gradeId=b.gradeId order by classId DESC limit ?,10";
             rs = dbUtil.execQuery(sql, new Object[]{pageIndex});
-            while (rs.next()){
+            while (rs.next()) {
                 //创建GradeInfo对象储存查询到的年级信息
                 GradeInfo gradeInfo = new GradeInfo(
                         rs.getInt("gradeId"),

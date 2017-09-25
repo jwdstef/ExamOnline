@@ -18,6 +18,7 @@ import java.io.IOException;
 @WebServlet(name = "SiteServlet")
 public class SiteServlet extends HttpServlet {
     SiteDao siteDao = new SiteDao();
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doGet(request, response);
     }
@@ -35,7 +36,7 @@ public class SiteServlet extends HttpServlet {
         String count = request.getParameter("count");
         //创建SiteInfo对象储存数据
         SiteInfo siteInfo = new SiteInfo(title, url, words, desc, map, favicon, copyright, icp, count);
-        if(siteDao.getUpdate(siteInfo)){
+        if (siteDao.getUpdate(siteInfo)) {
             response.sendRedirect("/admin/page/site-setting.jsp");
         }
     }

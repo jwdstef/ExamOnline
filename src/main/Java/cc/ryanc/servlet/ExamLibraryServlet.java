@@ -1,7 +1,6 @@
 package cc.ryanc.servlet;
 
 import cc.ryanc.dao.ExamLibraryDao;
-import cc.ryanc.entity.ClassInfo;
 import cc.ryanc.entity.ExamLibrary;
 import cc.ryanc.util.PageModel;
 
@@ -21,6 +20,7 @@ import java.util.ArrayList;
 @WebServlet(name = "ExamLibraryServlet")
 public class ExamLibraryServlet extends HttpServlet {
     ExamLibraryDao examLibraryDao = new ExamLibraryDao();
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doGet(request, response);
     }
@@ -28,12 +28,12 @@ public class ExamLibraryServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //获取option操作选项
         String op = request.getParameter("op");
-        if("".equals(op)||null==op){
+        if ("".equals(op) || null == op) {
             this.query(request, response);
-        }else{
-            if("remove".equals(op)){
+        } else {
+            if ("remove".equals(op)) {
                 this.remove(request, response);
-            }else if("detail".equals(op)){
+            } else if ("detail".equals(op)) {
                 this.queryById(request, response);
             }
         }
@@ -41,6 +41,7 @@ public class ExamLibraryServlet extends HttpServlet {
 
     /**
      * 处理查询操作
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -57,13 +58,14 @@ public class ExamLibraryServlet extends HttpServlet {
         // 调用方法查询所有考题信息
         PageModel<ExamLibrary> pageModel = examLibraryDao.getQuery(pageNo);
         ArrayList<ExamLibrary> examLibraries = pageModel.getAll();
-        request.setAttribute("pm",pageModel);
-        request.setAttribute("examLibraries",examLibraries);
-        request.getRequestDispatcher("/admin/page/subject.jsp").forward(request,response);
+        request.setAttribute("pm", pageModel);
+        request.setAttribute("examLibraries", examLibraries);
+        request.getRequestDispatcher("/admin/page/subject.jsp").forward(request, response);
     }
 
     /**
      * 处理删除
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -72,13 +74,14 @@ public class ExamLibraryServlet extends HttpServlet {
     public void remove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //获取要删除的id
         int libId = Integer.parseInt(request.getParameter("libId"));
-        if(examLibraryDao.getRemove(libId)){
+        if (examLibraryDao.getRemove(libId)) {
             this.query(request, response);
         }
     }
 
     /**
      * 处理根据id查询详情页面
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -88,9 +91,9 @@ public class ExamLibraryServlet extends HttpServlet {
         //获取要删除的id
         int libId = Integer.parseInt(request.getParameter("libId"));
         ExamLibrary examLibrary = examLibraryDao.getById(libId);
-        if(examLibrary!=null){
-            request.setAttribute("examLibrary",examLibrary);
-            request.getRequestDispatcher("/admin/page/subject-detail.jsp").forward(request,response);
+        if (examLibrary != null) {
+            request.setAttribute("examLibrary", examLibrary);
+            request.getRequestDispatcher("/admin/page/subject-detail.jsp").forward(request, response);
         }
     }
 }

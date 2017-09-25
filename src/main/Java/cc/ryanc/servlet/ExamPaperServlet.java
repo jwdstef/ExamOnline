@@ -15,6 +15,7 @@ import java.util.ArrayList;
 @WebServlet(name = "ExamPaperServlet")
 public class ExamPaperServlet extends HttpServlet {
     ExamPaperDao examPaperDao = new ExamPaperDao();
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doGet(request, response);
     }
@@ -22,12 +23,12 @@ public class ExamPaperServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //获取操作选项值
         String op = request.getParameter("op");
-        if("".equals(op)||null==op){
+        if ("".equals(op) || null == op) {
             this.query(request, response);
-        }else{
-            if("remove".equals(op)){
+        } else {
+            if ("remove".equals(op)) {
                 this.remove(request, response);
-            }else if("build".equals(op)){
+            } else if ("build".equals(op)) {
                 this.build(request, response);
             }
         }
@@ -35,6 +36,7 @@ public class ExamPaperServlet extends HttpServlet {
 
     /**
      * 处理查询所有试卷
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -43,14 +45,15 @@ public class ExamPaperServlet extends HttpServlet {
     public void query(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //调用dao类方法查询数据
         ArrayList<ExamPaper> examPapers = examPaperDao.getQuery();
-        if(examPapers!=null){
-            request.setAttribute("examPapers",examPapers);
-            request.getRequestDispatcher("/admin/page/paper.jsp").forward(request,response);
+        if (examPapers != null) {
+            request.setAttribute("examPapers", examPapers);
+            request.getRequestDispatcher("/admin/page/paper.jsp").forward(request, response);
         }
     }
 
     /**
      * 处理删除试卷
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -58,7 +61,7 @@ public class ExamPaperServlet extends HttpServlet {
      */
     public void remove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int paperId = Integer.parseInt(request.getParameter("paperId"));
-        if(examPaperDao.getRemove(paperId)){
+        if (examPaperDao.getRemove(paperId)) {
             this.query(request, response);
         }
     }
@@ -74,9 +77,9 @@ public class ExamPaperServlet extends HttpServlet {
         ClassInfo classInfo = new ClassInfo();
         classInfo.setClassId(classId);
         ExamPaper examPaper = new ExamPaper(
-                title,classInfo,begintime,endtime
+                title, classInfo, begintime, endtime
         );
-        if(examPaperDao.getInsert(examPaper)){
+        if (examPaperDao.getInsert(examPaper)) {
             this.query(request, response);
         }
     }

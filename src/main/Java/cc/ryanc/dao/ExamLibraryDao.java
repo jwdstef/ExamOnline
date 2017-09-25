@@ -85,19 +85,20 @@ public class ExamLibraryDao {
 
     /**
      * 根据编号删除题目
+     *
      * @param libId
      * @return
      */
-    public boolean getRemove(int libId){
+    public boolean getRemove(int libId) {
         //初始化返回值
         boolean result = false;
-        try{
+        try {
             String sql = "delete from examLibrary where libId = ?";
-            int row = dbUtil.execUpdate(sql,new Object[]{libId});
-            if(row>0){
+            int row = dbUtil.execUpdate(sql, new Object[]{libId});
+            if (row > 0) {
                 result = true;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;
@@ -105,17 +106,18 @@ public class ExamLibraryDao {
 
     /**
      * 更新题目数据
+     *
      * @param examLibrary ExamLibrary对象
      * @return 返回true或者false;
      */
-    public boolean getUpdate(ExamLibrary examLibrary){
+    public boolean getUpdate(ExamLibrary examLibrary) {
         boolean result = false;
-        try{
+        try {
             String sql = "update examLibrary set " +
                     "libTitle=?,libA=?,libB=?,libC=?,libD=?," +
                     "libRight=?,subId=?,libtype=?,gradeId=?" +
                     " where libId=?";
-            int row = dbUtil.execUpdate(sql,new Object[]{
+            int row = dbUtil.execUpdate(sql, new Object[]{
                     examLibrary.getLibTitle(),
                     examLibrary.getLibA(),
                     examLibrary.getLibB(),
@@ -127,10 +129,10 @@ public class ExamLibraryDao {
                     examLibrary.getGradeInfo().getGradeId(),
                     examLibrary.getLibId()
             });
-            if(row>0){
+            if (row > 0) {
                 result = true;
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;
@@ -138,21 +140,22 @@ public class ExamLibraryDao {
 
     /**
      * 根据编号查询题目信息
+     *
      * @param libId
      * @return
      */
-    public ExamLibrary getById(int libId){
+    public ExamLibrary getById(int libId) {
         ExamLibrary examLibrary = null;
-        try{
+        try {
             String sql = "select * from examLibrary a " +
                     "inner join subject b on a.subId = b.subId " +
                     "inner join gradeInfo c on a.gradeId = c.gradeId " +
                     "where libId = ?";
-            rs = dbUtil.execQuery(sql,new Object[]{libId});
+            rs = dbUtil.execQuery(sql, new Object[]{libId});
             //创建对象在循环体里封装数据
             Subject subject = null;
             GradeInfo gradeInfo = null;
-            while(rs.next()){
+            while (rs.next()) {
                 gradeInfo = new GradeInfo(
                         rs.getInt("gradeId"),
                         rs.getString("gradeName")
@@ -174,9 +177,9 @@ public class ExamLibraryDao {
                         gradeInfo
                 );
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             dbUtil.closeSource(rs);
         }
         return examLibrary;
@@ -184,9 +187,10 @@ public class ExamLibraryDao {
 
     /**
      * 查询所有题目 不分页
+     *
      * @return
      */
-    public ArrayList<ExamLibrary> queryAll(){
+    public ArrayList<ExamLibrary> queryAll() {
         ArrayList<ExamLibrary> examLibraries = new ArrayList<ExamLibrary>();
         try {
             String sql = "select * from examLibrary a " +

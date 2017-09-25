@@ -60,18 +60,19 @@ public class ExamPaperDao {
 
     /**
      * 根据id删除试卷
+     *
      * @param paperId
      * @return
      */
-    public boolean getRemove(int paperId){
+    public boolean getRemove(int paperId) {
         boolean result = false;
-        try{
+        try {
             String sql = "delete from examPaper where paperId = ?";
-            int row = dbUtil.execUpdate(sql,new Object[]{paperId});
-            if(row>0){
+            int row = dbUtil.execUpdate(sql, new Object[]{paperId});
+            if (row > 0) {
                 result = true;
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;
@@ -79,23 +80,24 @@ public class ExamPaperDao {
 
     /**
      * 添加试卷
+     *
      * @param examPaper
      * @return
      */
-    public boolean getInsert(ExamPaper examPaper){
+    public boolean getInsert(ExamPaper examPaper) {
         boolean result = false;
-        try{
+        try {
             String sql = "insert into examPaper values(paperId,?,?,?,?)";
-            int row = dbUtil.execUpdate(sql,new Object[]{
+            int row = dbUtil.execUpdate(sql, new Object[]{
                     examPaper.getPaperName(),
                     examPaper.getClassInfo().getClassId(),
                     examPaper.getBeginTime(),
                     examPaper.getEndTime()
             });
-            if(row>0){
+            if (row > 0) {
                 result = true;
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;
@@ -103,9 +105,10 @@ public class ExamPaperDao {
 
     /**
      * 查询试卷总量
+     *
      * @return
      */
-    public int getCount(){
+    public int getCount() {
         int row = 0;
         try {
             String sql = "select count(*) from examPaper";

@@ -19,6 +19,7 @@ import java.io.IOException;
 @WebServlet(name = "AdminServlet")
 public class AdminServlet extends HttpServlet {
     private AdminDao adminDao = new AdminDao();
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doGet(request, response);
     }
@@ -26,8 +27,8 @@ public class AdminServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //获取操作选项
         String op = request.getParameter("op");
-        if("login".equals(op)){
-            this.login(request,response);
+        if ("login".equals(op)) {
+            this.login(request, response);
         } else if ("getOut".equals(op)) {
             this.getOut(request, response);
         }
@@ -48,12 +49,12 @@ public class AdminServlet extends HttpServlet {
         String adminPwd = request.getParameter("adminpwd");
         System.out.println(adminName);
         System.out.println(adminPwd);
-        AdminInfo adminInfo = adminDao.getLogin(adminName,adminPwd);
-        if(adminInfo!=null){
+        AdminInfo adminInfo = adminDao.getLogin(adminName, adminPwd);
+        if (adminInfo != null) {
             System.out.println("登陆成功！");
-            request.getSession().setAttribute("adminInfo",adminInfo);
+            request.getSession().setAttribute("adminInfo", adminInfo);
             response.sendRedirect("admin/page/index.jsp");
-        }else{
+        } else {
             System.out.println("密码错误！");
             response.sendRedirect("admin/index.jsp");
         }

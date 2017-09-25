@@ -1,12 +1,13 @@
 package cc.ryanc.entity;
 
 public class Score {
-    private int scoreId ;
-    private StuInfo stuInfo ;
-    private ExamPaper examPaper ;
+    private int scoreId;
+    private StuInfo stuInfo;
+    private ExamPaper examPaper;
     private int score;
 
-    public Score() { }
+    public Score() {
+    }
 
     public Score(StuInfo stuInfo, ExamPaper examPaper, int score) {
         this.stuInfo = stuInfo;

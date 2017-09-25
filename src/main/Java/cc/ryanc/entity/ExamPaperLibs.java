@@ -1,10 +1,11 @@
 package cc.ryanc.entity;
 
 public class ExamPaperLibs {
-    private ExamPaper examPaper ;
-    private ExamLibrary examLibrary ;
+    private ExamPaper examPaper;
+    private ExamLibrary examLibrary;
 
-    public ExamPaperLibs() { }
+    public ExamPaperLibs() {
+    }
 
     public ExamPaperLibs(ExamPaper examPaper, ExamLibrary examLibrary) {
         this.examPaper = examPaper;

@@ -16,6 +16,7 @@ public class DateUtil {
 
     /**
      * 获取当前日期对象
+     *
      * @return 返回值为Date类型
      */
     public static Date getNowDateShort() {
@@ -27,6 +28,7 @@ public class DateUtil {
 
     /**
      * 获取当前日期和时间
+     *
      * @return 返回值为String类型
      */
     public static String getStringDate() {
@@ -37,6 +39,7 @@ public class DateUtil {
 
     /**
      * 只获取日期
+     *
      * @return 返回值为String类型
      */
     public static String getStringDateShort() {

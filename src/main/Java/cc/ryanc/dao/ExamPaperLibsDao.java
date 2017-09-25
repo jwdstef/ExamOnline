@@ -12,26 +12,27 @@ public class ExamPaperLibsDao {
 
     /**
      * 根据试卷编号查询当前试卷的所有考题
+     *
      * @param paperId
      * @return
      */
-    public ArrayList<ExamPaperLibs> getQuery(int paperId){
+    public ArrayList<ExamPaperLibs> getQuery(int paperId) {
         ArrayList<ExamPaperLibs> examPaperLibss = new ArrayList<ExamPaperLibs>();
-        try{
+        try {
             String sql = "select * from examPaperLibs a " +
                     "inner join examPaper b on a.paperId = b.paperId " +
                     "inner join classInfo c on b.classId = c.classId " +
                     "inner join gradeInfo d on c.gradeId = d.gradeId " +
                     "inner join examLibrary e on a.libId = e.libId " +
                     "inner join subject f on e.subId = f.subId where a.paperId=?";
-            rs = dbUtil.execQuery(sql,new Object[]{paperId});
+            rs = dbUtil.execQuery(sql, new Object[]{paperId});
             Subject subject = null;
             GradeInfo gradeInfo = null;
             ClassInfo classInfo = null;
             ExamLibrary examLibrary = null;
             ExamPaper examPaper = null;
             ExamPaperLibs examPaperLibs = null;
-            while(rs.next()){
+            while (rs.next()) {
                 subject = new Subject(
                         rs.getInt("subId"),
                         rs.getString("subName")
@@ -69,11 +70,11 @@ public class ExamPaperLibsDao {
                         rs.getString("endTime")
                 );
                 examPaperLibs = new ExamPaperLibs(
-                        examPaper,examLibrary
+                        examPaper, examLibrary
                 );
                 examPaperLibss.add(examPaperLibs);
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return examPaperLibss;
@@ -81,19 +82,20 @@ public class ExamPaperLibsDao {
 
     /**
      * 向试卷添加题目
+     *
      * @param paperId
      * @param libId
      * @return
      */
-    public boolean getAddLib(int paperId,int libId){
+    public boolean getAddLib(int paperId, int libId) {
         boolean result = false;
-        try{
+        try {
             String sql = "insert into examPaperLibs values(?,?)";
-            int row = dbUtil.execUpdate(sql,new Object[]{paperId,libId});
-            if(row>0){
+            int row = dbUtil.execUpdate(sql, new Object[]{paperId, libId});
+            if (row > 0) {
                 result = true;
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;

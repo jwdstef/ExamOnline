@@ -138,18 +138,19 @@ public class StuDao {
 
     /**
      * 移除学生
+     *
      * @param stuId 学生编号
      * @return 返回true或者false
      */
-    public boolean getRemove(int stuId){
+    public boolean getRemove(int stuId) {
         boolean result = false;
-        try{
+        try {
             String sql = "delete from stuInfo where stuId = ?";
-            int row = dbUtil.execUpdate(sql,new Object[]{stuId});
-            if(row>0){
+            int row = dbUtil.execUpdate(sql, new Object[]{stuId});
+            if (row > 0) {
                 result = true;
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;
@@ -157,21 +158,22 @@ public class StuDao {
 
     /**
      * 根据关键字查询学生
+     *
      * @param keyword 关键字
      * @return 返回集合
      */
-    public PageModel<StuInfo>getSearch(String keyword,int pageNo){
+    public PageModel<StuInfo> getSearch(String keyword, int pageNo) {
         PageModel<StuInfo> pageModel = new PageModel<StuInfo>();
         //创建集合对象存储查询到的学生对象
         ArrayList<StuInfo> stuInfos = new ArrayList<StuInfo>();
         int pageIndex = (pageNo - 1) * 10;
-        try{
+        try {
             String sql = "select * from stuInfo a " +
                     "inner join classInfo b on a.classId = b.classId " +
                     "inner join gradeInfo c on b.gradeId = c.gradeId " +
                     " where stuName like '%?%' limit ?,10";
-            rs = dbUtil.execQuery(sql,new Object[]{keyword,pageIndex});
-            while(rs.next()){
+            rs = dbUtil.execQuery(sql, new Object[]{keyword, pageIndex});
+            while (rs.next()) {
                 GradeInfo gradeInfo = new GradeInfo(
                         rs.getInt("gradeId"),
                         rs.getString("gradeName")
@@ -200,9 +202,9 @@ public class StuDao {
             pageModel.setPageNo(pageNo);
             pageModel.setAll(stuInfos);
             pageModel.setCount(getCount());
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             dbUtil.closeSource(rs);
         }
         return pageModel;
@@ -210,14 +212,15 @@ public class StuDao {
 
     /**
      * 更新学生信息
+     *
      * @param stuInfo StuInfo对象
-     * @return  返回true或者false
+     * @return 返回true或者false
      */
-    public boolean getUpdate(StuInfo stuInfo){
+    public boolean getUpdate(StuInfo stuInfo) {
         boolean result = false;
-        try{
+        try {
             String sql = "update stuInfo set stuNo=?,stuName=?,stuPwd=?,stuSex=?,stuAge=?,stuPhoto=?,classId=? where stuId=?";
-            int row = dbUtil.execUpdate(sql,new Object[]{
+            int row = dbUtil.execUpdate(sql, new Object[]{
                     stuInfo.getStuNo(),
                     stuInfo.getStuName(),
                     stuInfo.getStuPwd(),
@@ -227,10 +230,10 @@ public class StuDao {
                     stuInfo.getClassInfo().getClassId(),
                     stuInfo.getStuId()
             });
-            if (row>0){
+            if (row > 0) {
                 result = true;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;

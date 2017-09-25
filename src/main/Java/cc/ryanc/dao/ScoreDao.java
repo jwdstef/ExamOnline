@@ -10,18 +10,19 @@ import java.util.ArrayList;
 public class ScoreDao {
     DBUtil dbUtil = new DBUtil();
     ResultSet rs = null;
-    public PageModel<Score> queryAll(int pageNo){
+
+    public PageModel<Score> queryAll(int pageNo) {
         PageModel<Score> pageModel = new PageModel<Score>();
         ArrayList<Score> scores = new ArrayList<Score>();
-        try{
+        try {
             String sql = "select * from score a inner join stuInfo b on a.stuId = b.stuId inner join classInfo c on b.classId = c.classId inner join examPaper d on a.paperId = d.paperId";
-            rs = dbUtil.execQuery(sql,null);
+            rs = dbUtil.execQuery(sql, null);
             Score score = null;
             StuInfo stuInfo = null;
             ClassInfo classInfo = null;
             GradeInfo gradeInfo = null;
             ExamPaper examPaper = null;
-            while(rs.next()){
+            while (rs.next()) {
                 gradeInfo = new GradeInfo(
                         rs.getInt(1),
                         rs.getString(2)
@@ -62,9 +63,9 @@ public class ScoreDao {
             }
             pageModel.setAll(scores);
             pageModel.setPageNo(pageNo);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             dbUtil.closeSource(rs);
         }
         return pageModel;

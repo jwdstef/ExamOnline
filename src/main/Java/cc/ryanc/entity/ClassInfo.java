@@ -7,15 +7,16 @@ package cc.ryanc.entity;
  * 班级实体类
  */
 public class ClassInfo {
-    private int classId ;
-    private String className ;
-    private String master ;
-    private String teacher ;
+    private int classId;
+    private String className;
+    private String master;
+    private String teacher;
     private int number;
-    private String classBegin ;
+    private String classBegin;
     private GradeInfo gradeInfo;
 
-    public ClassInfo() { }
+    public ClassInfo() {
+    }
 
     public ClassInfo(int classId, String className, String master, String teacher, int number, String classBegin, GradeInfo gradeInfo) {
         this.classId = classId;
