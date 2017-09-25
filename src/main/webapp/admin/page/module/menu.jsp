@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!-- 侧边导航栏 -->
 <div class="left-sidebar">
@@ -7,8 +8,10 @@
             <div class="tpl-user-panel-profile-picture" style="margin:0 auto;">
                 <img src="/admin/static/img/ryan0up.png" alt="">
             </div>
-            <span class="user-panel-logged-in-text">RYAN0UP</span>
-            <a href="javascript:;" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 账号设置</a>
+            <span class="user-panel-logged-in-text">
+                <c:out value="${sessionScope.adminInfo.adminName}" />
+            </span>
+            <a href="/AdminServlet?op=toEdit&adminId=<c:out value="${sessionScope.adminInfo.adminId}" />" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 账号设置</a>
         </div>
     </div>
 
@@ -51,7 +54,7 @@
                 </li>
                 <li class="sidebar-nav-link">
                     <a href="/ExamPaperServlet">
-                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 组卷
+                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 试卷
                     </a>
                 </li>
             </ul>
@@ -78,22 +81,9 @@
         </li>
 
         <li class="sidebar-nav-link">
-            <a href="javascript:;" class="sidebar-nav-sub-title">
-                <i class="am-icon-cog sidebar-nav-link-logo"></i> 管理设置
-                <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+            <a href="/AdminServlet" class="sidebar-nav-sub-title">
+                <i class="am-icon-cog sidebar-nav-link-logo"></i> 管理员
             </a>
-            <ul class="sidebar-nav sidebar-nav-sub">
-                <li class="sidebar-nav-link">
-                    <a href="../admin-manage.jsp">
-                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 账号列表
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="../admin-add.jsp">
-                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 新增管理
-                    </a>
-                </li>
-            </ul>
         </li>
     </ul>
 </div>

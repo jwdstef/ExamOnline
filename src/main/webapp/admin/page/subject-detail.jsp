@@ -89,20 +89,24 @@
 										</div>
 										<div class="am-form-group tpl-table-list-select" style="text-align: left">
 											<label class="am-u-sm-12 am-form-label am-text-left">所属科目</label>
-											<select data-am-selected="{btnSize: 'sm'}">
-												<option value="1">JavaWeb高级</option>
-												<option value="2">.NET高级</option>
-												<option value="3">PHP网页设计</option>
-											</select>
+											<div class="am-u-sm-12">
+												<select data-am-selected="{btnSize: 'sm'}">
+													<option value="1">JavaWeb高级</option>
+													<option value="2">.NET高级</option>
+													<option value="3">PHP网页设计</option>
+												</select>
+											</div>
 										</div>
 
 										<div class="am-form-group tpl-table-list-select" style="text-align: left">
 											<label class="am-u-sm-12 am-form-label am-text-left">所属年级</label>
-											<select data-am-selected="{btnSize: 'sm'}">
-												<option value="1">S1</option>
-												<option value="2">S2</option>
-												<option value="3">S3</option>
-											</select>
+											<div class="am-u-sm-12">
+												<select data-am-selected="{btnSize: 'sm'}">
+													<option value="1">S1</option>
+													<option value="2">S2</option>
+													<option value="3">S3</option>
+												</select>
+											</div>
 										</div>
 
 										<div class="am-form-group">

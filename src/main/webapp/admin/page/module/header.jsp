@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!-- 头部 -->
 <header>
@@ -10,7 +11,6 @@
         <!-- 侧边切换 -->
         <div class="am-fl tpl-header-switch-button am-icon-list">
 	                    <span>
-
 	                </span>
         </div>
         <!-- 搜索 -->
@@ -25,7 +25,12 @@
             <ul>
                 <!-- 欢迎语 -->
                 <li class="am-text-sm tpl-header-navbar-welcome">
-                    <a href="javascript:;">欢迎你, <span>RYAN0UP</span> </a>
+                    <a href="javascript:;">
+                        欢迎你,
+                        <span>
+                            <c:out value="${sessionScope.adminInfo.adminName}" />
+                        </span> 
+                    </a>
                 </li>
                 <!--
                 <li class="am-dropdown" data-am-dropdown>

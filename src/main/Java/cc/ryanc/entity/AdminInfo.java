@@ -9,20 +9,15 @@ package cc.ryanc.entity;
 public class AdminInfo {
     private int adminId;
     private String adminName;
+    private String adminEmail;
     private String adminPwd;
 
-    public AdminInfo() {
-        super();
-    }
+    public AdminInfo() { }
 
-    public AdminInfo(int adminId, String adminName, String adminPwd) {
+    public AdminInfo(int adminId, String adminName, String adminEmail, String adminPwd) {
         this.adminId = adminId;
         this.adminName = adminName;
-        this.adminPwd = adminPwd;
-    }
-
-    public AdminInfo(String adminName, String adminPwd) {
-        this.adminName = adminName;
+        this.adminEmail = adminEmail;
         this.adminPwd = adminPwd;
     }
 
@@ -40,6 +35,14 @@ public class AdminInfo {
 
     public void setAdminName(String adminName) {
         this.adminName = adminName;
+    }
+
+    public String getAdminEmail() {
+        return adminEmail;
+    }
+
+    public void setAdminEmail(String adminEmail) {
+        this.adminEmail = adminEmail;
     }
 
     public String getAdminPwd() {

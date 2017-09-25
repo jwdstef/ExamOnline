@@ -132,6 +132,8 @@
 					</div>
 				</div>
 	        </div>
+
+			<!-- 新增 -->
 			<div class="am-modal am-modal-no-btn" tabindex="-1" id="stuadd">
 				<div class="am-modal-dialog">
 					<div class="am-modal-hd">添加学生
