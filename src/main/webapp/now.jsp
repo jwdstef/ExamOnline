@@ -25,7 +25,7 @@
 	<body>
 	<div id="examMain" class="mdui-shadow-10">
 		<div id="examTitle">
-			<h1>JAVA41第一次月考</h1>&emsp;
+			<h1><c:out value="${requestScope.title}" /></h1>&emsp;
 			<span id="stuName">姓名：${sessionScope.stuInfo.stuName}</span>&emsp;
 			<span id="examClass">班级：${sessionScope.stuInfo.classInfo.className}</span>&emsp;
 			<span id="examScore">总分：100</span>&emsp;

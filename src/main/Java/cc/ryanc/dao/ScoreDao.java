@@ -2,7 +2,6 @@ package cc.ryanc.dao;
 
 import cc.ryanc.entity.*;
 import cc.ryanc.util.DBUtil;
-import cc.ryanc.util.PageModel;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -13,6 +12,7 @@ public class ScoreDao {
 
     /**
      * 查询所有成绩信息
+     *
      * @return 返回ArrayList集合
      */
     public ArrayList<Score> queryAll() {
@@ -74,17 +74,18 @@ public class ScoreDao {
 
     /**
      * 添加成绩信息
+     *
      * @return 返回true或false
      */
-    public boolean getInsert(){
+    public boolean getInsert() {
         boolean result = false;
-        try{
+        try {
             String sql = "insert into score values(1,1,1,6);";
-            int row = dbUtil.execUpdate(sql,null);
-            if(row>0){
+            int row = dbUtil.execUpdate(sql, null);
+            if (row > 0) {
                 result = true;
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;

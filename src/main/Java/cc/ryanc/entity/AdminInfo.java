@@ -12,7 +12,8 @@ public class AdminInfo {
     private String adminEmail;
     private String adminPwd;
 
-    public AdminInfo() { }
+    public AdminInfo() {
+    }
 
     public AdminInfo(int adminId, String adminName, String adminEmail, String adminPwd) {
         this.adminId = adminId;

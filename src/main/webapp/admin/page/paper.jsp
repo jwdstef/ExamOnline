@@ -111,6 +111,7 @@
 															<option value="1">JAVA41</option>
 															<option value="2">.NET37</option>
 															<option value="3">PHP31</option>
+															<option value="4">JAVA42</option>
 														</select>
 													</div>
 												</div>

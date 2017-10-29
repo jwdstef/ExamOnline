@@ -1,13 +1,10 @@
 package cc.ryanc.test;
 
 import cc.ryanc.dao.AdminDao;
-import cc.ryanc.dao.ExamPaperLibsDao;
 import cc.ryanc.entity.AdminInfo;
-import cc.ryanc.entity.ExamPaperLibs;
 import cc.ryanc.util.DBUtil;
 
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 
 /**
@@ -24,9 +21,9 @@ public class TestDemo {
         adminInfo.setAdminName("CHAOGE1111");
         adminInfo.setAdminEmail("3412789@qq.com");
         adminInfo.setAdminPwd("123456789");
-        if(adminDao.getUpdate(adminInfo)){
+        if (adminDao.getUpdate(adminInfo)) {
             System.out.println("添加成功");
-        }else{
+        } else {
             System.out.println("添加失败");
         }
     }

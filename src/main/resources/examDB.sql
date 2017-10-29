@@ -40,7 +40,7 @@ create table stuInfo
   stuPwd varchar(50) not null,
   stuSex char(2) check(stuSex='男' or stuSex='女'),
   stuAge int,
-  stuPhoto varchar(200) not null,
+  stuPhoto varchar(200) not null default 'default.png',
   classId int references classInfo(classId)
 )CHARACTER set ='utf8';
 
@@ -106,6 +106,8 @@ create table siteInfo
 
 -- 插入测试数据
 insert into adminInfo values(1,'admin','i@ryanc.cc',md5('123456'));
+insert into adminInfo values(2,'admin2','Ryan0up@outlook.com',md5('987654321'));
+insert into adminInfo values(3,'RYAN0UP','i@ryanc.cc',md5('wangdashen666'));
 insert into siteInfo VALUES ('考试在线','http://localhost:8080','考试,在线考试','我是描述','/sitemap.xml','favicon.ico','Copyright◎2017','渝ICP备-111222-1','cnzz.com');
 
 insert into gradeInfo values('1','S1');
@@ -142,13 +144,6 @@ insert into examLibrary values(libId,'将长整型(long)数据转换为较短的
 insert into examLibrary values(libId,'下列哪个不是合法的标识符 ( )','hello','i','123','_good','C',1,1,1);
 insert into examLibrary values(libId,'下列哪个语句语法正确？','byte y = 11; byte x = y +y;','String x = new Object();','Object x = new String(“Hellow”);','int a [11] = new int [11];','C',1,1,1);
 insert into examLibrary values(libId,'以下选项中哪一个不是Java的特点：( )','自动垃圾回收','跨平台','面向对象','多重继承','D',1,1,1);
-
-insert into examPaper values(paperId,'JAVA41第一次月考',1,'2017-9-18 12:00','2017-9-19 13:00');
-
-insert into examPaperLibs values(1,1);
-insert into examPaperLibs values(1,2);
-insert into examPaperLibs values(1,3);
-insert into examPaperLibs values(1,4);
 
 SELECT * FROM adminInfo;
 select * from stuInfo;

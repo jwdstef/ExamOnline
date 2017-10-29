@@ -44,7 +44,7 @@
 					<th>教员</th>
 					<th>开始时间</th>
 					<th>结束时间</th>
-					<th>用时</th>
+					<th>考试时间</th>
 					<th>得分</th>
 				</tr>
 				</thead>

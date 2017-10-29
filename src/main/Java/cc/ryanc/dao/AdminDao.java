@@ -105,16 +105,17 @@ public class AdminDao {
 
     /**
      * 根据编号查询信息
+     *
      * @param adminId 传入管理员编号
      * @return 返回AdminInfo实体类对象
      */
-    public AdminInfo getById(int adminId){
+    public AdminInfo getById(int adminId) {
         //初始化AdminInfo
         AdminInfo adminInfo = null;
-        try{
+        try {
             String sql = "select * from adminInfo where adminId = ?";
-            rs = dbUtil.execQuery(sql,new Object[]{adminId});
-            if (rs.next()){
+            rs = dbUtil.execQuery(sql, new Object[]{adminId});
+            if (rs.next()) {
                 adminInfo = new AdminInfo(
                         adminId,
                         rs.getString("adminName"),
@@ -122,8 +123,10 @@ public class AdminDao {
                         rs.getString("adminPwd")
                 );
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            dbUtil.closeSource(rs);
         }
         return adminInfo;
     }
@@ -156,18 +159,19 @@ public class AdminDao {
 
     /**
      * 根据管理员编号删除管理员
-     * @param adminId　传入要删除的管理员编号
-     * @return  返回true or false;
+     *
+     * @param adminId 　传入要删除的管理员编号
+     * @return 返回true or false;
      */
-    public boolean getRemove(int adminId){
+    public boolean getRemove(int adminId) {
         boolean result = false;
-        try{
+        try {
             String sql = "delete from adminInfo where adminId=?";
-            int row = dbUtil.execUpdate(sql,new Object[]{adminId});
-            if(row>0){
+            int row = dbUtil.execUpdate(sql, new Object[]{adminId});
+            if (row > 0) {
                 result = true;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;

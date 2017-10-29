@@ -47,13 +47,13 @@ public class StuServlet extends HttpServlet {
                 this.search(request, response);
             } else if ("upload".equals(op)) {
                 this.upload(request, response);
-            } else if("toEdit".equals(op)){
+            } else if ("toEdit".equals(op)) {
                 this.toEdit(request, response);
-            } else if("update".equals(op)){
+            } else if ("update".equals(op)) {
                 this.update(request, response);
-            } else if("userupdate".equals(op)){
+            } else if ("userupdate".equals(op)) {
                 this.userupdate(request, response);
-            } else if("user".equals(op)){
+            } else if ("user".equals(op)) {
                 this.user(request, response);
             }
         }
@@ -72,9 +72,9 @@ public class StuServlet extends HttpServlet {
         String stuNo = request.getParameter("stuNo");
         String stuPwd = request.getParameter("stuPwd");
         //调用dao层方法查询判断是否有该学生
-        StuInfo stuInfo = stuDao.getLogin(stuNo,stuPwd);
+        StuInfo stuInfo = stuDao.getLogin(stuNo, stuPwd);
         if (stuInfo != null) {
-            request.getSession().setAttribute("stuInfo",stuInfo);
+            request.getSession().setAttribute("stuInfo", stuInfo);
             response.sendRedirect("index.jsp");
         }
     }
@@ -119,7 +119,7 @@ public class StuServlet extends HttpServlet {
         String stuSex = request.getParameter("stusex");
         int stuAge = Integer.parseInt(request.getParameter("stuage"));
         int classId = Integer.parseInt(request.getParameter("classid"));
-        if (stuDao.getInsert(stuNo, stuName,stuPwd, stuSex, stuAge, classId))
+        if (stuDao.getInsert(stuNo, stuName, stuPwd, stuSex, stuAge, classId))
             this.query(request, response);
     }
 
@@ -209,6 +209,7 @@ public class StuServlet extends HttpServlet {
 
     /**
      * 处理根据学生编号查询学生信息的请求
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -218,14 +219,15 @@ public class StuServlet extends HttpServlet {
         //获取要删除的学生id
         int stuId = Integer.parseInt(request.getParameter("stuId"));
         StuInfo stuInfo = stuDao.getById(stuId);
-        if(stuInfo!=null){
-            request.setAttribute("stuInfo",stuInfo);
-            request.getRequestDispatcher("/admin/page/student-update.jsp").forward(request,response);
+        if (stuInfo != null) {
+            request.setAttribute("stuInfo", stuInfo);
+            request.getRequestDispatcher("/admin/page/student-update.jsp").forward(request, response);
         }
     }
 
     /**
      * 处理修改学生信息的请求
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -250,12 +252,13 @@ public class StuServlet extends HttpServlet {
         stuInfo.setStuSex(stuSex);
         stuInfo.setStuAge(stuAge);
         stuInfo.setClassInfo(classInfo);
-        if(stuDao.getUpdate(stuInfo))
+        if (stuDao.getUpdate(stuInfo))
             this.query(request, response);
     }
 
     /**
      * 处理用户修改的请求
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -275,21 +278,22 @@ public class StuServlet extends HttpServlet {
         stuInfo.setStuPwd(stuPwd);
         stuInfo.setStuSex(stuSex);
         stuInfo.setStuAge(stuAge);
-        if(stuDao.getStuUpdate(stuInfo))
+        if (stuDao.getStuUpdate(stuInfo))
             response.sendRedirect("/user.jsp");
     }
 
     /**
      * 处理跳转到个人中心的请求
+     *
      * @param request
      * @param response
      * @throws ServletException
      * @throws IOException
      */
     public void user(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(request.getSession().getAttribute("stuInfo")==null){
+        if (request.getSession().getAttribute("stuInfo") == null) {
             response.sendRedirect("/index.jsp");
-            request.getSession().setAttribute("msg","你还没登录呢！");
+            request.getSession().setAttribute("msg", "你还没登录呢！");
             return;
         }
         response.sendRedirect("/user.jsp");

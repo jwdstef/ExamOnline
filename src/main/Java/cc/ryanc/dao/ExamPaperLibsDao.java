@@ -76,6 +76,8 @@ public class ExamPaperLibsDao {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            dbUtil.closeSource(rs);
         }
         return examPaperLibss;
     }

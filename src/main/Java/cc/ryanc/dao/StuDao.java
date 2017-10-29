@@ -6,7 +6,6 @@ import cc.ryanc.entity.StuInfo;
 import cc.ryanc.util.DBUtil;
 import cc.ryanc.util.PageModel;
 
-import java.rmi.server.ExportException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,10 +25,10 @@ public class StuDao {
      * @param stuNo
      * @return
      */
-    public StuInfo getLogin(String stuNo,String stuPwd) {
+    public StuInfo getLogin(String stuNo, String stuPwd) {
         StuInfo stuInfo = null;
         String sql = "select * from stuInfo a INNER JOIN classInfo b on a.classId = b.classId where stuNo=? and stuPwd=md5(?)";
-        rs = dbUtil.execQuery(sql, new Object[]{stuNo,stuPwd});
+        rs = dbUtil.execQuery(sql, new Object[]{stuNo, stuPwd});
         try {
             ClassInfo classInfo = null;
             if (rs.next()) {
@@ -126,6 +125,8 @@ public class StuDao {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            dbUtil.closeSource(rs);
         }
         return row;
     }
@@ -135,11 +136,11 @@ public class StuDao {
      *
      * @return 返回true或false
      */
-    public boolean getInsert(String stuNo, String stuName,String stuPwd,String stuSex, int stuAge, int classId) {
+    public boolean getInsert(String stuNo, String stuName, String stuPwd, String stuSex, int stuAge, int classId) {
         boolean result = false;
         try {
-            String sql = "insert into stuInfo(stuNo, stuName, stuPwd, stuSex, stuAge, stuPhoto, classId) values(?,?,?,?,?,default,?)";
-            int row = dbUtil.execUpdate(sql, new Object[]{stuNo, stuName, stuPwd,stuSex, stuAge, classId});
+            String sql = "insert into stuInfo(stuNo, stuName, stuPwd, stuSex, stuAge, stuPhoto, classId) values(?,?,md5(?),?,?,default,?)";
+            int row = dbUtil.execUpdate(sql, new Object[]{stuNo, stuName, stuPwd, stuSex, stuAge, classId});
             if (row > 0) {
                 result = true;
             }
@@ -231,7 +232,7 @@ public class StuDao {
     public boolean getUpdate(StuInfo stuInfo) {
         boolean result = false;
         try {
-            String sql = "update stuInfo set stuNo=?,stuName=?,stuPwd=?,stuSex=?,stuAge=?,classId=? where stuId=?";
+            String sql = "update stuInfo set stuNo=?,stuName=?,stuPwd=md5(?),stuSex=?,stuAge=?,classId=? where stuId=?";
             int row = dbUtil.execUpdate(sql, new Object[]{
                     stuInfo.getStuNo(),
                     stuInfo.getStuName(),
@@ -252,15 +253,16 @@ public class StuDao {
 
     /**
      * 根据编号查询学生信息
+     *
      * @param stuId
      * @return
      */
-    public StuInfo getById(int stuId){
+    public StuInfo getById(int stuId) {
         StuInfo stuInfo = null;
-        try{
+        try {
             String sql = "select * from stuInfo where stuId = ?";
-            rs = dbUtil.execQuery(sql,new Object[]{stuId});
-            while(rs.next()){
+            rs = dbUtil.execQuery(sql, new Object[]{stuId});
+            while (rs.next()) {
                 stuInfo = new StuInfo(
                         rs.getInt("stuId"),
                         rs.getString("stuNo"),
@@ -270,9 +272,9 @@ public class StuDao {
                         rs.getInt("stuAge")
                 );
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             dbUtil.closeSource(rs);
         }
         return stuInfo;
@@ -280,24 +282,25 @@ public class StuDao {
 
     /**
      * 用户的修改
+     *
      * @param stuInfo 传入StuInfo对象
      * @return 返回true或false
      */
-    public boolean getStuUpdate(StuInfo stuInfo){
+    public boolean getStuUpdate(StuInfo stuInfo) {
         boolean result = false;
-        try{
+        try {
             String sql = "update stuInfo set stuName=?,stuSex=?,stuAge=?,stuPwd=md5(?) where stuNo=?";
-            int row = dbUtil.execUpdate(sql,new Object[]{
+            int row = dbUtil.execUpdate(sql, new Object[]{
                     stuInfo.getStuName(),
                     stuInfo.getStuSex(),
                     stuInfo.getStuAge(),
                     stuInfo.getStuPwd(),
                     stuInfo.getStuNo()
             });
-            if(row>0){
+            if (row > 0) {
                 result = true;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;

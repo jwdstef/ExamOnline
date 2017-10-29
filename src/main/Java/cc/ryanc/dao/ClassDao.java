@@ -75,6 +75,8 @@ public class ClassDao {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            dbUtil.closeSource(rs);
         }
         return row;
     }
@@ -157,17 +159,18 @@ public class ClassDao {
 
     /**
      * 根据编号查询班级信息
+     *
      * @param classId 传入班级编号
      * @return 返回Classnfo对象
      */
-    public ClassInfo getById(int classId){
+    public ClassInfo getById(int classId) {
         //初始化CLassInfo对象
         ClassInfo classInfo = null;
-        try{
+        try {
             String sql = "select * from classInfo a inner join gradeInfo b on a.gradeId=b.gradeId where classId = ?";
-            rs = dbUtil.execQuery(sql,new Object[]{classId});
+            rs = dbUtil.execQuery(sql, new Object[]{classId});
             GradeInfo gradeInfo = null;
-            while(rs.next()){
+            while (rs.next()) {
                 //创建GradeInfo对象储存查询到的年级信息
                 gradeInfo = new GradeInfo(
                         rs.getInt("gradeId"),
@@ -184,8 +187,10 @@ public class ClassDao {
                         gradeInfo
                 );
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            dbUtil.closeSource(rs);
         }
         return classInfo;
     }

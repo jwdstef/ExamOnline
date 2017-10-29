@@ -54,7 +54,7 @@
 													<option value="2">.NET高级</option>
 													<option value="3">PHP网页设计</option>
 												</select>
-												<button type="submit" class="am-btn am-btn-default am-btn-secondary am-radius"><span class="am-icon-plus"></span>随机10题</button>
+												<button type="submit" class="am-btn am-btn-default am-btn-secondary am-radius" disabled><span class="am-icon-plus"></span>随机10题</button>
 											</div>
 										</form>
 									</div>

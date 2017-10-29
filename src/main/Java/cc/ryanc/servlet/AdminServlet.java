@@ -2,7 +2,6 @@ package cc.ryanc.servlet;
 
 import cc.ryanc.dao.AdminDao;
 import cc.ryanc.entity.AdminInfo;
-import cc.ryanc.entity.ClassInfo;
 import cc.ryanc.util.PageModel;
 
 import javax.servlet.ServletException;
@@ -30,20 +29,20 @@ public class AdminServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //获取操作选项
         String op = request.getParameter("op");
-        if("".equals(op)||null==op){
+        if ("".equals(op) || null == op) {
             this.query(request, response);
-        }else{
+        } else {
             if ("login".equals(op)) {
                 this.login(request, response);
             } else if ("getOut".equals(op)) {
                 this.getOut(request, response);
-            }else if("remove".equals(op)){
+            } else if ("remove".equals(op)) {
                 this.remove(request, response);
-            }else if("toEdit".equals(op)){
+            } else if ("toEdit".equals(op)) {
                 this.toEdit(request, response);
-            }else if("update".equals(op)){
+            } else if ("update".equals(op)) {
                 this.update(request, response);
-            }else if("insert".equals(op)){
+            } else if ("insert".equals(op)) {
                 this.insert(request, response);
             }
         }
@@ -97,6 +96,7 @@ public class AdminServlet extends HttpServlet {
 
     /**
      * 处理查询管理员的请求
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -120,6 +120,7 @@ public class AdminServlet extends HttpServlet {
 
     /**
      * 删除管理员账户
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -128,13 +129,14 @@ public class AdminServlet extends HttpServlet {
     public void remove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //获取要删除的管理员编号
         int adminId = Integer.parseInt(request.getParameter("adminId"));
-        if(adminDao.getRemove(adminId)){
+        if (adminDao.getRemove(adminId)) {
             this.query(request, response);
         }
     }
 
     /**
      * 处理跳转到修改页面的请求
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -144,14 +146,15 @@ public class AdminServlet extends HttpServlet {
         //获取要删除的管理员编号
         int adminId = Integer.parseInt(request.getParameter("adminId"));
         AdminInfo adminInfo = adminDao.getById(adminId);
-        if(adminInfo!=null){
-            request.setAttribute("adminInfo",adminInfo);
-            request.getRequestDispatcher("/admin/page/admin-update.jsp").forward(request,response);
+        if (adminInfo != null) {
+            request.setAttribute("adminInfo", adminInfo);
+            request.getRequestDispatcher("/admin/page/admin-update.jsp").forward(request, response);
         }
     }
 
     /**
      * 处理修改的请求
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -164,14 +167,15 @@ public class AdminServlet extends HttpServlet {
         String adminEmail = request.getParameter("adminEmail");
         String adminPwd = request.getParameter("adminPwd");
         //封装数据到实体类
-        AdminInfo adminInfo = new AdminInfo(adminId,adminName,adminEmail,adminPwd);
-        if(adminDao.getUpdate(adminInfo)){
+        AdminInfo adminInfo = new AdminInfo(adminId, adminName, adminEmail, adminPwd);
+        if (adminDao.getUpdate(adminInfo)) {
             this.query(request, response);
         }
     }
 
     /**
      * 处理添加管理员的请求
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -187,7 +191,7 @@ public class AdminServlet extends HttpServlet {
         adminInfo.setAdminName(adminName);
         adminInfo.setAdminEmail(adminEmail);
         adminInfo.setAdminPwd(adminPwd);
-        if(adminDao.getInsert(adminInfo)){
+        if (adminDao.getInsert(adminInfo)) {
             this.query(request, response);
         }
     }

@@ -86,16 +86,21 @@ public class ExamPaperLibsServlet extends HttpServlet {
      */
     public void test(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //获取试卷编号
-        if(request.getSession().getAttribute("stuInfo")==null){
+        if (request.getSession().getAttribute("stuInfo") == null) {
             response.sendRedirect("/index.jsp");
-            request.getSession().setAttribute("msg","您还没登录呢！");
+            request.getSession().setAttribute("msg", "您还没登录呢！");
             return;
         }
         int paperId = Integer.parseInt(request.getParameter("paperId"));
         ArrayList<ExamPaperLibs> examPaperLibss = examPaperLibsDao.getQuery(paperId);
+        String title = "";
+        for (ExamPaperLibs e : examPaperLibss) {
+            title = e.getExamPaper().getPaperName();
+        }
         if (examPaperLibss != null) {
             request.setAttribute("examPaperLibss", examPaperLibss);
             request.setAttribute("paperId", paperId);
+            request.setAttribute("title", title);
             request.getRequestDispatcher("/now.jsp").forward(request, response);
         }
     }

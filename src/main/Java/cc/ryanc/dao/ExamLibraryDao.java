@@ -31,7 +31,7 @@ public class ExamLibraryDao {
             String sql = "select * from examLibrary a " +
                     "inner join subject b on a.subId = b.subId " +
                     "inner join gradeInfo c on a.gradeId = c.gradeId " +
-                    "limit ?,10";
+                    "order by libId desc limit ?,10";
             rs = dbUtil.execQuery(sql, new Object[]{pageIndex});
             //创建对象在循环体里封装数据
             ExamLibrary examLibrary = null;
@@ -238,14 +238,15 @@ public class ExamLibraryDao {
 
     /**
      * 添加题目数据
+     *
      * @param examLibrary 传入ExamLibrar对象
      * @return 返回true或false
      */
-    public boolean getInsert(ExamLibrary examLibrary){
+    public boolean getInsert(ExamLibrary examLibrary) {
         boolean result = false;
-        try{
+        try {
             String sql = "insert into examLibrary values(libId,?,?,?,?,?,?,?,?,?)";
-            int row = dbUtil.execUpdate(sql,new Object[]{
+            int row = dbUtil.execUpdate(sql, new Object[]{
                     examLibrary.getLibTitle(),
                     examLibrary.getLibA(),
                     examLibrary.getLibB(),
@@ -256,10 +257,10 @@ public class ExamLibraryDao {
                     examLibrary.getLibtype(),
                     examLibrary.getGradeInfo().getGradeId()
             });
-            if(row>0){
+            if (row > 0) {
                 result = true;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;

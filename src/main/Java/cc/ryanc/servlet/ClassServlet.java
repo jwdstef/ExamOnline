@@ -34,11 +34,11 @@ public class ClassServlet extends HttpServlet {
         } else {
             if ("remove".equals(op)) {
                 this.remove(request, response);
-            }else if("insert".equals(op)){
+            } else if ("insert".equals(op)) {
                 this.insert(request, response);
-            }else if("toEdit".equals(op)){
+            } else if ("toEdit".equals(op)) {
                 this.toEdit(request, response);
-            }else if("update".equals(op)){
+            } else if ("update".equals(op)) {
                 this.update(request, response);
             }
         }
@@ -86,6 +86,7 @@ public class ClassServlet extends HttpServlet {
 
     /**
      * 处理添加班级信息的请求
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -103,14 +104,15 @@ public class ClassServlet extends HttpServlet {
         GradeInfo gradeInfo = new GradeInfo();
         gradeInfo.setGradeId(gradeId);
         //创建ClassInfo对象封装班级属性
-        ClassInfo classInfo = new ClassInfo(className,master,teacher,number,begin,gradeInfo);
-        if(classDao.getInsert(classInfo)){
+        ClassInfo classInfo = new ClassInfo(className, master, teacher, number, begin, gradeInfo);
+        if (classDao.getInsert(classInfo)) {
             this.query(request, response);
         }
     }
 
     /**
      * 处理修改跳转请求
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -120,14 +122,15 @@ public class ClassServlet extends HttpServlet {
         //得到班级编号
         int classId = Integer.parseInt(request.getParameter("classId"));
         ClassInfo classInfo = classDao.getById(classId);
-        if(classInfo!=null){
-            request.setAttribute("classInfo",classInfo);
-            request.getRequestDispatcher("/admin/page/class-update.jsp").forward(request,response);
+        if (classInfo != null) {
+            request.setAttribute("classInfo", classInfo);
+            request.getRequestDispatcher("/admin/page/class-update.jsp").forward(request, response);
         }
     }
 
     /**
      * 处理修改班级信息的请求
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -146,8 +149,8 @@ public class ClassServlet extends HttpServlet {
         GradeInfo gradeInfo = new GradeInfo();
         gradeInfo.setGradeId(gradeId);
         //封装信息到ClassInfo
-        ClassInfo classInfo = new ClassInfo(classId,className,master,teacher,number,begin,gradeInfo);
-        if(classDao.getUpdate(classInfo)){
+        ClassInfo classInfo = new ClassInfo(classId, className, master, teacher, number, begin, gradeInfo);
+        if (classDao.getUpdate(classInfo)) {
             this.query(request, response);
         }
     }

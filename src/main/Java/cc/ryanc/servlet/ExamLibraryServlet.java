@@ -37,9 +37,9 @@ public class ExamLibraryServlet extends HttpServlet {
                 this.remove(request, response);
             } else if ("detail".equals(op)) {
                 this.queryById(request, response);
-            } else if ("update".equals(op)){
+            } else if ("update".equals(op)) {
                 this.update(request, response);
-            } else if("insert".equals(op)){
+            } else if ("insert".equals(op)) {
                 this.insert(request, response);
             }
         }
@@ -71,6 +71,7 @@ public class ExamLibraryServlet extends HttpServlet {
 
     /**
      * 添加试题的请求
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -92,8 +93,8 @@ public class ExamLibraryServlet extends HttpServlet {
         GradeInfo gradeInfo = new GradeInfo();
         gradeInfo.setGradeId(grade);
         //创建ExamLibrary对象封装数据
-        ExamLibrary examLibrary = new ExamLibrary(libTitle,libA,libB,libC,libD,libRight,subject,type,gradeInfo);
-        if(examLibraryDao.getInsert(examLibrary))
+        ExamLibrary examLibrary = new ExamLibrary(libTitle, libA, libB, libC, libD, libRight, subject, type, gradeInfo);
+        if (examLibraryDao.getInsert(examLibrary))
             this.query(request, response);
     }
 
@@ -133,6 +134,7 @@ public class ExamLibraryServlet extends HttpServlet {
 
     /**
      * 处理修改题目的请求
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -154,8 +156,8 @@ public class ExamLibraryServlet extends HttpServlet {
         subject.setSubId(subId);
         GradeInfo gradeInfo = new GradeInfo();
         gradeInfo.setGradeId(gradeId);
-        ExamLibrary examLibrary = new ExamLibrary(libId,libTitle,libA,libB,libC,libD,libRight,subject,1,gradeInfo);
-        if(examLibraryDao.getUpdate(examLibrary))
+        ExamLibrary examLibrary = new ExamLibrary(libId, libTitle, libA, libB, libC, libD, libRight, subject, 1, gradeInfo);
+        if (examLibraryDao.getUpdate(examLibrary))
             this.query(request, response);
     }
 }
