@@ -108,7 +108,7 @@ create table siteInfo
 insert into adminInfo values(1,'admin','i@ryanc.cc',md5('123456'));
 insert into adminInfo values(2,'admin2','Ryan0up@outlook.com',md5('987654321'));
 insert into adminInfo values(3,'RYAN0UP','i@ryanc.cc',md5('wangdashen666'));
-insert into siteInfo VALUES ('考试在线','http://localhost:8080','考试,在线考试','我是描述','/sitemap.xml','favicon.ico','Copyright◎2017','渝ICP备-111222-1','cnzz.com');
+insert into siteInfo VALUES ('考试在线','http://localhost:8080','考试,在线考试','我是描述','/sitemap.xml','favicon.ico','Copyright◎2017','渝ICP备-xxxxxxxx-1','cnzz.com');
 
 insert into gradeInfo values('1','S1');
 insert into gradeInfo values('2','S2');
