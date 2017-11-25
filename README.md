@@ -2,7 +2,8 @@
     <img src="resources/screen.png" alt="ExamOnline">
 </p>
 <h1 align="center">ExamOnline</h1>
-# 简介
+
+## 简介
 
 > 一个使用Java开发的在线考试网站，可以实现在线出题，在线组卷，指定班级考试等功能。
 
